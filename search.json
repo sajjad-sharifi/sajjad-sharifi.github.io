@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "I’m Sajjad Sharifi. I’m based in the Boston area, working on urban informatics — broadly, applying data and spatial analysis to understand cities, with particular interest in fragile, conflict-affected, and post-displacement urban contexts."
+    "text": "I’m Sajjad Sharifi. I’m based in the Boston area, working on urban informatics, broadly, applying data and spatial analysis to understand cities, with particular interest in fragile, conflict-affected, and post-displacement urban contexts."
   },
   {
     "objectID": "about.html#what-i-work-on",
@@ -32,42 +32,42 @@
     "href": "about.html#contact",
     "title": "About",
     "section": "Contact",
-    "text": "Contact\n\nGitHub: heissj\nEmail: (add when ready)"
+    "text": "Contact\n\nGitHub: heissj\nEmail: (TBD)"
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Coming soon — Cox’s Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.\n\n\n\n\n\n\nTip\n\n\n\nThis portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days."
+    "text": "Coming soon, Cox’s Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.\n\n\n\n\n\n\nTip\n\n\n\nThis portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days."
   },
   {
     "objectID": "projects.html#atlas-of-urban-fragility",
     "href": "projects.html#atlas-of-urban-fragility",
     "title": "Projects",
     "section": "",
-    "text": "Coming soon — Cox’s Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.\n\n\n\n\n\n\nTip\n\n\n\nThis portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days."
+    "text": "Coming soon, Cox’s Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.\n\n\n\n\n\n\nTip\n\n\n\nThis portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days."
   },
   {
     "objectID": "projects.html#future-work",
     "href": "projects.html#future-work",
     "title": "Projects",
     "section": "Future work",
-    "text": "Future work\nMore projects will appear here over time — urban network analysis, transit equity, and other topics in urban informatics."
+    "text": "Future work\nMore projects will appear here over time, urban network analysis, transit equity, and other topics in urban informatics."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Sajjad Sharifi",
     "section": "",
-    "text": "I work at the intersection of data and the urban realities of fragile and post-conflict contexts. Using spatial analysis, open data, and modern Python tooling, I try to surface the kinds of patterns — where services are, where people are, where the gap is widest — that practitioners and policymakers can actually act on.\nThis site is a small, growing collection of my work."
+    "text": "I work at the intersection of data and the urban realities of fragile and post-conflict contexts. Using spatial analysis, open data, and modern Python tooling, I try to surface the kinds of patterns, where services are, where people are, where the gap is widest, that practitioners and policymakers can actually act on.\nThis site is a small, growing collection of my work."
   },
   {
     "objectID": "index.html#featured-project",
     "href": "index.html#featured-project",
     "title": "Sajjad Sharifi",
     "section": "Featured project",
-    "text": "Featured project\n\n\n\n\n\n\nNote→ Atlas of Urban Fragility: Four Cities, One Methodology\n\n\n\nA comparative analysis of service-population alignment in Cox’s Bazar, Kabul, Mosul, and Goma — using open data and a consistent spatial methodology to surface where the gaps are widest in four very different fragile contexts."
+    "text": "Featured project\n\n\n\n\n\n\nNote→ Atlas of Urban Fragility: Four Cities, One Methodology\n\n\n\nA comparative analysis of service-population alignment in Cox’s Bazar, Kabul, Mosul, and Goma, using open data and a consistent spatial methodology to surface where the gaps are widest in four very different fragile contexts."
   },
   {
     "objectID": "index.html#get-in-touch",
