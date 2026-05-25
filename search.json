@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m Sajjad Sharifi. I’m based in the Boston area, working on urban informatics — broadly, applying data and spatial analysis to understand cities, with particular interest in fragile, conflict-affected, and post-displacement urban contexts."
+  },
+  {
+    "objectID": "about.html#what-i-work-on",
+    "href": "about.html#what-i-work-on",
+    "title": "About",
+    "section": "What I work on",
+    "text": "What I work on\nService accessibility, urban form under stress, population-displacement patterns, and the ways spatial data can support more grounded decision-making in fragility settings."
+  },
+  {
+    "objectID": "about.html#how-i-work",
+    "href": "about.html#how-i-work",
+    "title": "About",
+    "section": "How I work",
+    "text": "How I work\nPython (geopandas, osmnx, folium, rasterio), PostGIS, QGIS, and an increasing amount of R for spatial statistics. I build reproducible pipelines so analysis can be re-run, extended, and challenged."
+  },
+  {
+    "objectID": "about.html#tech-stack",
+    "href": "about.html#tech-stack",
+    "title": "About",
+    "section": "Tech stack",
+    "text": "Tech stack\n\nLanguages: Python, R, SQL\nSpatial: PostGIS, geopandas, osmnx, rasterio, QGIS\nVisualization: Folium, matplotlib, Quarto\nInfrastructure: A small client-server setup of my own — a Mac Mini hub running PostgreSQL/PostGIS and a MacBook Pro for analysis, connected privately via Tailscale."
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About",
+    "section": "Contact",
+    "text": "Contact\n\nGitHub: heissj\nEmail: (add when ready)"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Coming soon — Cox’s Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.\n\n\n\n\n\n\nTip\n\n\n\nThis portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days."
+  },
+  {
+    "objectID": "projects.html#atlas-of-urban-fragility",
+    "href": "projects.html#atlas-of-urban-fragility",
+    "title": "Projects",
+    "section": "",
+    "text": "Coming soon — Cox’s Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.\n\n\n\n\n\n\nTip\n\n\n\nThis portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days."
+  },
+  {
+    "objectID": "projects.html#future-work",
+    "href": "projects.html#future-work",
+    "title": "Projects",
+    "section": "Future work",
+    "text": "Future work\nMore projects will appear here over time — urban network analysis, transit equity, and other topics in urban informatics."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Sajjad Sharifi",
+    "section": "",
+    "text": "I work at the intersection of data and the urban realities of fragile and post-conflict contexts. Using spatial analysis, open data, and modern Python tooling, I try to surface the kinds of patterns — where services are, where people are, where the gap is widest — that practitioners and policymakers can actually act on.\nThis site is a small, growing collection of my work."
+  },
+  {
+    "objectID": "index.html#featured-project",
+    "href": "index.html#featured-project",
+    "title": "Sajjad Sharifi",
+    "section": "Featured project",
+    "text": "Featured project\n\n\n\n\n\n\nNote→ Atlas of Urban Fragility: Four Cities, One Methodology\n\n\n\nA comparative analysis of service-population alignment in Cox’s Bazar, Kabul, Mosul, and Goma — using open data and a consistent spatial methodology to surface where the gaps are widest in four very different fragile contexts."
+  },
+  {
+    "objectID": "index.html#get-in-touch",
+    "href": "index.html#get-in-touch",
+    "title": "Sajjad Sharifi",
+    "section": "Get in touch",
+    "text": "Get in touch\nI’m always glad to talk about urban informatics, fragility, or any of the projects below. Find me on GitHub or via the about page."
+  }
+]
