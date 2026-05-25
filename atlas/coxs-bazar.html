@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Sajjad Sharifi">
+<meta name="dcterms.date" content="2026-05-25">
 
-<title>coxs-bazar – Sajjad Sharifi</title>
+<title>Cox’s Bazar: Health Facility Density – Sajjad Sharifi</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -113,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -153,45 +155,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cox’s Bazar: Health Facility Density</h1>
+<p class="subtitle lead">Where are health services concentrated in the Rohingya refugee settlements?</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td>title: “Cox’s Bazar: Health Facility Density”</td>
-</tr>
-<tr class="even">
-<td>subtitle: “Where are health services concentrated in the Rohingya refugee settlements?”</td>
-</tr>
-<tr class="odd">
-<td>author: “Sajjad Sharifi”</td>
-</tr>
-<tr class="even">
-<td>date: “May 25, 2026”</td>
-</tr>
-<tr class="odd">
-<td>format:</td>
-</tr>
-<tr class="even">
-<td>html:</td>
-</tr>
-<tr class="odd">
-<td>code-fold: true</td>
-</tr>
-<tr class="even">
-<td>toc: true</td>
-</tr>
-<tr class="odd">
-<td>toc-location: right</td>
-</tr>
-</tbody>
-</table>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sajjad Sharifi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 25, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <div id="ed2211f9-c787-465e-8713-6f02d1cb67a9" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cox's Bazar — Service Density Analysis</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Part of the Atlas of Urban Fragility</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -220,6 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify we're on the right Python</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Python: </span><span class="sc">{</span>sys<span class="sc">.</span>executable<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>osmnx:      2.1.0
 geopandas:  1.1.3
@@ -232,6 +237,8 @@ Python: /opt/homebrew/Caskroom/miniforge/base/envs/urban/bin/python</code></pre>
 </div>
 </div>
 <div id="6159841a-8eaf-4303-a404-a5539dd07d28" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Area of interest: the Rohingya refugee settlements</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Kutupalong-Balukhali mega-camp area, Ukhia Upazila, Bangladesh)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>AREA <span class="op">=</span> {</span>
@@ -251,6 +258,7 @@ Python: /opt/homebrew/Caskroom/miniforge/base/envs/urban/bin/python</code></pre>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Center: </span><span class="sc">{</span>center_lat<span class="sc">:.4f}</span><span class="ss">°N, </span><span class="sc">{</span>center_lon<span class="sc">:.4f}</span><span class="ss">°E"</span>)</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Span:   </span><span class="sc">{</span>AREA[<span class="st">'bbox'</span>][<span class="st">'north'</span>]<span class="op">-</span>AREA[<span class="st">'bbox'</span>][<span class="st">'south'</span>]<span class="sc">:.3f}</span><span class="ss">° lat × "</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"</span><span class="sc">{</span>AREA[<span class="st">'bbox'</span>][<span class="st">'east'</span>]<span class="op">-</span>AREA[<span class="st">'bbox'</span>][<span class="st">'west'</span>]<span class="sc">:.3f}</span><span class="ss">° lon"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Area:   Cox's Bazar Refugee Settlements
 Center: 21.1750°N, 92.1600°E
@@ -258,6 +266,8 @@ Span:   0.150° lat × 0.080° lon</code></pre>
 </div>
 </div>
 <div id="c8482221-db50-4875-b6d1-b2cccd8242a7" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick map to confirm the area looks right</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>[center_lat, center_lon], zoom_start<span class="op">=</span><span class="dv">12</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>               tiles<span class="op">=</span><span class="st">'OpenStreetMap'</span>)</span>
@@ -272,6 +282,7 @@ Span:   0.150° lat × 0.080° lon</code></pre>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>).add_to(m)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
@@ -393,6 +404,8 @@ Span:   0.150° lat × 0.080° lon</code></pre>
 </div>
 </div>
 <div id="4095128c-b422-4a6e-85e7-068fcfdc4541" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OSM tags for health facilities — covers hospitals, clinics, pharmacies,</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># doctors' offices, and anything tagged as healthcare</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>tags <span class="op">=</span> {</span>
@@ -408,6 +421,7 @@ Span:   0.150° lat × 0.080° lon</code></pre>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Returned </span><span class="sc">{</span><span class="bu">len</span>(facilities)<span class="sc">}</span><span class="ss"> features"</span>)</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">First few rows:"</span>)</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>facilities.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Querying OpenStreetMap for health facilities in Cox's Bazar Refugee Settlements...
 
@@ -566,6 +580,8 @@ First few rows:</code></pre>
 </div>
 </div>
 <div id="3c6a339d-fc95-41e9-9c2e-510c14bd4878" class="cell" data-scrolled="true" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What kinds of facilities are in the data?</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Amenity types:"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(facilities[<span class="st">'amenity'</span>].value_counts() <span class="cf">if</span> <span class="st">'amenity'</span> <span class="kw">in</span> facilities.columns <span class="cf">else</span> <span class="st">"(no amenity column)"</span>)</span>
@@ -575,6 +591,7 @@ First few rows:</code></pre>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Geometry types:"</span>)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(facilities.geometry.geom_type.value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Amenity types:
 amenity
@@ -596,6 +613,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="a82aa31a-60b3-44ba-bfe8-5101f20f5a69" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert polygon geometries to their centroids; points stay as points</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Project to Web Mercator first for accurate centroid math, then back to WGS84</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>facilities_proj <span class="op">=</span> facilities.to_crs(epsg<span class="op">=</span><span class="dv">3857</span>)</span>
@@ -604,12 +623,15 @@ Name: count, dtype: int64</code></pre>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(facilities_pts)<span class="sc">}</span><span class="ss"> facilities, all as points now"</span>)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Geometry types: </span><span class="sc">{</span>facilities_pts<span class="sc">.</span>geometry<span class="sc">.</span>geom_type<span class="sc">.</span>value_counts()<span class="sc">.</span>to_dict()<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>41 facilities, all as points now
 Geometry types: {'Point': 41}</code></pre>
 </div>
 </div>
 <div id="5982dd2b-241b-454b-a247-e38e4c828a63" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># H3 resolution 8 → hexagons roughly 0.5 km across</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Good resolution for a camp-scale analysis; res 7 = too coarse, res 9 = too fine)</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>H3_RESOLUTION <span class="op">=</span> <span class="dv">8</span></span>
@@ -627,12 +649,15 @@ Geometry types: {'Point': 41}</code></pre>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>hex_ids <span class="op">=</span> h3.h3shape_to_cells(h3_poly, H3_RESOLUTION)</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Generated </span><span class="sc">{</span><span class="bu">len</span>(hex_ids)<span class="sc">}</span><span class="ss"> H3 hexes at resolution </span><span class="sc">{</span>H3_RESOLUTION<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First few hex IDs: </span><span class="sc">{</span>hex_ids[:<span class="dv">3</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Generated 169 H3 hexes at resolution 8
 First few hex IDs: ['883cd12181fffff', '883cd12abbfffff', '883cd121a3fffff']</code></pre>
 </div>
 </div>
 <div id="bd839741-1c12-48d2-8d14-da7676885c57" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a GeoDataFrame where each row is one hexagon</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>hex_records <span class="op">=</span> []</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> h <span class="kw">in</span> hex_ids:</span>
@@ -659,6 +684,7 @@ First few hex IDs: ['883cd12181fffff', '883cd12abbfffff', '883cd121a3fffff']</co
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max facilities in one hex:  </span><span class="sc">{</span>hexes[<span class="st">'facility_count'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Distribution of facility counts:"</span>)</span>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(hexes[<span class="st">'facility_count'</span>].value_counts().sort_index())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Total hexes:                169
 Hexes with ≥1 facility:     22
@@ -676,6 +702,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="ae3a5ab6-2aaa-470f-8812-6b73ff60ed68" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the map</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    location<span class="op">=</span>[center_lat, center_lon],</span>
@@ -748,6 +776,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Display</span></span>
 <span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
@@ -1618,9 +1647,12 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="c9e2b302-b4b7-468d-8515-d164c5572080" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"atlas"</span> <span class="op">/</span> <span class="st">"coxs-bazar-map.html"</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m.save(<span class="bu">str</span>(output_path))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Map saved to: </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Map saved to: /Users/sajjadsharifi/UrbanProjects/heissj.github.io/atlas/coxs-bazar-map.html</code></pre>
 </div>
