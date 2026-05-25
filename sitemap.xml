@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://Heissj.github.io/heissj.github.io/about.html</loc>
-    <lastmod>2026-05-25T20:17:27.676Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Heissj.github.io/heissj.github.io/projects.html</loc>
-    <lastmod>2026-05-25T20:16:10.978Z</lastmod>
+    <loc>https://Heissj.github.io/heissj.github.io/atlas/coxs-bazar.html</loc>
+    <lastmod>2026-05-25T21:49:07.424Z</lastmod>
   </url>
   <url>
     <loc>https://Heissj.github.io/heissj.github.io/index.html</loc>
     <lastmod>2026-05-25T20:15:05.682Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Heissj.github.io/heissj.github.io/projects.html</loc>
+    <lastmod>2026-05-25T21:50:21.511Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Heissj.github.io/heissj.github.io/about.html</loc>
+    <lastmod>2026-05-25T20:17:27.676Z</lastmod>
   </url>
 </urlset>
