@@ -4,12 +4,20 @@ title: "Projects"
 
 ## Atlas of Urban Fragility
 
-*Coming soon, Cox's Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.*
+A comparative spatial analysis of four fragile cities, applying one consistent methodology to surface where essential services and population are misaligned.
 
-::: {.callout-tip}
-This portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days.
-:::
+### [Cox's Bazar — Rohingya Refugee Settlements](atlas/coxs-bazar.html)
 
-## Future work
+*Day 2 sketch: health facility density across the Kutupalong-Balukhali camp area. Population data and gap analysis coming in the next iteration.*
 
-More projects will appear here over time, urban network analysis, transit equity, and other topics in urban informatics.
+### Kabul (coming soon)
+
+### Mosul (coming soon)
+
+### Goma (coming soon)
+
+---
+
+## How this site is built
+
+This portfolio is itself reproducible: written in Quarto, hosted via GitHub Pages, with code openly available on [GitHub](https://github.com/heissj/heissj.github.io).
