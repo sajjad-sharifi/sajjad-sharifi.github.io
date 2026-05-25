@@ -21,3 +21,4 @@ data/**/*.geojson
 data/**/*.gpkg
 data/**/*.parquet
 data/**/*.csv
+atlas/cache/
