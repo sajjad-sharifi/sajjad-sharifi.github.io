@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "Sajjad Sharifi"
+  description: "Urban informatics, fragility, and the cities we build under pressure."
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Projects
+      - href: about.qmd
+        text: About
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false

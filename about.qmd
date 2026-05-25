@@ -1,0 +1,25 @@
+---
+title: "About"
+---
+
+I'm Sajjad Sharifi. I'm based in the Boston area, working on urban informatics — broadly, applying data and spatial analysis to understand cities, with particular interest in fragile, conflict-affected, and post-displacement urban contexts.
+
+## What I work on
+
+Service accessibility, urban form under stress, population-displacement patterns, and the ways spatial data can support more grounded decision-making in fragility settings.
+
+## How I work
+
+Python (geopandas, osmnx, folium, rasterio), PostGIS, QGIS, and an increasing amount of R for spatial statistics. I build reproducible pipelines so analysis can be re-run, extended, and challenged.
+
+## Tech stack
+
+- **Languages:** Python, R, SQL
+- **Spatial:** PostGIS, geopandas, osmnx, rasterio, QGIS
+- **Visualization:** Folium, matplotlib, Quarto
+- **Infrastructure:** A small client-server setup of my own — a Mac Mini hub running PostgreSQL/PostGIS and a MacBook Pro for analysis, connected privately via Tailscale.
+
+## Contact
+
+- GitHub: [heissj](https://github.com/heissj)
+- Email: *(add when ready)*
