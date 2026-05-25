@@ -7,3 +7,17 @@ __pycache__/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# Project data (don't commit raw geospatial files)
+data/**/*.tif
+data/**/*.tiff
+data/**/*.zip
+data/**/*.shp
+data/**/*.shx
+data/**/*.dbf
+data/**/*.prj
+data/**/*.cpg
+data/**/*.geojson
+data/**/*.gpkg
+data/**/*.parquet
+data/**/*.csv
