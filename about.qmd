@@ -2,7 +2,7 @@
 title: "About"
 ---
 
-I'm Sajjad Sharifi. I'm based in the Boston area, working on urban informatics — broadly, applying data and spatial analysis to understand cities, with particular interest in fragile, conflict-affected, and post-displacement urban contexts.
+I'm Sajjad Sharifi. I'm based in the Boston area, working on urban informatics, broadly, applying data and spatial analysis to understand cities, with particular interest in fragile, conflict-affected, and post-displacement urban contexts.
 
 ## What I work on
 
@@ -22,4 +22,4 @@ Python (geopandas, osmnx, folium, rasterio), PostGIS, QGIS, and an increasing am
 ## Contact
 
 - GitHub: [heissj](https://github.com/heissj)
-- Email: *(add when ready)*
+- Email: *(TBD)*

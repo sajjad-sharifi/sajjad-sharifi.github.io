@@ -3,7 +3,7 @@ title: "Sajjad Sharifi"
 subtitle: "Urban informatics, fragility, and the cities we build under pressure."
 ---
 
-I work at the intersection of data and the urban realities of fragile and post-conflict contexts. Using spatial analysis, open data, and modern Python tooling, I try to surface the kinds of patterns — where services are, where people are, where the gap is widest — that practitioners and policymakers can actually act on.
+I work at the intersection of data and the urban realities of fragile and post-conflict contexts. Using spatial analysis, open data, and modern Python tooling, I try to surface the kinds of patterns, where services are, where people are, where the gap is widest, that practitioners and policymakers can actually act on.
 
 This site is a small, growing collection of my work.
 
@@ -11,7 +11,7 @@ This site is a small, growing collection of my work.
 
 ::: {.callout-note appearance="simple" icon=false}
 ### [→ Atlas of Urban Fragility: Four Cities, One Methodology](projects.qmd)
-A comparative analysis of service-population alignment in Cox's Bazar, Kabul, Mosul, and Goma — using open data and a consistent spatial methodology to surface where the gaps are widest in four very different fragile contexts.
+A comparative analysis of service-population alignment in Cox's Bazar, Kabul, Mosul, and Goma, using open data and a consistent spatial methodology to surface where the gaps are widest in four very different fragile contexts.
 :::
 
 ## Get in touch

@@ -4,7 +4,7 @@ title: "Projects"
 
 ## Atlas of Urban Fragility
 
-*Coming soon — Cox's Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.*
+*Coming soon, Cox's Bazar, Kabul, Mosul, and Goma through the lens of service-population alignment.*
 
 ::: {.callout-tip}
 This portfolio is under active construction. The flagship fragility atlas will be published here over the next 10 days.
@@ -12,4 +12,4 @@ This portfolio is under active construction. The flagship fragility atlas will b
 
 ## Future work
 
-More projects will appear here over time — urban network analysis, transit equity, and other topics in urban informatics.
+More projects will appear here over time, urban network analysis, transit equity, and other topics in urban informatics.
