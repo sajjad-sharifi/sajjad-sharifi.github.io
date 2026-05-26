@@ -1,0 +1,71 @@
+---
+title: "Atlas of Urban Fragility"
+subtitle: "Four cities, one methodology"
+author: "Sajjad Sharifi"
+date: "May 25, 2026"
+toc: true
+toc-location: right
+---
+
+## A comparative spatial analysis
+
+Fragility manifests differently in different cities. A refugee camp's service-access pattern is not the same as a capital city's, which is not the same as a post-conflict reconstruction zone's, which is not the same as a city at the intersection of climate hazard and displacement. This atlas applies a single methodology to four of those cities to surface how the patterns actually compare.
+
+The methodology is deliberately simple. Tile each city with H3 hexagons (~0.5 km across). Count health facilities per hex from OpenStreetMap. Count building footprints per hex as a population proxy, also from OSM. Classify each hex as either dense and served, dense and underserved, or low-density. Map the result. Same code on all four cities.
+
+## The four cities
+
+### [Cox's Bazar — Rohingya Refugee Settlements](coxs-bazar.html)
+
+The Kutupalong-Balukhali mega-camp in southeastern Bangladesh, home to over 900,000 refugees in a constrained area. Services concentrated in the original camp core; the expansion periphery lags.
+
+### [Kabul — Central Districts](kabul.html)
+
+The Afghan capital's central core, ~4 million residents in a sprawling, densely-built city. Health facilities form scattered clusters surrounded by underserved residential zones.
+
+### [Mosul — Post-conflict Recovery](mosul.html)
+
+Iraq's second-largest city, recovering since 2017 from the war against ISIS. The Tigris River divides the largely-recovered east bank from the still-rebuilding west.
+
+### [Goma — Conflict and Climate Convergence](goma.html)
+
+A small city in eastern DRC squeezed between Lake Kivu and an active volcano, hosting layered displacement from regional conflict.
+
+## Side-by-side comparison
+
+| City | Health facilities | Buildings | Underserved hexes | Served hexes | % of dense buildings in gap |
+|---|---:|---:|---:|---:|---:|
+| [Cox's Bazar](coxs-bazar.html) | 41 | 199,531 | 96 | 21 | 29.8% |
+| [Kabul](kabul.html) | 182 | 288,142 | 135 | 55 | 73.6% |
+| [Mosul](mosul.html) | 437 | 11,070 | 13 | 35 | 23.6% |
+| [Goma](goma.html) | 342 | 178,715 | 62 | 59 | 21.7% |
+
+*Underserved = hex has ≥50 buildings and 0 health facilities.*
+*Served = hex has ≥50 buildings and ≥1 health facility.*
+*All measurements at H3 resolution 8 (~0.5 km hexagons).*
+
+## What the comparison reveals
+
+Across the four cities the gap patterns trace four different fragility stories:
+
+- In **Cox's Bazar**, the gap is at the periphery. Refugee response infrastructure concentrated where the camp first appeared; later arrivals settled outside the served core.
+- In **Kabul**, the gap is almost everywhere. A few scattered service clusters cannot reach a sprawling city of millions.
+- In **Mosul**, the gap follows the recovery divide. The Tigris functions as both a geographic and a service boundary.
+- In **Goma**, the gap reflects layered displacement, both volcanic and conflict-driven, concentrated in the IDP-hosting periphery.
+
+The point of the comparison is not that any one of these patterns is correct, or that any city has the right number of facilities. The point is that fragility is spatial, and the spatial patterns differ in instructive ways. A refugee response logic produces one geometry. A post-conflict recovery produces another. A climate-displacement convergence produces a third. Same methodology, same data sources, same code — four very different shapes of inequity.
+
+## Limitations and what would extend this work
+
+All four city pages list their specific limitations. Across the atlas, common caveats:
+
+- **OSM coverage is uneven across the four contexts.** Cox's Bazar is intensively mapped; Mosul, Kabul, and Goma less so. Where coverage is sparse, the gap may be overstated.
+- **Buildings are a population proxy, not a population count.** A more rigorous version would use WorldPop or census data; the OSM-only approach was chosen for methodological consistency across all four cities.
+- **Facility presence is not capacity.** A pharmacy and a regional hospital both count as one facility. Weighting by facility type, capacity, and operating hours would refine the analysis.
+- **The bbox in each city is a choice.** Different bboxes would produce different headline numbers; the cities deliberately use central-district bboxes to make the comparison consistent.
+
+Natural extensions: add a population layer (WorldPop or HRSL); add hazard layers (UNOSAT damage for Mosul, lava-flow zones for Goma); weight facilities by capacity; consider walking-distance access rather than within-hex membership.
+
+## Source code and reproducibility
+
+All analysis is open and reproducible at [github.com/heissj/heissj.github.io](https://github.com/heissj/heissj.github.io). Each city is one Jupyter notebook (`atlas/<city>.ipynb`) that runs end-to-end in about two minutes on a laptop. The methodology is identical across the four; only the bounding box changes.
