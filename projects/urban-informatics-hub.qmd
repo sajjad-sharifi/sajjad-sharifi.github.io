@@ -1,0 +1,131 @@
+---
+title: "Building an Urban Informatics Hub"
+subtitle: "A small, reproducible setup for spatial analysis at home"
+author: "Sajjad Sharifi"
+date: "May 25, 2026"
+toc: true
+toc-location: right
+---
+
+## Why a personal data hub
+
+Most urban informatics work I do involves the same loop: pull data from somewhere, store it, transform it, run analysis, make a map. After bouncing between cloud services, university machines, and a laptop, I wanted a setup that was always available without thinking about VPNs or VPS billing, kept my data on my own hardware, and was reproducible enough that anyone reading my portfolio could see how it was built.
+
+The result is a two-machine setup using equipment I already owned: a Mac Mini as the always-on data hub, a MacBook Pro for analysis, and Tailscale to connect them privately. Total software cost: zero.
+
+## The architecture
+
+The Mini's job: store data, serve it, never crash. The MacBook's job: actual analysis. They communicate over Tailscale, a peer-to-peer mesh VPN that handles all the networking invisibly.
+
+- **Mac Mini M4 (16 GB)** — the hub. PostgreSQL 18 with PostGIS 3.6, daily backups via launchd, Tailscale on the private network.
+- **MacBook Pro M1 Max (32 GB)** — the analysis client. Miniforge with a conda env named "urban" containing geopandas, osmnx, folium, and the rest of the spatial stack. JupyterLab, VS Code, DBeaver for visual SQL, R with reticulate for spatial statistics.
+
+## Phase 1: PostgreSQL and PostGIS on the Mini
+
+PostgreSQL is the database; PostGIS adds the spatial functions. Install both with Homebrew on the Mini:
+
+\`\`\`bash
+brew install postgresql@18
+brew install postgis
+brew services start postgresql@18
+\`\`\`
+
+Create a project user and database:
+
+\`\`\`bash
+createuser urban_user --pwprompt
+createdb urban_db --owner=urban_user
+psql urban_db -c "CREATE EXTENSION postgis;"
+\`\`\`
+
+To allow connections from another machine on the Tailscale network, edit two configuration files. In \`pg_hba.conf\`, add a line for the Tailscale CIDR range:
+
+\`\`\`
+host all all 100.64.0.0/10 scram-sha-256
+\`\`\`
+
+In \`postgresql.conf\`, set:
+
+\`\`\`
+listen_addresses = '*'
+\`\`\`
+
+Restart: \`brew services restart postgresql@18\`.
+
+Install Tailscale on the Mini from tailscale.com, sign in, and note the Mini's Tailscale IP. From the MacBook, sign into the same Tailscale account and test the connection:
+
+\`\`\`bash
+psql -h <mini-tailscale-ip> -U urban_user -d urban_db
+\`\`\`
+
+A \`urban_db=>\` prompt means you have a private remote database connection. No router configuration. No firewall ports opened to the public internet.
+
+## Phase 2: Automated daily backups
+
+PostgreSQL's \`pg_dump\` exports a database to a file. Wrap it in a small script that dumps the database with a timestamp and removes anything older than 14 days:
+
+\`\`\`bash
+#!/bin/bash
+DATE=\$(date +%Y%m%d-%H%M%S)
+pg_dump -Fc urban_db > ~/PostgresBackups/urban_db-\$DATE.dump
+find ~/PostgresBackups -name '*.dump' -mtime +14 -delete
+\`\`\`
+
+Schedule it nightly via macOS's \`launchd\` by creating a \`.plist\` file in \`~/Library/LaunchAgents/\` with a \`StartCalendarInterval\` of 3 AM and the path to the backup script. Load it with:
+
+\`\`\`bash
+launchctl load ~/Library/LaunchAgents/com.sajjadsharifi.postgresbackup.plist
+\`\`\`
+
+Every night at 3 AM, the database backs up automatically.
+
+## Phase 3: The analysis stack on the MacBook
+
+Miniforge is a lightweight conda installer that defaults to the conda-forge channel, which has better and faster geospatial packages than the default channel:
+
+\`\`\`bash
+brew install --cask miniforge
+\`\`\`
+
+Create a project environment with the libraries you need:
+
+\`\`\`bash
+mamba create -n urban -c conda-forge \\
+  python=3.12 geopandas rasterio folium contextily \\
+  osmnx h3-py jupyterlab psycopg2 sqlalchemy geoalchemy2 \\
+  shapely pyproj xarray matplotlib pandas numpy
+\`\`\`
+
+Register it as a Jupyter kernel:
+
+\`\`\`bash
+conda activate urban
+python -m ipykernel install --user --name=urban --display-name="Python 3 (urban)"
+\`\`\`
+
+From within Python you can connect to the Mini's database over the Tailscale link:
+
+\`\`\`python
+from sqlalchemy import create_engine
+engine = create_engine(
+    "postgresql+psycopg2://urban_user:PASSWORD@<mini-tailscale-ip>:5432/urban_db"
+)
+\`\`\`
+
+DBeaver Community gives a visual interface to the same database for SQL exploration. R can be hooked up through \`reticulate\` if you want to bridge R analysis tools into the same Python environment.
+
+## Cost summary
+
+- Hardware: equipment I already owned
+- Software: all free and open source
+- Annual cost: \$0
+
+## What I would do differently
+
+- **Use an external SSD for backups.** Currently they live on the Mini's internal SSD, which would not save me if the Mini itself died. A \$50 USB SSD would fix this.
+- **Set up a self-test.** When something fails (a backup, a connection), I currently only find out by checking. A weekly script that runs a small test and emails the result would be more reliable.
+- **Consider containerizing.** PostgreSQL via Homebrew works fine, but a Docker version would be easier to migrate between machines.
+
+## Code and reproducibility
+
+The portfolio site you are reading is built on the same setup described above. Source: [github.com/heissj/heissj.github.io](https://github.com/heissj/heissj.github.io). The Atlas of Urban Fragility is the first project built on this stack.
