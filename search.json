@@ -74,18 +74,25 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "A comparative spatial analysis of four fragile cities, applying one consistent methodology to surface where essential services and population are misaligned.\n\n\nDay 2 sketch: health facility density across the Kutupalong-Balukhali camp area. Population data and gap analysis coming in the next iteration."
+    "text": "A comparative spatial analysis of four fragile cities, applying one consistent methodology to surface where essential services and population are misaligned.\n\n\nHealth facility density across the Kutupalong-Balukhali camp area. About 30% of the dense population sits in hexes with no nearby health facility. Services concentrate in the original camp core; the expansion periphery lags.\n\n\n\nThe pattern inverts. Roughly 74% of mapped buildings in central Kabul sit in hexes with no nearby health facility. Facilities form scattered clusters in a city that is dense almost everywhere, a case of service provision lagging behind rapid urbanization."
   },
   {
     "objectID": "projects.html#atlas-of-urban-fragility",
     "href": "projects.html#atlas-of-urban-fragility",
     "title": "Projects",
     "section": "",
-    "text": "A comparative spatial analysis of four fragile cities, applying one consistent methodology to surface where essential services and population are misaligned.\n\n\nDay 2 sketch: health facility density across the Kutupalong-Balukhali camp area. Population data and gap analysis coming in the next iteration."
+    "text": "A comparative spatial analysis of four fragile cities, applying one consistent methodology to surface where essential services and population are misaligned.\n\n\nHealth facility density across the Kutupalong-Balukhali camp area. About 30% of the dense population sits in hexes with no nearby health facility. Services concentrate in the original camp core; the expansion periphery lags.\n\n\n\nThe pattern inverts. Roughly 74% of mapped buildings in central Kabul sit in hexes with no nearby health facility. Facilities form scattered clusters in a city that is dense almost everywhere, a case of service provision lagging behind rapid urbanization."
   },
   {
     "objectID": "projects.html#how-this-site-is-built",
     "href": "projects.html#how-this-site-is-built",
+    "title": "Projects",
+    "section": "How this site is built",
+    "text": "How this site is built\nThis portfolio is itself reproducible: written in Quarto, hosted via GitHub Pages, with code openly available on GitHub."
+  },
+  {
+    "objectID": "projects.html#how-this-site-is-built-1",
+    "href": "projects.html#how-this-site-is-built-1",
     "title": "Projects",
     "section": "How this site is built",
     "text": "How this site is built\nThis portfolio is itself reproducible: written in Quarto, hosted via GitHub Pages, with code openly available on GitHub."
