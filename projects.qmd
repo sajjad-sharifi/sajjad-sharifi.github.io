@@ -18,7 +18,9 @@ The pattern inverts. Roughly 74% of mapped buildings in central Kabul sit in hex
 
 A city rebuilding after the 2014-2017 conflict. The analysis surfaces the east-west divide across the Tigris: services have re-concentrated on the less-damaged side, while the Old City and the western neighborhoods continue to recover more slowly.
 
-### Goma (coming soon)
+### [Goma — Conflict and Climate Convergence](atlas/goma.html)
+
+A city sitting between Lake Kivu and Mount Nyiragongo, hosting waves of displacement from regional conflict. Health facilities concentrate in the formal city center; the IDP-hosting northern periphery shows the highest gap density.
 
 ---
 
