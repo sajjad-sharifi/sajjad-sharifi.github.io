@@ -8,13 +8,21 @@ A comparative spatial analysis of four fragile cities, applying one consistent m
 
 ### [Cox's Bazar — Rohingya Refugee Settlements](atlas/coxs-bazar.html)
 
-*Day 2 sketch: health facility density across the Kutupalong-Balukhali camp area. Population data and gap analysis coming in the next iteration.*
+Health facility density across the Kutupalong-Balukhali camp area. About 30% of the dense population sits in hexes with no nearby health facility. Services concentrate in the original camp core; the expansion periphery lags.
 
-### Kabul (coming soon)
+### [Kabul — Central Districts](atlas/kabul.html)
+
+The pattern inverts. Roughly 74% of mapped buildings in central Kabul sit in hexes with no nearby health facility. Facilities form scattered clusters in a city that is dense almost everywhere, a case of service provision lagging behind rapid urbanization.
 
 ### Mosul (coming soon)
 
 ### Goma (coming soon)
+
+---
+
+## How this site is built
+
+This portfolio is itself reproducible: written in Quarto, hosted via GitHub Pages, with code openly available on [GitHub](https://github.com/heissj/heissj.github.io).
 
 ---
 
