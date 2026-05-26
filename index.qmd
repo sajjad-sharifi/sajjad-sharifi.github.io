@@ -10,7 +10,7 @@ This site is a small, growing collection of my work.
 ## Featured project
 
 ::: {.callout-note appearance="simple" icon=false}
-### [→ Atlas of Urban Fragility: Four Cities, One Methodology](projects.qmd)
+### [→ Atlas of Urban Fragility: Four Cities, One Methodology](atlas/index.html)
 A comparative analysis of service-population alignment in Cox's Bazar, Kabul, Mosul, and Goma, using open data and a consistent spatial methodology to surface where the gaps are widest in four very different fragile contexts.
 :::
 
