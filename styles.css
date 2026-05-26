@@ -36,6 +36,29 @@ pre code {
 table { font-size: 0.95em; }
 table th { background: #f4f6f8; font-weight: 600; }
 
+/* Prevent character-by-character wrapping inside table cells */
+table th, table td {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* On narrow screens, make tables scroll horizontally instead of squashing */
+table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+/* On desktop, restore normal table layout */
+@media (min-width: 992px) {
+  table {
+    display: table;
+    width: 100%;
+  }
+}
+
 .navbar-brand { font-weight: 600; letter-spacing: -0.01em; }
 
 .cell-output iframe {
