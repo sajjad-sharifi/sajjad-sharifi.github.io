@@ -8,8 +8,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-    - href: atlas/index.qmd
-      text: Atlas
+      - href: atlas/index.qmd
+        text: Atlas
       - href: projects.qmd
         text: Projects
       - href: about.qmd
