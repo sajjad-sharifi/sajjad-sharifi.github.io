@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -42,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4d3f3448f837ff03356db176d8adb603.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -162,6 +163,11 @@ ul.task-list li input[type="checkbox"] {
 <p>A city sitting between Lake Kivu and Mount Nyiragongo, hosting waves of displacement from regional conflict. Health facilities concentrate in the formal city center; the IDP-hosting northern periphery shows the highest gap density.</p>
 <hr>
 </section>
+<section id="building-an-urban-informatics-hub" class="level3">
+<h3 class="anchored" data-anchor-id="building-an-urban-informatics-hub"><a href="projects/urban-informatics-hub.html">Building an Urban Informatics Hub</a></h3>
+<p>A step-by-step tutorial documenting how I assembled a small Mac-based data hub for spatial analysis: PostgreSQL plus PostGIS on a Mac Mini, accessed from a MacBook Pro via Tailscale, with a Python and R analysis stack and automated backups. Reproducible and inexpensive.</p>
+<hr>
+</section>
 </section>
 <section id="how-this-site-is-built" class="level2">
 <h2 class="anchored" data-anchor-id="how-this-site-is-built">How this site is built</h2>
@@ -258,6 +264,13 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -572,6 +585,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built with <a href="https://quarto.org">Quarto</a> by Sajjad Sharifi.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/heissj/heissj.github.io">GitHub</a></p>
+</div>
+  </div>
+</footer>
 
 
 

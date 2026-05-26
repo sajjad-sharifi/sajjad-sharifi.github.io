@@ -70,6 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -79,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4d3f3448f837ff03356db176d8adb603.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -212,8 +213,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="why-this-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-analysis">Why this analysis</h2>
-<p>The Rohingya refugee settlements in Cox’s Bazar, Bangladesh form one of the largest concentrations of displaced people in the world. Over 900,000 refugees live in the Kutupalong-Balukhali mega-camp and adjacent sites in Ukhia and Teknaf Upazilas. At that density, in a constrained area, the question of where health services are located relative to where people actually live becomes a basic test of the response.</p>
-<p>This is a sketch, not a comprehensive assessment. The methodology is deliberately simple and reproducible: tile the area with hexagons, count facilities, count buildings as a population proxy, and look for the gap. The same code will run on Kabul, Mosul, and Goma next.</p>
+<p>The Rohingya refugee settlements in Cox’s Bazar, Bangladesh form one of the largest concentrations of displaced people in the world. Over 900,000 refugees live across the Kutupalong-Balukhali mega-camp and adjacent sites in Ukhia and Teknaf Upazilas. At that density, in a constrained area, the question of where health services are located relative to where people actually live becomes a basic test of the humanitarian response.</p>
+<p>This is the first city in a four-part atlas. The same methodology will be applied without modification to Kabul, Mosul, and Goma. Comparing those four contexts reveals how differently fragility produces spatial patterns of service access. Cox’s Bazar’s pattern, as we will see, is the inverse of Kabul’s.</p>
 <div id="ed2211f9-c787-465e-8713-6f02d1cb67a9" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -2784,15 +2785,15 @@ Buildings in 'served' hexes:       139,436
 </section>
 <section id="what-the-map-shows" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-map-shows">What the map shows</h2>
-<p>The pattern is unmistakable. Health facilities cluster in a small central core — likely the original Kutupalong camp footprint, where response infrastructure first arrived. That core contains 21 hexes covering roughly 70% of mapped buildings. The periphery, where later refugee inflows settled, is largely unserved: 96 hexes containing nearly 60,000 buildings, with no facility within ~500m.</p>
-<p>This is consistent with the way humanitarian response often evolves. Initial services concentrate near where the displacement first appeared, and expansion areas lag behind in catching up. The map identifies specific hexes where additional outreach, mobile clinics, or facility expansion would close the gap most directly.</p>
+<p>The pattern is unmistakable. Health facilities cluster in a small central core, likely the original Kutupalong camp footprint, where response infrastructure first arrived. That core contains 21 hexes covering roughly 70% of mapped buildings. The periphery, where later refugee inflows settled, is largely unserved: 96 hexes containing nearly 60,000 buildings, with no facility within ~500m.</p>
+<p>This is consistent with the way humanitarian response often evolves. Initial services concentrate near where the displacement first appeared, and expansion areas lag behind. The pattern here, services concentrated in the population core, is the opposite of what we find in Kabul, where facilities cluster geographically but the city around them is so dense that most residents fall outside the served zones. Mosul and Goma show yet other variations on the same theme.</p>
 <section id="limitations" class="level3">
 <h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
 <ul>
-<li><strong>OSM coverage is uneven.</strong> Where mappers have been active (as in Cox’s Bazar), the facility list is detailed; in other contexts (forthcoming pages in this atlas), gaps in OSM may understate the actual service presence.</li>
-<li><strong>Buildings ≠ population.</strong> Some structures are warehouses, learning centres, or sanitation blocks rather than dwellings. The proxy is a rough one.</li>
+<li><strong>OSM coverage is uneven.</strong> Where mappers have been active, as in Cox’s Bazar, the facility list is detailed. In other contexts in this atlas, OSM gaps may understate the actual service presence.</li>
+<li><strong>Buildings are not population.</strong> Some structures are warehouses, learning centres, or sanitation blocks rather than dwellings. The proxy is a rough one.</li>
 <li><strong>500m is one choice.</strong> Hex resolution H3 res 8 (~0.5 km) is a methodological choice. Larger hexes would smooth out the pattern; smaller ones would amplify it.</li>
-<li><strong>Access ≠ presence.</strong> A facility within a hex doesn’t guarantee it serves the population there — capacity, opening hours, fees, and stigma all matter.</li>
+<li><strong>Access is not presence.</strong> A facility within a hex does not guarantee it serves the population there. Capacity, opening hours, fees, and stigma all matter.</li>
 </ul>
 </section>
 <section id="methodology" class="level3">
@@ -2891,6 +2892,13 @@ Buildings in 'served' hexes:       139,436
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -3205,6 +3213,19 @@ Buildings in 'served' hexes:       139,436
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built with <a href="https://quarto.org">Quarto</a> by Sajjad Sharifi.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/heissj/heissj.github.io">GitHub</a></p>
+</div>
+  </div>
+</footer>
 
 
 
