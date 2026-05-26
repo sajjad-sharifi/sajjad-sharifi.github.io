@@ -14,15 +14,11 @@ Health facility density across the Kutupalong-Balukhali camp area. About 30% of 
 
 The pattern inverts. Roughly 74% of mapped buildings in central Kabul sit in hexes with no nearby health facility. Facilities form scattered clusters in a city that is dense almost everywhere, a case of service provision lagging behind rapid urbanization.
 
-### Mosul (coming soon)
+### [Mosul — Post-conflict Recovery](atlas/mosul.html)
+
+A city rebuilding after the 2014-2017 conflict. The analysis surfaces the east-west divide across the Tigris: services have re-concentrated on the less-damaged side, while the Old City and the western neighborhoods continue to recover more slowly.
 
 ### Goma (coming soon)
-
----
-
-## How this site is built
-
-This portfolio is itself reproducible: written in Quarto, hosted via GitHub Pages, with code openly available on [GitHub](https://github.com/heissj/heissj.github.io).
 
 ---
 
