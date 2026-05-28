@@ -1,0 +1,30 @@
+# Data, never commit
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# R project artifacts
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# renv, keep lockfile but not the library
+renv/library/
+renv/local/
+renv/cellar/
+renv/staging/
+renv/python/
+
+# Outputs too large for Git
+output/maps/*.html
+*.tif
+*.tiff
+
+# Secrets
+.Renviron
+.env
+
+# OS junk
+.DS_Store
