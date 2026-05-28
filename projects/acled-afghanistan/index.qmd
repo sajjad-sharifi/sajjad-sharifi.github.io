@@ -171,7 +171,63 @@ ggsave(
 )
 ```
 
-## 
+## Most affected districts
+
+The choropleth shows the spatial pattern. The ranking gives the specific places. The two tables below list the 20 districts with the most ACLED events in each period. Reading them side by side shows two things: which districts dominated the pre-2021 war, and which districts remained or became hotspots under the new regime.
+
+```{r top-districts}
+# Pre-compute each district's national rank in the pre-period
+# Using GID_2 (unique ID) instead of NAME_2 to avoid duplicate-name bugs
+pre_ranks <- district_counts |>
+  mutate(pre_rank = dense_rank(desc(pre_Aug2021))) |>
+  select(GID_2, pre_rank)
+
+post_ranks <- district_counts |>
+  mutate(post_rank = dense_rank(desc(post_Aug2021))) |>
+  select(GID_2, post_rank)
+
+district_counts_ranked <- district_counts |>
+  left_join(pre_ranks, by = "GID_2") |>
+  left_join(post_ranks, by = "GID_2")
+
+# 20 most affected in the pre-Aug 2021 period
+top_pre <- district_counts_ranked |>
+  arrange(desc(pre_Aug2021)) |>
+  head(20) |>
+  transmute(
+    Rank = row_number(),
+    Province = NAME_1,
+    District = NAME_2,
+    `Pre-Aug 2021 events` = pre_Aug2021,
+    `Post-Aug 2021 events` = post_Aug2021,
+    `% change` = paste0(round((post_Aug2021 / pre_Aug2021 - 1) * 100), "%")
+  )
+
+# 20 most affected in the post-Aug 2021 period
+top_post <- district_counts_ranked |>
+  arrange(desc(post_Aug2021)) |>
+  head(20) |>
+  transmute(
+    Rank = row_number(),
+    Province = NAME_1,
+    District = NAME_2,
+    `Post-Aug 2021 events` = post_Aug2021,
+    `Pre-Aug 2021 events` = pre_Aug2021,
+    `Pre-rank in country` = pre_rank
+  )
+
+knitr::kable(
+  top_pre,
+  caption = "Table 1. The 20 districts with the most ACLED events before 15 August 2021, with their post-period counts and the percent change."
+)
+
+knitr::kable(
+  top_post,
+  caption = "Table 2. The 20 districts with the most ACLED events after 15 August 2021, with their pre-period counts and where they ranked nationally in the pre-period."
+)
+```
+
+Table 2 makes the regime break concrete. Kabul City is now the dominant conflict node, accounting for over a third of all post-2021 events. More striking is the emergence of a new resistance belt in and around the Panjshir valley: six of the post-period top 20 (Panjsher, Hisa-i-Awali Panjsher, Hisa-i-Duwum Panjsher, Andarab, Kohistan, Khost Wa Firing) sit in or adjacent to Panjshir, all minor conflict districts before 2021 (national ranks between 224 and 322), now front-line zones of the National Resistance Front. The southern Pashtun war belt has the opposite trajectory: the four Helmand districts and two of three Kandahar districts that dominated the pre-war list are completely gone from the post-war top 20. Kandahar City and Jalalabad remain top 10 in both periods but for different reasons, urban ISKP attacks and Taliban policing replacing battles with the Republic. The map of organized violence in Afghanistan effectively migrated 200 to 300 kilometers northeast across the regime break.
 
 ## Event type composition shifted, not just volume
 
@@ -234,13 +290,197 @@ ggsave(
 
 Three patterns stand out. First, battles fell from roughly 62% of pre-2021 events to 30% post-2021, consistent with the disappearance of the armed insurgency once the Republic collapsed. Second, violence against civilians rose from 4% to 34%, even as absolute volume fell roughly 5x; the regime that emerged is consolidating, not contesting. Third, strategic developments climbed from 3% to 17%, picking up Taliban policy announcements that ACLED logs but were uncommon during active war. Protests also rose from near-zero to about 8%, dominated by women's rights demonstrations after the December 2022 university ban. None of this is causal evidence. It is a description of how event mix shifted at the regime break, and it confirms the structural-break framing: the two periods are different phenomena, not the same conflict at different intensity.
 
+## Statistically significant hotspots, Getis-Ord Gi\*
+
+The choropleth, KDE, and ranking all describe where events concentrate. None of them tells us whether a given district's count is high enough to call a hotspot, holding the rest of the country fixed. Getis-Ord Gi\* (Getis and Ord, 1992) measures exactly this: for each district, it compares the local count (district plus immediate neighbors) to what we would expect if events were spread evenly across the country, returning a z-score. Positive values flag hotspots, negative values flag coldspots. We use queen-contiguity spatial weights (districts touching at any corner count as neighbors), and apply Benjamini-Hochberg FDR correction because we are running \~400 tests, one per district.
+
+```{r gi-star, fig.width=10, fig.height=6}
+library(spdep)
+
+# Queen-contiguity neighbors and row-standardized spatial weights
+nb <- poly2nb(afg_adm2_counts, queen = TRUE)
+W  <- nb2listw(nb, style = "W", zero.policy = TRUE)
+
+# Local Gi* z-scores for each period
+gi_pre  <- localG(afg_adm2_counts$pre_Aug2021,  W, zero.policy = TRUE)
+gi_post <- localG(afg_adm2_counts$post_Aug2021, W, zero.policy = TRUE)
+
+# Attach z-scores, raw p-values, and FDR-corrected p-values to polygons
+afg_adm2_counts <- afg_adm2_counts |>
+  mutate(
+    gi_pre_z     = as.numeric(gi_pre),
+    gi_post_z    = as.numeric(gi_post),
+    gi_pre_p     = 2 * (1 - pnorm(abs(gi_pre_z))),
+    gi_post_p    = 2 * (1 - pnorm(abs(gi_post_z))),
+    gi_pre_pfdr  = p.adjust(gi_pre_p,  method = "BH"),
+    gi_post_pfdr = p.adjust(gi_post_p, method = "BH")
+  )
+
+# Classifier
+classify_gi <- function(z, p) {
+  dplyr::case_when(
+    z > 0 & p <= 0.01 ~ "Hotspot p<0.01",
+    z > 0 & p <= 0.05 ~ "Hotspot p<0.05",
+    z < 0 & p <= 0.01 ~ "Coldspot p<0.01",
+    z < 0 & p <= 0.05 ~ "Coldspot p<0.05",
+    TRUE              ~ "Not significant"
+  )
+}
+
+afg_long_gi <- afg_adm2_counts |>
+  mutate(
+    pre_class  = classify_gi(gi_pre_z,  gi_pre_pfdr),
+    post_class = classify_gi(gi_post_z, gi_post_pfdr)
+  ) |>
+  select(NAME_1, NAME_2, pre_class, post_class) |>
+  pivot_longer(
+    cols      = c(pre_class, post_class),
+    names_to  = "period",
+    values_to = "gi_class"
+  ) |>
+  mutate(
+    period = factor(period,
+                    levels = c("pre_class", "post_class"),
+                    labels = c("Before 15 Aug 2021", "After 15 Aug 2021")),
+    gi_class = factor(gi_class,
+                      levels = c("Hotspot p<0.01", "Hotspot p<0.05",
+                                 "Not significant",
+                                 "Coldspot p<0.05", "Coldspot p<0.01"))
+  )
+
+gi_colors <- c(
+  "Hotspot p<0.01"  = "#b2182b",
+  "Hotspot p<0.05"  = "#ef8a62",
+  "Not significant" = "#f7f7f7",
+  "Coldspot p<0.05" = "#67a9cf",
+  "Coldspot p<0.01" = "#2166ac"
+)
+
+p_gi <- ggplot(afg_long_gi) +
+  geom_sf(aes(fill = gi_class), color = "grey80", linewidth = 0.1) +
+  scale_fill_manual(values = gi_colors, name = NULL, drop = FALSE) +
+  facet_wrap(~ period) +
+  labs(
+    title    = "Statistically significant district hotspots, Getis-Ord Gi*",
+    subtitle = "Queen-contiguity weights, two-tailed test, Benjamini-Hochberg FDR",
+    caption  = "Sources: ACLED, GADM v4.1. Method: Getis and Ord (1992)."
+  ) +
+  theme_void(base_size = 11) +
+  theme(
+    legend.position = "bottom",
+    strip.text = element_text(face = "bold"),
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "grey40")
+  )
+
+p_gi
+
+# Count of districts in each significance class per period
+cat("Pre-Aug 2021 classification counts:\n")
+afg_adm2_counts |>
+  st_drop_geometry() |>
+  mutate(class = classify_gi(gi_pre_z, gi_pre_pfdr)) |>
+  count(class) |>
+  print()
+
+cat("\nPost-Aug 2021 classification counts:\n")
+afg_adm2_counts |>
+  st_drop_geometry() |>
+  mutate(class = classify_gi(gi_post_z, gi_post_pfdr)) |>
+  count(class) |>
+  print()
+
+ggsave(here("output", "figures", "getis_ord_gi.png"),
+       p_gi, width = 10, height = 6, dpi = 200)
+```
+
+The Gi\* result sharpens the picture. In the pre-2021 period, only two clusters survive FDR correction: the southern Helmand-Kandahar-Uruzgan war belt, and a smaller cluster around Kabul-Logar. Many high-count border districts (Nangarhar, Kunar, Khost) do not pass, which means their event counts are high in absolute terms but not statistically elevated relative to their neighbors after correcting for 400 simultaneous tests. In the post-2021 period the map collapses to a single cluster: Panjshir and Andarab. The resistance belt is the only remaining clustered conflict region in the country.
+
+Worth pausing on: Kabul City, the highest-count district nationally in the post period, does NOT appear as a Gi\* hotspot. This is intentional behavior, not a bug. Gi\* detects spatial clusters, not isolated outliers. Kabul has a high count, but its immediate neighbors (other Kabul province districts) have low counts, so the local-mean-to-global-mean ratio does not spike. Panjshir has moderately high counts across multiple adjacent districts, which is exactly the signature Gi\* is built for. The methodological reading: the resistance belt is the only spatially organized conflict region remaining in Afghanistan. Kabul-centered violence is a point phenomenon without spatial spread.
+
 ## Limitations
 
 ACLED records reported events. Underreporting is higher in areas with limited media access and during communications disruptions. The August 2021 Taliban takeover changed both the conflict dynamic and the reporting environment, so pre and post 2021 series should not be compared without accounting for that structural break.
 
 ## Method
 
-To be filled in: kernel density surfaces, Getis-Ord Gi\* hotspots, ARIMA forecasts.
+## Kernel density surface
+
+The choropleth and rankings work at the district level, which is convenient but somewhat arbitrary; ACLED events don't actually stop at administrative borders. A kernel density estimate (KDE) smooths event locations into a continuous surface, treating each event as a small "puff" of mass and summing them. Districts disappear, only the spatial pattern of where conflict concentrates remains.
+
+Implementation: project to UTM zone 42N so units are meters, build a planar point pattern bounded by the Afghan border, and compute density with a 15 km Gaussian bandwidth (sigma = 15,000 m). The bandwidth is a modeling choice; smaller values give more local detail, larger values smooth more aggressively. Fifteen kilometers captures district-to-province scale patterns.
+
+```{r kde, fig.width=10, fig.height=6}
+library(spatstat)
+
+# Project to UTM 42N (EPSG:32642), units in meters
+afg_adm2_proj <- st_transform(afg_adm2, 32642)
+afg_pts_proj  <- st_transform(afg_pts, 32642)
+
+# Country outline as the observation window
+afg_outline <- st_union(afg_adm2_proj)
+W <- as.owin(afg_outline)
+
+# Helper to compute density for a subset of points
+build_density <- function(pts_sf, win, sigma_m = 15000) {
+  coords <- st_coordinates(pts_sf)
+  pp <- ppp(x = coords[, "X"], y = coords[, "Y"],
+            window = win, check = FALSE)
+  density(pp, sigma = sigma_m, edge = TRUE)
+}
+
+pre_pts  <- afg_pts_proj |> filter(period == "pre_Aug2021")
+post_pts <- afg_pts_proj |> filter(period == "post_Aug2021")
+
+pre_density  <- build_density(pre_pts,  W, sigma_m = 15000)
+post_density <- build_density(post_pts, W, sigma_m = 15000)
+
+# Convert spatstat 'im' surfaces to data frames for ggplot
+# Multiply by 1e6 to convert events/m² to events/km², easier to read
+density_df <- bind_rows(
+  as.data.frame(pre_density)  |> mutate(value = value * 1e6,
+                                        period = "Before 15 Aug 2021"),
+  as.data.frame(post_density) |> mutate(value = value * 1e6,
+                                        period = "After 15 Aug 2021")
+) |>
+  filter(!is.na(value)) |>
+  mutate(period = factor(period,
+                         levels = c("Before 15 Aug 2021",
+                                    "After 15 Aug 2021")))
+
+# Plot
+p_kde <- ggplot(density_df, aes(x = x, y = y, fill = value)) +
+  geom_raster() +
+  geom_sf(data = afg_adm2_proj, inherit.aes = FALSE,
+          fill = NA, color = "white", linewidth = 0.1) +
+  facet_wrap(~ period) +
+  scale_fill_viridis_c(
+    option = "rocket", direction = -1, trans = "sqrt",
+    name = "Event intensity\n(events / km², smoothed)",
+    labels = scales::label_number(accuracy = 0.01)
+  ) +
+  coord_sf(crs = 32642) +
+  labs(
+    title = "Smoothed event density across Afghanistan",
+    subtitle = "Kernel density estimate, 15 km Gaussian bandwidth, UTM 42N",
+    caption = "Sources: ACLED, GADM v4.1"
+  ) +
+  theme_void(base_size = 11) +
+  theme(
+    legend.position = "bottom",
+    legend.key.width = unit(2, "cm"),
+    strip.text = element_text(face = "bold"),
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "grey40")
+  )
+
+p_kde
+
+ggsave(here("output", "figures", "kde_density.png"),
+       p_kde, width = 10, height = 6, dpi = 200)
+```
+
+Two things become clearer when the districts disappear. First, the pre-2021 conflict footprint was a continuous belt, not a scatter of independent hotspots: the southern arc from Helmand through Kandahar curves up through Ghazni and Wardak into Kabul, then drops east into the Nangarhar to Kunar corridor along the Pakistan border. Treating districts as the unit of analysis hides this continuity. Second, the post-2021 panel shows a Panjshir-Andarab signal at least as bright as the residual southern patches, confirming the ranking-table finding at the density-surface level: the resistance belt is real, not an artifact of how district boundaries happen to be drawn. Small blocky patches in the far northeast (the Wakhan corridor) are edge effects where few events meet a long thin window, not actual conflict signals.
 
 ## Results
 
