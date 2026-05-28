@@ -18,6 +18,10 @@ execute:
 
 Where in Afghanistan has political violence concentrated between 2017 and 2025, where is it intensifying, and how did the August 2021 regime change reshape the spatial pattern?
 
+## Headline finding
+
+Three findings dominate this analysis. First, Afghanistan's conflict footprint after August 2021 is not a smaller version of the pre-2021 one; it is structurally different in volume, geography, and category. Battles fell from 62% of events to 30%, violence against civilians rose from 4% to 34%, and the southern Pashtun war belt that dominated the insurgency collapsed almost entirely. Second, the only statistically clustered conflict region remaining in the country is the Panjshir-Andarab resistance belt: six adjacent districts that were minor conflict areas before 2021 are now front-line zones of the National Resistance Front. Kabul has the highest absolute event count but does not cluster, its violence is a point phenomenon without spatial spread. Third, ARIMA forecasts find no trend signal in the post-2021 data and project the current \~120 events per month nationally as a stable equilibrium through mid-2027. Anything dramatically different requires a shock the time series cannot anticipate.
+
 ## Data
 
 ACLED political violence events, January 2017 to May 2025, retrieved via the official `acledR` client. ACLED's Afghanistan coverage begins January 2017, which constrains the time window. District boundaries from GADM v4.1.
@@ -290,6 +294,84 @@ ggsave(
 
 Three patterns stand out. First, battles fell from roughly 62% of pre-2021 events to 30% post-2021, consistent with the disappearance of the armed insurgency once the Republic collapsed. Second, violence against civilians rose from 4% to 34%, even as absolute volume fell roughly 5x; the regime that emerged is consolidating, not contesting. Third, strategic developments climbed from 3% to 17%, picking up Taliban policy announcements that ACLED logs but were uncommon during active war. Protests also rose from near-zero to about 8%, dominated by women's rights demonstrations after the December 2022 university ban. None of this is causal evidence. It is a description of how event mix shifted at the regime break, and it confirms the structural-break framing: the two periods are different phenomena, not the same conflict at different intensity.
 
+## Kernel density surface
+
+The choropleth and rankings work at the district level, which is convenient but somewhat arbitrary; ACLED events don't actually stop at administrative borders. A kernel density estimate (KDE) smooths event locations into a continuous surface, treating each event as a small "puff" of mass and summing them. Districts disappear, only the spatial pattern of where conflict concentrates remains.
+
+Implementation: project to UTM zone 42N so units are meters, build a planar point pattern bounded by the Afghan border, and compute density with a 15 km Gaussian bandwidth (sigma = 15,000 m). The bandwidth is a modeling choice; smaller values give more local detail, larger values smooth more aggressively. Fifteen kilometers captures district-to-province scale patterns.
+
+```{r kde, fig.width=10, fig.height=6}
+library(spatstat)
+
+# Project to UTM 42N (EPSG:32642), units in meters
+afg_adm2_proj <- st_transform(afg_adm2, 32642)
+afg_pts_proj  <- st_transform(afg_pts, 32642)
+
+# Country outline as the observation window
+afg_outline <- st_union(afg_adm2_proj)
+W <- as.owin(afg_outline)
+
+# Helper to compute density for a subset of points
+build_density <- function(pts_sf, win, sigma_m = 15000) {
+  coords <- st_coordinates(pts_sf)
+  pp <- ppp(x = coords[, "X"], y = coords[, "Y"],
+            window = win, check = FALSE)
+  density(pp, sigma = sigma_m, edge = TRUE)
+}
+
+pre_pts  <- afg_pts_proj |> filter(period == "pre_Aug2021")
+post_pts <- afg_pts_proj |> filter(period == "post_Aug2021")
+
+pre_density  <- build_density(pre_pts,  W, sigma_m = 15000)
+post_density <- build_density(post_pts, W, sigma_m = 15000)
+
+# Convert spatstat 'im' surfaces to data frames for ggplot
+# Multiply by 1e6 to convert events/m² to events/km², easier to read
+density_df <- bind_rows(
+  as.data.frame(pre_density)  |> mutate(value = value * 1e6,
+                                        period = "Before 15 Aug 2021"),
+  as.data.frame(post_density) |> mutate(value = value * 1e6,
+                                        period = "After 15 Aug 2021")
+) |>
+  filter(!is.na(value)) |>
+  mutate(period = factor(period,
+                         levels = c("Before 15 Aug 2021",
+                                    "After 15 Aug 2021")))
+
+# Plot
+p_kde <- ggplot(density_df, aes(x = x, y = y, fill = value)) +
+  geom_raster() +
+  geom_sf(data = afg_adm2_proj, inherit.aes = FALSE,
+          fill = NA, color = "white", linewidth = 0.1) +
+  facet_wrap(~ period) +
+  scale_fill_viridis_c(
+    option = "rocket", direction = -1, trans = "sqrt",
+    name = "Event intensity\n(events / km², smoothed)",
+    labels = scales::label_number(accuracy = 0.01)
+  ) +
+  coord_sf(crs = 32642) +
+  labs(
+    title = "Smoothed event density across Afghanistan",
+    subtitle = "Kernel density estimate, 15 km Gaussian bandwidth, UTM 42N",
+    caption = "Sources: ACLED, GADM v4.1"
+  ) +
+  theme_void(base_size = 11) +
+  theme(
+    legend.position = "bottom",
+    legend.key.width = unit(2, "cm"),
+    strip.text = element_text(face = "bold"),
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "grey40")
+  )
+
+p_kde
+
+ggsave(here("output", "figures", "kde_density.png"),
+       p_kde, width = 10, height = 6, dpi = 200)
+```
+
+Two things become clearer when the districts disappear. First, the pre-2021 conflict footprint was a continuous belt, not a scatter of independent hotspots: the southern arc from Helmand through Kandahar curves up through Ghazni and Wardak into Kabul, then drops east into the Nangarhar to Kunar corridor along the Pakistan border. Treating districts as the unit of analysis hides this continuity. Second, the post-2021 panel shows a Panjshir-Andarab signal at least as bright as the residual southern patches, confirming the ranking-table finding at the density-surface level: the resistance belt is real, not an artifact of how district boundaries happen to be drawn. Small blocky patches in the far northeast (the Wakhan corridor) are edge effects where few events meet a long thin window, not actual conflict signals.
+
 ## Statistically significant hotspots, Getis-Ord Gi\*
 
 The choropleth, KDE, and ranking all describe where events concentrate. None of them tells us whether a given district's count is high enough to call a hotspot, holding the rest of the country fixed. Getis-Ord Gi\* (Getis and Ord, 1992) measures exactly this: for each district, it compares the local count (district plus immediate neighbors) to what we would expect if events were spread evenly across the country, returning a z-score. Positive values flag hotspots, negative values flag coldspots. We use queen-contiguity spatial weights (districts touching at any corner count as neighbors), and apply Benjamini-Hochberg FDR correction because we are running \~400 tests, one per district.
@@ -530,86 +612,4 @@ Read together, the forecasts confirm what the rest of the analysis already shows
 
 ACLED records reported events. Underreporting is higher in areas with limited media access and during communications disruptions. The August 2021 Taliban takeover changed both the conflict dynamic and the reporting environment, so pre and post 2021 series should not be compared without accounting for that structural break.
 
-## Method
-
-## Kernel density surface
-
-The choropleth and rankings work at the district level, which is convenient but somewhat arbitrary; ACLED events don't actually stop at administrative borders. A kernel density estimate (KDE) smooths event locations into a continuous surface, treating each event as a small "puff" of mass and summing them. Districts disappear, only the spatial pattern of where conflict concentrates remains.
-
-Implementation: project to UTM zone 42N so units are meters, build a planar point pattern bounded by the Afghan border, and compute density with a 15 km Gaussian bandwidth (sigma = 15,000 m). The bandwidth is a modeling choice; smaller values give more local detail, larger values smooth more aggressively. Fifteen kilometers captures district-to-province scale patterns.
-
-```{r kde, fig.width=10, fig.height=6}
-library(spatstat)
-
-# Project to UTM 42N (EPSG:32642), units in meters
-afg_adm2_proj <- st_transform(afg_adm2, 32642)
-afg_pts_proj  <- st_transform(afg_pts, 32642)
-
-# Country outline as the observation window
-afg_outline <- st_union(afg_adm2_proj)
-W <- as.owin(afg_outline)
-
-# Helper to compute density for a subset of points
-build_density <- function(pts_sf, win, sigma_m = 15000) {
-  coords <- st_coordinates(pts_sf)
-  pp <- ppp(x = coords[, "X"], y = coords[, "Y"],
-            window = win, check = FALSE)
-  density(pp, sigma = sigma_m, edge = TRUE)
-}
-
-pre_pts  <- afg_pts_proj |> filter(period == "pre_Aug2021")
-post_pts <- afg_pts_proj |> filter(period == "post_Aug2021")
-
-pre_density  <- build_density(pre_pts,  W, sigma_m = 15000)
-post_density <- build_density(post_pts, W, sigma_m = 15000)
-
-# Convert spatstat 'im' surfaces to data frames for ggplot
-# Multiply by 1e6 to convert events/m² to events/km², easier to read
-density_df <- bind_rows(
-  as.data.frame(pre_density)  |> mutate(value = value * 1e6,
-                                        period = "Before 15 Aug 2021"),
-  as.data.frame(post_density) |> mutate(value = value * 1e6,
-                                        period = "After 15 Aug 2021")
-) |>
-  filter(!is.na(value)) |>
-  mutate(period = factor(period,
-                         levels = c("Before 15 Aug 2021",
-                                    "After 15 Aug 2021")))
-
-# Plot
-p_kde <- ggplot(density_df, aes(x = x, y = y, fill = value)) +
-  geom_raster() +
-  geom_sf(data = afg_adm2_proj, inherit.aes = FALSE,
-          fill = NA, color = "white", linewidth = 0.1) +
-  facet_wrap(~ period) +
-  scale_fill_viridis_c(
-    option = "rocket", direction = -1, trans = "sqrt",
-    name = "Event intensity\n(events / km², smoothed)",
-    labels = scales::label_number(accuracy = 0.01)
-  ) +
-  coord_sf(crs = 32642) +
-  labs(
-    title = "Smoothed event density across Afghanistan",
-    subtitle = "Kernel density estimate, 15 km Gaussian bandwidth, UTM 42N",
-    caption = "Sources: ACLED, GADM v4.1"
-  ) +
-  theme_void(base_size = 11) +
-  theme(
-    legend.position = "bottom",
-    legend.key.width = unit(2, "cm"),
-    strip.text = element_text(face = "bold"),
-    plot.title = element_text(face = "bold"),
-    plot.subtitle = element_text(color = "grey40")
-  )
-
-p_kde
-
-ggsave(here("output", "figures", "kde_density.png"),
-       p_kde, width = 10, height = 6, dpi = 200)
-```
-
-Two things become clearer when the districts disappear. First, the pre-2021 conflict footprint was a continuous belt, not a scatter of independent hotspots: the southern arc from Helmand through Kandahar curves up through Ghazni and Wardak into Kabul, then drops east into the Nangarhar to Kunar corridor along the Pakistan border. Treating districts as the unit of analysis hides this continuity. Second, the post-2021 panel shows a Panjshir-Andarab signal at least as bright as the residual southern patches, confirming the ranking-table finding at the density-surface level: the resistance belt is real, not an artifact of how district boundaries happen to be drawn. Small blocky patches in the far northeast (the Wakhan corridor) are edge effects where few events meet a long thin window, not actual conflict signals.
-
-## Results
-
-To be filled in.
+## 
