@@ -398,6 +398,134 @@ The Gi\* result sharpens the picture. In the pre-2021 period, only two clusters 
 
 Worth pausing on: Kabul City, the highest-count district nationally in the post period, does NOT appear as a Gi\* hotspot. This is intentional behavior, not a bug. Gi\* detects spatial clusters, not isolated outliers. Kabul has a high count, but its immediate neighbors (other Kabul province districts) have low counts, so the local-mean-to-global-mean ratio does not spike. Panjshir has moderately high counts across multiple adjacent districts, which is exactly the signature Gi\* is built for. The methodological reading: the resistance belt is the only spatially organized conflict region remaining in Afghanistan. Kabul-centered violence is a point phenomenon without spatial spread.
 
+## Forecasts to mid-2027
+
+We project monthly event counts forward 24 months using auto.arima, which scans ARIMA model space and picks the best fit by AICc. Three series: the national total, Kabul City (the dominant post-2021 hotspot), and Panjsher (the resistance belt). We restrict the training data to post-Aug 2021 only, since pre-2021 data is a structurally different conflict regime and would dominate the model. We also drop the last partial month (May 2025) so the model trains only on complete months.
+
+```{r forecast, fig.width=10, fig.height=8}
+library(forecast)
+
+# Monthly counts, post-Aug 2021 only, full months only
+monthly_data <- afg_pts |>
+  st_drop_geometry() |>
+  filter(event_date >= as.Date("2021-08-15"),
+         !is.na(GID_2)) |>
+  mutate(year_month = floor_date(event_date, "month"))
+
+last_month <- max(monthly_data$year_month)
+monthly_data <- monthly_data |> filter(year_month < last_month)
+
+# Three focal series
+nat_monthly      <- monthly_data |> count(year_month, name = "events")
+kabul_monthly    <- monthly_data |> filter(NAME_2 == "Kabul City") |>
+                                    count(year_month, name = "events")
+panjsher_monthly <- monthly_data |> filter(NAME_2 == "Panjsher") |>
+                                    count(year_month, name = "events")
+
+# Helper: pad with zero months, fit auto.arima, return forecast
+fit_and_forecast <- function(df, h = 24) {
+  all_months <- seq(min(df$year_month), max(df$year_month), by = "month")
+  d_full <- tibble(year_month = all_months) |>
+    left_join(df, by = "year_month") |>
+    mutate(events = replace_na(events, 0))
+
+  ts_obj <- ts(d_full$events,
+               start = c(year(min(d_full$year_month)),
+                         month(min(d_full$year_month))),
+               frequency = 12)
+
+  m  <- auto.arima(ts_obj)
+  fc <- forecast(m, h = h)
+
+  list(
+    observed = d_full,
+    forecast = tibble(
+      year_month = seq(max(d_full$year_month) + months(1),
+                       by = "month", length.out = h),
+      events   = as.numeric(fc$mean),
+      lower_80 = as.numeric(fc$lower[, 1]),
+      upper_80 = as.numeric(fc$upper[, 1]),
+      lower_95 = as.numeric(fc$lower[, 2]),
+      upper_95 = as.numeric(fc$upper[, 2])
+    ),
+    model = m
+  )
+}
+
+nat_fc      <- fit_and_forecast(nat_monthly)
+kabul_fc    <- fit_and_forecast(kabul_monthly)
+panjsher_fc <- fit_and_forecast(panjsher_monthly)
+
+# Print which ARIMA model was selected for each series
+cat("Auto-selected ARIMA models:\n")
+cat("  National total:", as.character(nat_fc$model),      "\n")
+cat("  Kabul City:    ", as.character(kabul_fc$model),    "\n")
+cat("  Panjsher:      ", as.character(panjsher_fc$model), "\n")
+
+# Combine for plotting
+add_series <- function(label, fit) {
+  list(
+    obs = fit$observed |> mutate(series = label),
+    fc  = fit$forecast |> mutate(series = label)
+  )
+}
+
+n <- add_series("Afghanistan total", nat_fc)
+k <- add_series("Kabul City",        kabul_fc)
+p <- add_series("Panjsher",          panjsher_fc)
+
+series_levels <- c("Afghanistan total", "Kabul City", "Panjsher")
+
+observed_all <- bind_rows(n$obs, k$obs, p$obs) |>
+  mutate(series = factor(series, levels = series_levels))
+forecast_all <- bind_rows(n$fc, k$fc, p$fc) |>
+  mutate(series = factor(series, levels = series_levels))
+
+p_fc <- ggplot() +
+  geom_ribbon(data = forecast_all,
+              aes(x = year_month, ymin = lower_95, ymax = upper_95),
+              fill = "#7a1d1d", alpha = 0.12) +
+  geom_ribbon(data = forecast_all,
+              aes(x = year_month, ymin = lower_80, ymax = upper_80),
+              fill = "#7a1d1d", alpha = 0.22) +
+  geom_line(data = observed_all,
+            aes(x = year_month, y = events),
+            color = "#1a5490", linewidth = 0.7) +
+  geom_line(data = forecast_all,
+            aes(x = year_month, y = events),
+            color = "#7a1d1d", linewidth = 0.7) +
+  geom_vline(xintercept = max(observed_all$year_month),
+             linetype = "dashed", color = "grey50", linewidth = 0.4) +
+  facet_wrap(~ series, scales = "free_y", ncol = 1) +
+  labs(
+    title    = "Monthly ACLED events with ARIMA forecasts to mid-2027",
+    subtitle = "Blue: observed (post-Aug 2021). Red: forecast. Bands: 80% and 95% prediction intervals.",
+    x = NULL, y = "Events per month",
+    caption = "Sources: ACLED. Method: auto.arima."
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "grey40"),
+    strip.text = element_text(face = "bold")
+  )
+
+p_fc
+
+ggsave(here("output", "figures", "forecasts.png"),
+       p_fc, width = 10, height = 8, dpi = 200)
+```
+
+## 
+
+Three observations. First, the macro story is stabilization. Afghanistan's total monthly event count fell sharply through 2022 and 2023, then plateaued near 120 per month by mid-2023 and stayed there. The auto-selected models project that plateau forward; nothing in the recent series argues for a trend up or down. Kabul and Panjsher show the same shape at smaller scales.
+
+Second, the forecasts say what current conditions imply, not what will happen. ARIMA assumes the underlying process is stationary, which Afghan conflict has demonstrably not been since 2017 (one structural break in August 2021, several smaller shocks before and after). A regime shift, a major ISKP attack campaign, a foreign re-engagement, an NRF offensive, none of these are in the model. The flat forecasts are a baseline expectation under "no surprises," not a prediction.
+
+Third, the 95% prediction intervals descend below zero in all three panels. Event counts cannot be negative. This is a known limitation of Gaussian ARIMA applied to count data; the proper specification is a count-data state-space model (Poisson autoregressive, negative binomial INGARCH, or a Bayesian formulation in Stan/INLA). The current model is adequate for showing that recent dynamics give no signal of trend, but it overstates downside uncertainty. Read the bands as "the model is uncertain about the level" rather than as literal probability statements.
+
+Read together, the forecasts confirm what the rest of the analysis already shows: Afghanistan after the regime break is not escalating, not collapsing, and not following a clear trajectory in either direction. It has settled into a low-intensity chronic state with specific persistent geographies. The Fragility Forum reading: under current conditions, expect roughly the current level through 2026. Anything dramatically different requires a shock that the time series cannot anticipate.
+
 ## Limitations
 
 ACLED records reported events. Underreporting is higher in areas with limited media access and during communications disruptions. The August 2021 Taliban takeover changed both the conflict dynamic and the reporting environment, so pre and post 2021 series should not be compared without accounting for that structural break.
