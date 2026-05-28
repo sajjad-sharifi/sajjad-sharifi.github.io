@@ -171,6 +171,69 @@ ggsave(
 )
 ```
 
+## 
+
+## Event type composition shifted, not just volume
+
+A simple count says conflict dropped. A composition view says what kind of conflict remained. The chart below compares the share of ACLED event categories within each period. Within-period percentages make the two periods comparable even though their absolute event counts differ by roughly 5x.
+
+```{r event-type, fig.width=9, fig.height=5}
+# Event counts and shares by period and type
+event_type_breakdown <- afg_pts |>
+  st_drop_geometry() |>
+  count(period, event_type, name = "events") |>
+  group_by(period) |>
+  mutate(
+    share = events / sum(events) * 100,
+    period_total = sum(events)
+  ) |>
+  ungroup() |>
+  mutate(period = factor(period,
+                         levels = c("pre_Aug2021", "post_Aug2021"),
+                         labels = c("Before 15 Aug 2021",
+                                    "After 15 Aug 2021")))
+
+# Print the table for the prose
+event_type_breakdown |>
+  select(period, event_type, events, share) |>
+  arrange(period, desc(share)) |>
+  print(n = Inf)
+
+# Bar chart, percentage view
+p_types <- ggplot(event_type_breakdown,
+                  aes(x = reorder(event_type, share, FUN = max),
+                      y = share, fill = period)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.65) +
+  coord_flip() +
+  scale_fill_manual(values = c("Before 15 Aug 2021" = "#7a1d1d",
+                               "After 15 Aug 2021"  = "#1a5490")) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  labs(
+    x = NULL,
+    y = "Share of period's events",
+    title = "How the conflict composition changed across the regime break",
+    subtitle = "Within each period, ACLED event categories as % of total",
+    fill = NULL,
+    caption = "Pre: ~4.6 years. Post: ~3.8 years. Different denominators, so within-period shares."
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "grey40"),
+    panel.grid.major.y = element_blank()
+  )
+
+p_types
+
+ggsave(
+  here("output", "figures", "event_type_composition.png"),
+  p_types, width = 9, height = 5, dpi = 200
+)
+```
+
+Three patterns stand out. First, battles fell from roughly 62% of pre-2021 events to 30% post-2021, consistent with the disappearance of the armed insurgency once the Republic collapsed. Second, violence against civilians rose from 4% to 34%, even as absolute volume fell roughly 5x; the regime that emerged is consolidating, not contesting. Third, strategic developments climbed from 3% to 17%, picking up Taliban policy announcements that ACLED logs but were uncommon during active war. Protests also rose from near-zero to about 8%, dominated by women's rights demonstrations after the December 2022 university ban. None of this is causal evidence. It is a description of how event mix shifted at the regime break, and it confirms the structural-break framing: the two periods are different phenomena, not the same conflict at different intensity.
+
 ## Limitations
 
 ACLED records reported events. Underreporting is higher in areas with limited media access and during communications disruptions. The August 2021 Taliban takeover changed both the conflict dynamic and the reporting environment, so pre and post 2021 series should not be compared without accounting for that structural break.
