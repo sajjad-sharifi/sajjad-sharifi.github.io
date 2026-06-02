@@ -2,7 +2,6 @@
 title: "ACLED Conflict Hotspot Atlas, Afghanistan 2017 to 2025"
 author: "Sajjad Sharifi"
 date: today
-draft: true
 format:
   html:
     toc: true
