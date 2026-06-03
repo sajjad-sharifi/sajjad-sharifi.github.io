@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>project-documentation – Sajjad Sharifi</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-4d3f3448f837ff03356db176d8adb603.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Sajjad Sharifi</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../atlas/index.html"> 
+<span class="menu-text">Atlas</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="project-1-documentation-acled-conflict-hotspot-atlas-afghanistan-2017-to-2025" class="level1">
+<h1>Project 1 Documentation: ACLED Conflict Hotspot Atlas, Afghanistan 2017 to 2025</h1>
+<p>A complete account of how this project was built, what we decided and why, what slowed us down, and the patterns that should carry forward to Projects 2 through 5.</p>
+<p>Live deliverable: https://heissj.github.io/projects/acled-afghanistan/<br>
+Source: <code>projects/acled-afghanistan/</code> under the main portfolio repo.<br>
+Built over five working sessions in late May 2026.</p>
+<hr>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">1. Overview</h2>
+<section id="what-this-is" class="level3">
+<h3 class="anchored" data-anchor-id="what-this-is">1.1 What this is</h3>
+<p>Project 1 of five planned R-based spatial analytics projects, targeting the WBG Fragility Forum in Washington DC, June 2026. The project answers: where in Afghanistan has political violence concentrated between 2017 and 2025, where is it intensifying, and how did the August 2021 regime change reshape the spatial pattern?</p>
+<p>The substantive findings, in three sentences:</p>
+<ol type="1">
+<li><p>The conflict footprint after August 2021 is not a smaller version of the pre-2021 one, it is structurally different in volume, geography, and category. Battles fell from 62% to 30% of events, violence against civilians rose from 4% to 34%, and the southern Pashtun war belt that dominated the insurgency collapsed almost entirely.</p></li>
+<li><p>The only statistically clustered conflict region remaining in the country is the Panjshir-Andarab resistance belt. Six adjacent districts that were minor conflict areas before 2021 are now front-line zones of the National Resistance Front. Kabul has the highest absolute event count nationally but does not pass Getis-Ord Gi* clustering tests, its violence is a point phenomenon without spatial spread.</p></li>
+<li><p>ARIMA forecasts find no trend signal in the post-2021 data and project the current ~120 events per month nationally as a stable equilibrium through mid-2027. Anything dramatically different would require a shock that the time series cannot anticipate.</p></li>
+</ol>
+</section>
+<section id="whats-in-the-document" class="level3">
+<h3 class="anchored" data-anchor-id="whats-in-the-document">1.2 What’s in the document</h3>
+<p>The portfolio page contains six analytical sections, in order:</p>
+<ul>
+<li>District-level choropleth, events per district, pre and post August 2021</li>
+<li>Top-20 district ranking tables for each period</li>
+<li>Event type composition breakdown</li>
+<li>Kernel density estimate (KDE) continuous surface</li>
+<li>Getis-Ord Gi* statistical hotspot test with FDR correction</li>
+<li>ARIMA forecasts for three series (national total, Kabul, Panjsher)</li>
+</ul>
+<p>Each section has prose, a code chunk, and an analytical interpretation.</p>
+</section>
+<section id="inputs" class="level3">
+<h3 class="anchored" data-anchor-id="inputs">1.3 Inputs</h3>
+<ul>
+<li>ACLED political violence events: 68,034 records for Afghanistan, January 2017 to May 2025</li>
+<li>GADM v4.1 administrative boundaries: 328 admin-2 districts (Afghanistan)</li>
+<li>Tools: R 4.5.2 on aarch64-apple-darwin, renv 1.2.3, Quarto 1.9.38</li>
+<li>Key R packages: sf, dplyr, lubridate, ggplot2, tmap, spatstat, spdep, forecast, acledR, geodata</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="project-setup-the-reusable-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="project-setup-the-reusable-pattern">2. Project Setup, the Reusable Pattern</h2>
+<p>This is the part to copy verbatim for Projects 2 through 5.</p>
+<section id="folder-structure" class="level3">
+<h3 class="anchored" data-anchor-id="folder-structure">2.1 Folder structure</h3>
+<pre><code>projects/&lt;project-name&gt;/
+├── R/                          # R scripts (we ended up using .qmd chunks instead)
+├── data/
+│   ├── raw/                    # downloaded sources, gitignored
+│   └── processed/              # cleaned intermediates, gitignored
+├── output/
+│   ├── figures/                # saved plots, .png files
+│   └── maps/                   # interactive HTML maps
+├── docs/                       # methodology notes (this file lives here)
+├── renv/                       # R package library, gitignored except lockfile
+├── .gitignore
+├── .Renviron                   # credentials, gitignored
+├── .Rprofile                   # auto-created by renv
+├── &lt;project-name&gt;.Rproj        # auto-created by RStudio
+├── index.qmd                   # the analytical document
+└── renv.lock                   # locked package versions, committed</code></pre>
+</section>
+<section id="the-.gitignore-at-project-level" class="level3">
+<h3 class="anchored" data-anchor-id="the-.gitignore-at-project-level">2.2 The .gitignore at project level</h3>
+<pre class="gitignore"><code># Data, never commit
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# R project artifacts
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# renv, keep lockfile but not the library
+renv/library/
+renv/local/
+renv/cellar/
+renv/staging/
+renv/python/
+
+# Outputs too large for Git
+output/maps/*.html
+*.tif
+*.tiff
+
+# Secrets
+.Renviron
+.env
+
+# OS junk
+.DS_Store</code></pre>
+<p>The <code>.gitkeep</code> files inside <code>data/raw/</code> and <code>data/processed/</code> exist so the empty folders track in Git. Touch them after creating the folders.</p>
+</section>
+<section id="r-project-with-renv" class="level3">
+<h3 class="anchored" data-anchor-id="r-project-with-renv">2.3 R project with renv</h3>
+<p>From R inside the project folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"renv"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>(<span class="at">bare =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># answer y when prompted about consent</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After init, restart the R session so renv activates. Then install packages and snapshot:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"acledR"</span>, <span class="st">"sf"</span>, <span class="st">"dplyr"</span>, <span class="st">"lubridate"</span>, <span class="st">"readr"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"here"</span>, <span class="st">"janitor"</span>, <span class="st">"ggplot2"</span>, <span class="st">"tmap"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>(<span class="at">type =</span> <span class="st">"all"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># answer y when prompted</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Why <code>type = "all"</code>: renv’s default <code>implicit</code> mode only locks packages that appear in <code>library()</code> calls in your code. At init time, before any code exists, this returns nothing. <code>type = "all"</code> locks everything installed in the project library, which is what we actually want.</p>
+<p>For Projects 2 to 5, add the project-specific packages to the install list:</p>
+<ul>
+<li>Project 2 (Mexico Fragility Index): <code>FactoMineR</code>, <code>factoextra</code>, <code>psych</code>, plus base spatial stack</li>
+<li>Project 3 (Climate-Conflict, Central America): <code>terra</code>, <code>SPEI</code>, <code>lme4</code>, optionally <code>INLA</code></li>
+<li>Project 4 (Displacement flows, Central America): <code>igraph</code>, <code>ggraph</code>, <code>gganimate</code></li>
+<li>Project 5 (Walking-time accessibility): <code>osmdata</code>, <code>sfnetworks</code>, <code>dodgr</code></li>
+</ul>
+</section>
+<section id="renviron-for-credentials" class="level3">
+<h3 class="anchored" data-anchor-id="renviron-for-credentials">2.4 .Renviron for credentials</h3>
+<p>Format:</p>
+<pre><code>ACLED_API_EMAIL=your.email@northeastern.edu
+ACLED_API_PASSWORD=your_real_password</code></pre>
+<p><code>chmod 600 .Renviron</code> after creation, restricts read access to owner only. Already in <code>.gitignore</code>.</p>
+<p><strong>Known issue, unsolved:</strong> In Project 1 the .Renviron file was never read successfully by R, even after multiple edits via nano, VS Code, and direct shell heredoc. We worked around it using interactive credential entry:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">ACLED_API_EMAIL =</span> <span class="st">"your.email@northeastern.edu"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">ACLED_API_PASSWORD =</span> rstudioapi<span class="sc">::</span><span class="fu">askForPassword</span>(<span class="st">"Enter password"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>askForPassword()</code> popup is secure (no console echo, no history) but inconvenient since it runs every session. Worth diagnosing properly in Project 2:</p>
+<ol type="1">
+<li>Check encoding: <code>file .Renviron</code> should report <code>ASCII text</code> or <code>UTF-8</code>, not <code>UTF-8 with BOM</code> or <code>ISO-8859</code>.</li>
+<li>Check for trailing newline: <code>tail -c 1 .Renviron | xxd</code> should show <code>0a</code> (LF).</li>
+<li>Check for spaces around <code>=</code>: there should be none.</li>
+<li>Check file permissions: <code>ls -la .Renviron</code> should show <code>-rw-------</code> (mode 600).</li>
+<li>Test with <code>readRenviron(".Renviron")</code> then <code>Sys.getenv("ACLED_API_EMAIL")</code>.</li>
+</ol>
+</section>
+<section id="rstudio-project-file" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-project-file">2.5 RStudio project file</h3>
+<p>Create the <code>.Rproj</code> once: File &gt; New Project &gt; Existing Directory, point at the project folder. RStudio creates <code>&lt;project-name&gt;.Rproj</code> and reopens with the project active. This makes the project re-openable via “Recent Projects” and ensures renv activates cleanly.</p>
+</section>
+<section id="integration-with-the-parent-quarto-site" class="level3">
+<h3 class="anchored" data-anchor-id="integration-with-the-parent-quarto-site">2.6 Integration with the parent Quarto site</h3>
+<p>The parent portfolio site at <code>~/UrbanProjects/heissj.github.io/</code> is a Quarto website project, with <code>_quarto.yml</code> at the root defining navbar, theme, and footer. Sub-projects in <code>projects/&lt;name&gt;/</code> inherit those settings automatically, IF the page YAML does not override them.</p>
+<p><strong>Critical:</strong> do not put a <code>format: html: ...</code> block in your page YAML. It breaks navbar inheritance. The minimal safe YAML for a sub-project page is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your project title"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sajjad Sharifi"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">code-summary</span><span class="kw">:</span><span class="at"> </span><span class="st">"Show code"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Page-specific format options (<code>toc</code>, <code>code-fold</code>) go at top level. Site-wide format options (theme, CSS, code-copy) stay in the parent <code>_quarto.yml</code>. They merge correctly only when the page does not define its own <code>format:</code> block.</p>
+<hr>
+</section>
+</section>
+<section id="data-acquisition" class="level2">
+<h2 class="anchored" data-anchor-id="data-acquisition">3. Data Acquisition</h2>
+<section id="acled-the-modern-oauth-flow" class="level3">
+<h3 class="anchored" data-anchor-id="acled-the-modern-oauth-flow">3.1 ACLED, the modern OAuth flow</h3>
+<p>ACLED retired API key authentication in September 2025. The current system uses myACLED email and password credentials with OAuth tokens, handled by the official <code>acledR</code> package.</p>
+<p>Steps:</p>
+<ol type="1">
+<li>Register at https://acleddata.com/register/ using an institutional email (Northeastern, in our case). Institutional emails automatically get Research-tier access, which is the API-eligible level.</li>
+<li>Confirm the account, log into myACLED at least once to verify the credentials work on the website. This is the diagnostic check that distinguishes “the password is wrong” from “the API is rejecting me for some other reason.”</li>
+<li>Install the <code>acledR</code> package from CRAN. It depends on <code>httr2</code> and internally handles the OAuth token handshake.</li>
+</ol>
+<p>The API call for Project 1:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(acledR)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>afg <span class="ot">&lt;-</span> <span class="fu">acled_api</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">email         =</span> <span class="fu">Sys.getenv</span>(<span class="st">"ACLED_API_EMAIL"</span>),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">password      =</span> <span class="fu">Sys.getenv</span>(<span class="st">"ACLED_API_PASSWORD"</span>),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">country       =</span> <span class="st">"Afghanistan"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_date    =</span> <span class="st">"2015-01-01"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">end_date      =</span> <span class="st">"2025-12-31"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">inter_numeric =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(afg, <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"afg_acled_2015_2025.rds"</span>))</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(afg, <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"afg_acled_2015_2025.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A few things to know:</p>
+<ul>
+<li>ACLED returns data only for the date range it actually covers. For Afghanistan, coverage starts January 2017, so requesting from 2015 still returns 2017 onwards. Always validate your actual date range against your request, especially for countries with later coverage starts.</li>
+<li>The 68,034-event return for an eleven-year request completed in one call without pagination. For larger requests (e.g., all of Latin America for ten years), the <code>acledR</code> package handles it but you may want to chunk by year to avoid timeouts.</li>
+<li>The standard ACLED schema returns 31 columns. Key fields for spatial analysis: <code>event_date</code>, <code>event_type</code>, <code>sub_event_type</code>, <code>actor1</code>, <code>actor2</code>, <code>admin1</code>, <code>admin2</code>, <code>latitude</code>, <code>longitude</code>, <code>fatalities</code>.</li>
+</ul>
+</section>
+<section id="gadm-administrative-boundaries" class="level3">
+<h3 class="anchored" data-anchor-id="gadm-administrative-boundaries">3.2 GADM administrative boundaries</h3>
+<p>The <code>geodata</code> R package wraps GADM downloads cleanly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>afg_adm2 <span class="ot">&lt;-</span> <span class="fu">gadm</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">"AFG"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">level   =</span> <span class="dv">2</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">path    =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>GADM v4.1 returned 328 districts for Afghanistan at admin-2. Country ISO3 codes are the input (<code>AFG</code>, <code>MEX</code>, <code>HND</code>, etc.). Level 0 is country, 1 is province/state, 2 is district/municipality, 3 is sub-district where available.</p>
+<p>The <code>path</code> argument caches the download. Subsequent renders read from cache instead of re-downloading.</p>
+<p>The <code>gadm()</code> function returns a <code>SpatVector</code> (from <code>terra</code>); <code>st_as_sf()</code> converts to the more widely-used <code>sf</code> format.</p>
+</section>
+<section id="validation-routine" class="level3">
+<h3 class="anchored" data-anchor-id="validation-routine">3.3 Validation routine</h3>
+<p>Always run a sanity check before analysis. The pattern we used:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Total events:"</span>, <span class="fu">nrow</span>(afg), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Date range:"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.character</span>(<span class="fu">min</span>(<span class="fu">as.Date</span>(afg<span class="sc">$</span>event_date))),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"to"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.character</span>(<span class="fu">max</span>(<span class="fu">as.Date</span>(afg<span class="sc">$</span>event_date))), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Distinct provinces:"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(afg<span class="sc">$</span>admin1)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Check missing coordinates</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Events with no lat/lng:"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(<span class="fu">is.na</span>(afg<span class="sc">$</span>latitude) <span class="sc">|</span> <span class="fu">is.na</span>(afg<span class="sc">$</span>longitude)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Event type breakdown</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>afg <span class="sc">|&gt;</span> <span class="fu">count</span>(event_type, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What you are looking for: total events in a plausible range for the country, the requested date range matches what came back, distinct admin1 count matches the official province count for that country (34 for Afghanistan), very few NAs on coordinates.</p>
+<p>For Project 2 (Mexico), the validation should add: distinct admin2 count matches official municipio count (around 2,469), event count in tens or hundreds of thousands given Mexico’s homicide volume.</p>
+<hr>
+</section>
+</section>
+<section id="analytical-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-pipeline">4. Analytical Pipeline</h2>
+<p>For each analytical section: what question it answers, the code, why we made specific choices, and what its limitations are.</p>
+<section id="spatial-join-events-to-districts" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-join-events-to-districts">4.1 Spatial join, events to districts</h3>
+<p><strong>Question it answers:</strong> which district did each event occur in?</p>
+<p><strong>Why we need this:</strong> ACLED events have lat/lon coordinates but most analytical units (rankings, choropleths, statistical tests) operate on districts.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>afg_pts <span class="ot">&lt;-</span> afg <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(latitude), <span class="sc">!</span><span class="fu">is.na</span>(longitude)) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">event_date =</span> <span class="fu">as.Date</span>(event_date)) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>afg_adm2 <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(afg_adm2, <span class="dv">4326</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>afg_pts <span class="ot">&lt;-</span> <span class="fu">st_join</span>(</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  afg_pts,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  afg_adm2[, <span class="fu">c</span>(<span class="st">"GID_2"</span>, <span class="st">"NAME_1"</span>, <span class="st">"NAME_2"</span>)],</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">join =</span> st_within</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>afg_pts <span class="ot">&lt;-</span> afg_pts <span class="sc">|&gt;</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">if_else</span>(event_date <span class="sc">&lt;</span> <span class="fu">as.Date</span>(<span class="st">"2021-08-15"</span>),</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"pre_Aug2021"</span>, <span class="st">"post_Aug2021"</span>))</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>district_counts <span class="ot">&lt;-</span> afg_pts <span class="sc">|&gt;</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(GID_2)) <span class="sc">|&gt;</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(GID_2, NAME_1, NAME_2, period, <span class="at">name =</span> <span class="st">"events"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> period, <span class="at">values_from =</span> events, <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Why CRS 4326:</strong> WGS84 is the standard for lat/lon data, including ACLED’s coordinates and GADM’s boundaries. Both have to match for <code>st_join</code> to work correctly.</p>
+<p><strong>Why <code>st_within</code> not <code>st_intersects</code>:</strong> <code>st_within</code> is unambiguous for points (a point is either inside a polygon or it isn’t). <code>st_intersects</code> would return matches for points exactly on a polygon boundary, which can produce duplicate assignments.</p>
+<p><strong>Match rate:</strong> 68,029 of 68,034 events matched (99.99%). Five events fell outside any GADM polygon, likely due to small GADM coordinate imprecisions at the country border. Acceptable.</p>
+<p><strong>Why split at August 15, 2021:</strong> That is the day Kabul fell to the Taliban. The conflict regime, reporting environment, and event categorization all changed on that date. Pre-2021 events are a different phenomenon from post-2021 events; treating them as one continuous series is misleading.</p>
+</section>
+<section id="choropleth-at-admin-2" class="level3">
+<h3 class="anchored" data-anchor-id="choropleth-at-admin-2">4.2 Choropleth at admin-2</h3>
+<p><strong>Question it answers:</strong> what is the spatial pattern of conflict, at administrative units?</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>afg_adm2_counts <span class="ot">&lt;-</span> afg_adm2 <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(district_counts, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"GID_2"</span>, <span class="st">"NAME_1"</span>, <span class="st">"NAME_2"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pre_Aug2021  =</span> <span class="fu">replace_na</span>(pre_Aug2021, <span class="dv">0</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">post_Aug2021 =</span> <span class="fu">replace_na</span>(post_Aug2021, <span class="dv">0</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>afg_long <span class="ot">&lt;-</span> afg_adm2_counts <span class="sc">|&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols      =</span> <span class="fu">c</span>(pre_Aug2021, post_Aug2021),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to  =</span> <span class="st">"period"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"events"</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">factor</span>(period,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"pre_Aug2021"</span>, <span class="st">"post_Aug2021"</span>),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Before 15 Aug 2021"</span>, <span class="st">"After 15 Aug 2021"</span>)))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(afg_long) <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> events), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="st">"rocket"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">trans =</span> <span class="st">"sqrt"</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"ACLED events"</span>, <span class="at">labels =</span> <span class="fu">label_comma</span>(),</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">5000</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> period) <span class="sc">+</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Why <code>trans = "sqrt"</code>:</strong> conflict counts are heavily right-skewed. A handful of districts have thousands of events, most have zero or single digits. Linear scale washes out the middle of the distribution. Log scale handles zeros poorly. Square root is the compromise: zero stays zero, large values are visually compressed, small differences in low-count districts remain visible.</p>
+<p><strong>Why <code>viridis</code> <code>rocket</code> palette:</strong> sequential warm palette appropriate for conflict data, colorblind-safe, prints in greyscale. The <code>direction = -1</code> reverses it so high counts are dark (intuitive for “more conflict”).</p>
+<p><strong>Why facet by period:</strong> comparing two maps side by side reveals the spatial reorganization more clearly than two separate plots or a difference map.</p>
+<p><strong>Limitations:</strong> districts are administrative units with arbitrary boundaries. The choropleth implies discontinuous breaks at district lines that do not exist in the underlying phenomenon. This is what KDE corrects for.</p>
+<p><strong>Note on period length asymmetry:</strong> the pre-period is ~4.6 years, the post-period is ~3.8 years. Raw event counts are therefore not directly comparable in magnitude. The spatial reorganization (which districts are red vs.&nbsp;which are pale) is the analytical point, but for a more rigorous version, normalize by period length to get events-per-year rates.</p>
+</section>
+<section id="district-ranking-top-20" class="level3">
+<h3 class="anchored" data-anchor-id="district-ranking-top-20">4.3 District ranking, top 20</h3>
+<p><strong>Question it answers:</strong> what are the specific places, not just the colored regions?</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pre_ranks <span class="ot">&lt;-</span> district_counts <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pre_rank =</span> <span class="fu">dense_rank</span>(<span class="fu">desc</span>(pre_Aug2021))) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GID_2, pre_rank)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>district_counts_ranked <span class="ot">&lt;-</span> district_counts <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pre_ranks, <span class="at">by =</span> <span class="st">"GID_2"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>top_pre <span class="ot">&lt;-</span> district_counts_ranked <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(pre_Aug2021)) <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Rank =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Province =</span> NAME_1,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">District =</span> NAME_2,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Pre-Aug 2021 events</span><span class="st">`</span> <span class="ot">=</span> pre_Aug2021,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Post-Aug 2021 events</span><span class="st">`</span> <span class="ot">=</span> post_Aug2021,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">% change</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">round</span>((post_Aug2021 <span class="sc">/</span> pre_Aug2021 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>), <span class="st">"%"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(top_pre)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Gotcha worth remembering:</strong> join on <code>GID_2</code>, not <code>NAME_2</code>. Several Afghan districts share names (e.g., “Kohistan” exists in Kapisa, Faryab, and Badakhshan). Joining by name produces duplicate matches and silently inflates downstream counts. GADM’s <code>GID_2</code> is unique by design.</p>
+<p><strong>Why <code>dense_rank</code> not <code>rank</code>:</strong> <code>dense_rank</code> gives consecutive integer ranks even when ties exist. <code>rank</code> produces fractional ranks for ties, which read awkwardly.</p>
+<p><strong>The analytical payoff:</strong> the top-20 tables surfaced two findings that no choropleth would: Kabul went from rank 10 to rank 1, the only district in the pre-period top 20 that gained events post-2021. And the Panjshir region went from ranks in the 200s and 300s (essentially peaceful) to ranks 2, 8, 11, 12, 16, 19 (front-line resistance zones).</p>
+</section>
+<section id="event-type-composition" class="level3">
+<h3 class="anchored" data-anchor-id="event-type-composition">4.4 Event type composition</h3>
+<p><strong>Question it answers:</strong> did the kind of conflict change, or just the volume?</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>event_type_breakdown <span class="ot">&lt;-</span> afg_pts <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(period, event_type, <span class="at">name =</span> <span class="st">"events"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">share =</span> events <span class="sc">/</span> <span class="fu">sum</span>(events) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">period_total =</span> <span class="fu">sum</span>(events)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">factor</span>(period,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"pre_Aug2021"</span>, <span class="st">"post_Aug2021"</span>),</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Before 15 Aug 2021"</span>, <span class="st">"After 15 Aug 2021"</span>)))</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(event_type_breakdown,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(event_type, share, <span class="at">FUN =</span> max),</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> share, <span class="at">fill =</span> period)) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.7</span>), <span class="at">width =</span> <span class="fl">0.65</span>) <span class="sc">+</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Before 15 Aug 2021"</span> <span class="ot">=</span> <span class="st">"#7a1d1d"</span>,</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"After 15 Aug 2021"</span>  <span class="ot">=</span> <span class="st">"#1a5490"</span>)) <span class="sc">+</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">"%"</span>)) <span class="sc">+</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Why within-period percentages (not absolute counts):</strong> the two periods have very different denominators (about 60,000 vs about 8,000 events). Comparing absolute counts would obscure the shift in composition; comparing shares makes the periods comparable on their own terms.</p>
+<p><strong>The substantive finding:</strong> battles went from 64.7% to 27.3%, violence against civilians went from 3.87% to 34.5%, strategic developments went from 2.63% to 16.4%. This is not “the same conflict at lower intensity,” it is a different category of activity. The Forum-relevant framing: this is what regime consolidation looks like, not insurgency reduction.</p>
+</section>
+<section id="kernel-density-estimate-kde" class="level3">
+<h3 class="anchored" data-anchor-id="kernel-density-estimate-kde">4.5 Kernel density estimate (KDE)</h3>
+<p><strong>Question it answers:</strong> where is conflict concentrated when we ignore administrative boundaries entirely?</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>afg_adm2_proj <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(afg_adm2, <span class="dv">32642</span>)   <span class="co"># UTM 42N, meters</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>afg_pts_proj  <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(afg_pts, <span class="dv">32642</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>afg_outline <span class="ot">&lt;-</span> <span class="fu">st_union</span>(afg_adm2_proj)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">as.owin</span>(afg_outline)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>build_density <span class="ot">&lt;-</span> <span class="cf">function</span>(pts_sf, win, <span class="at">sigma_m =</span> <span class="dv">15000</span>) {</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(pts_sf)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  pp <span class="ot">&lt;-</span> <span class="fu">ppp</span>(<span class="at">x =</span> coords[, <span class="st">"X"</span>], <span class="at">y =</span> coords[, <span class="st">"Y"</span>],</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">window =</span> win, <span class="at">check =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">density</span>(pp, <span class="at">sigma =</span> sigma_m, <span class="at">edge =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>pre_pts  <span class="ot">&lt;-</span> afg_pts_proj <span class="sc">|&gt;</span> <span class="fu">filter</span>(period <span class="sc">==</span> <span class="st">"pre_Aug2021"</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>post_pts <span class="ot">&lt;-</span> afg_pts_proj <span class="sc">|&gt;</span> <span class="fu">filter</span>(period <span class="sc">==</span> <span class="st">"post_Aug2021"</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>pre_density  <span class="ot">&lt;-</span> <span class="fu">build_density</span>(pre_pts,  W, <span class="at">sigma_m =</span> <span class="dv">15000</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>post_density <span class="ot">&lt;-</span> <span class="fu">build_density</span>(post_pts, W, <span class="at">sigma_m =</span> <span class="dv">15000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Why project to UTM zone 42N:</strong> <code>spatstat</code> operates in planar Euclidean space. Lat/lon coordinates produce distortion that grows with latitude. UTM zone 42N (EPSG:32642) covers central Afghanistan and uses meters as the unit, which makes bandwidth interpretation intuitive (15000 = 15 km).</p>
+<p><strong>Why 15 km bandwidth:</strong> large enough to smooth across district-to-province scale patterns, small enough to preserve the structural geography. Smaller bandwidth (5-10 km) gives more local detail but also more noise. Larger bandwidth (25-30 km) smooths so aggressively that the spatial pattern blurs. Could also use <code>bw.scott(pp)</code> for automatic bandwidth selection; we used a fixed value for consistency across the two periods.</p>
+<p><strong>Why <code>edge = TRUE</code>:</strong> corrects for edge effects at the country boundary, where the smoothing kernel would otherwise be partially outside the observation window.</p>
+<p><strong>Why density() and not density.ppp() or KernSmooth::bkde2D:</strong> <code>spatstat</code>’s <code>density()</code> properly clips the smoother to the observation window (<code>W</code> from <code>as.owin</code>), so the density surface respects the country outline. <code>bkde2D</code> produces a rectangular grid that bleeds outside the country, which looks wrong on a map.</p>
+<p><strong>Visualization note:</strong> convert the <code>spatstat im</code> (image) object to a data frame via <code>as.data.frame(d)</code> for ggplot. Multiply by 1e6 to convert events per m² to events per km² for legend readability. Combine with <code>geom_sf</code> for the country outline using <code>coord_sf(crs = 32642)</code> so projections align.</p>
+<p><strong>Limitations:</strong> edge effects at narrow country segments (the Wakhan corridor in northeast Afghanistan) produce blocky artifacts. These are not conflict signals, they are KDE behaving as it should where the observation window is narrow and few events fall there.</p>
+</section>
+<section id="getis-ord-gi-statistical-hotspot-test" class="level3">
+<h3 class="anchored" data-anchor-id="getis-ord-gi-statistical-hotspot-test">4.6 Getis-Ord Gi*, statistical hotspot test</h3>
+<p><strong>Question it answers:</strong> which districts are statistically high relative to their neighbors, not just visually red?</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(afg_adm2_counts, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>W  <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(nb, <span class="at">style =</span> <span class="st">"W"</span>, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>gi_pre  <span class="ot">&lt;-</span> <span class="fu">localG</span>(afg_adm2_counts<span class="sc">$</span>pre_Aug2021,  W, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>gi_post <span class="ot">&lt;-</span> <span class="fu">localG</span>(afg_adm2_counts<span class="sc">$</span>post_Aug2021, W, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>afg_adm2_counts <span class="ot">&lt;-</span> afg_adm2_counts <span class="sc">|&gt;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">gi_pre_z     =</span> <span class="fu">as.numeric</span>(gi_pre),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">gi_post_z    =</span> <span class="fu">as.numeric</span>(gi_post),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">gi_pre_p     =</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(gi_pre_z))),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">gi_post_p    =</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(gi_post_z))),</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">gi_pre_pfdr  =</span> <span class="fu">p.adjust</span>(gi_pre_p,  <span class="at">method =</span> <span class="st">"BH"</span>),</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">gi_post_pfdr =</span> <span class="fu">p.adjust</span>(gi_post_p, <span class="at">method =</span> <span class="st">"BH"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>classify_gi <span class="ot">&lt;-</span> <span class="cf">function</span>(z, p) {</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> p <span class="sc">&lt;=</span> <span class="fl">0.01</span> <span class="sc">~</span> <span class="st">"Hotspot p&lt;0.01"</span>,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> p <span class="sc">&lt;=</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"Hotspot p&lt;0.05"</span>,</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> p <span class="sc">&lt;=</span> <span class="fl">0.01</span> <span class="sc">~</span> <span class="st">"Coldspot p&lt;0.01"</span>,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> p <span class="sc">&lt;=</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"Coldspot p&lt;0.05"</span>,</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>              <span class="sc">~</span> <span class="st">"Not significant"</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Why queen contiguity:</strong> standard for administrative polygons. Two districts are neighbors if they share any boundary point (corner-touching counts). Rook contiguity (sharing a boundary line, not just a corner) is more restrictive and would isolate some peripheral districts.</p>
+<p><strong>Why row-standardized weights (<code>style = "W"</code>):</strong> each district’s spatial lag becomes a weighted mean of neighbors, regardless of how many neighbors it has. This is the standard choice for Gi*.</p>
+<p><strong>Why FDR correction (<code>p.adjust(..., method = "BH")</code>):</strong> we are running 328 simultaneous hypothesis tests (one per district). Without correction, even random data would produce roughly 16 significant results at p&lt;0.05. Benjamini-Hochberg FDR controls the false discovery rate while preserving power better than full Bonferroni.</p>
+<p><strong>Critical methodological point: Gi* detects spatial clusters, not point outliers.</strong> Kabul City is the highest-event district in the post-2021 period but does NOT pass the Gi* test, because its immediate neighbors (other Kabul province districts) have low counts. Panjshir districts DO pass because adjacent districts also have elevated counts. The reading: Kabul violence is a point phenomenon (ISKP attacks, civil society repression), while Panjshir is a spatially organized resistance region.</p>
+<p><strong>Why this matters:</strong> if you want to flag “high outliers” separately from “high clusters,” use Anselin’s Local Moran’s I in addition to Gi<em>. LISA distinguishes High-High clusters (Gi</em> hotspots) from High-Low outliers (single high district surrounded by lows). Project 2 (Mexico) should probably include both, since both phenomena are present in criminal violence data.</p>
+<p><strong>Result:</strong> only two clusters passed FDR pre-2021 (southern war belt, Kabul-Logar), and only one cluster passed FDR post-2021 (Panjshir-Andarab). This is the cleanest analytical finding in the document.</p>
+</section>
+<section id="arima-forecasts" class="level3">
+<h3 class="anchored" data-anchor-id="arima-forecasts">4.7 ARIMA forecasts</h3>
+<p><strong>Question it answers:</strong> where is this going over the next 24 months?</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>monthly_data <span class="ot">&lt;-</span> afg_pts <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(event_date <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"2021-08-15"</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">is.na</span>(GID_2)) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_month =</span> <span class="fu">floor_date</span>(event_date, <span class="st">"month"</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>last_month <span class="ot">&lt;-</span> <span class="fu">max</span>(monthly_data<span class="sc">$</span>year_month)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>monthly_data <span class="ot">&lt;-</span> monthly_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(year_month <span class="sc">&lt;</span> last_month)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>nat_monthly      <span class="ot">&lt;-</span> monthly_data <span class="sc">|&gt;</span> <span class="fu">count</span>(year_month, <span class="at">name =</span> <span class="st">"events"</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>kabul_monthly    <span class="ot">&lt;-</span> monthly_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(NAME_2 <span class="sc">==</span> <span class="st">"Kabul City"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">count</span>(year_month, <span class="at">name =</span> <span class="st">"events"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>panjsher_monthly <span class="ot">&lt;-</span> monthly_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(NAME_2 <span class="sc">==</span> <span class="st">"Panjsher"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">count</span>(year_month, <span class="at">name =</span> <span class="st">"events"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>fit_and_forecast <span class="ot">&lt;-</span> <span class="cf">function</span>(df, <span class="at">h =</span> <span class="dv">24</span>) {</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  all_months <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(df<span class="sc">$</span>year_month), <span class="fu">max</span>(df<span class="sc">$</span>year_month), <span class="at">by =</span> <span class="st">"month"</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  d_full <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">year_month =</span> all_months) <span class="sc">|&gt;</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(df, <span class="at">by =</span> <span class="st">"year_month"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">events =</span> <span class="fu">replace_na</span>(events, <span class="dv">0</span>))</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  ts_obj <span class="ot">&lt;-</span> <span class="fu">ts</span>(d_full<span class="sc">$</span>events,</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>               <span class="at">start =</span> <span class="fu">c</span>(<span class="fu">year</span>(<span class="fu">min</span>(d_full<span class="sc">$</span>year_month)),</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">month</span>(<span class="fu">min</span>(d_full<span class="sc">$</span>year_month))),</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">frequency =</span> <span class="dv">12</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  m  <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(ts_obj)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  fc <span class="ot">&lt;-</span> <span class="fu">forecast</span>(m, <span class="at">h =</span> h)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">observed =</span> d_full,</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">forecast =</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">year_month =</span> <span class="fu">seq</span>(<span class="fu">max</span>(d_full<span class="sc">$</span>year_month) <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>),</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>                       <span class="at">by =</span> <span class="st">"month"</span>, <span class="at">length.out =</span> h),</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">events   =</span> <span class="fu">as.numeric</span>(fc<span class="sc">$</span>mean),</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">lower_80 =</span> <span class="fu">as.numeric</span>(fc<span class="sc">$</span>lower[, <span class="dv">1</span>]),</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper_80 =</span> <span class="fu">as.numeric</span>(fc<span class="sc">$</span>upper[, <span class="dv">1</span>]),</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">lower_95 =</span> <span class="fu">as.numeric</span>(fc<span class="sc">$</span>lower[, <span class="dv">2</span>]),</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper_95 =</span> <span class="fu">as.numeric</span>(fc<span class="sc">$</span>upper[, <span class="dv">2</span>])</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> m</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Why post-Aug 2021 only:</strong> the pre-2021 data is a structurally different conflict regime. Including it in the training data would let the disappeared insurgency dominate the model’s parameter estimates and produce nonsensical forecasts for the current regime.</p>
+<p><strong>Why drop the last partial month:</strong> if data ends mid-month (May 27, 2025), the May 2025 count is artificially low compared to full months. Including it pulls the recent trend downward.</p>
+<p><strong>Why fill missing months with zero:</strong> <code>auto.arima</code> requires a regular time series. If a district had no events in some month, that month is absent from <code>count()</code> output. Padding with zero is the correct interpretation (zero events) and required for the time series to be well-defined.</p>
+<p><strong>Why frequency = 12:</strong> monthly data with potential annual seasonality. <code>auto.arima</code> will test for seasonal terms; if none are present (as was the case for all three series), the seasonal components drop out.</p>
+<p><strong>What auto.arima selected:</strong> - National total: ARIMA(0,1,0), random walk with no drift - Kabul City: ARIMA(1,1,0), random walk with one autoregressive lag on differences - Panjsher: ARIMA(0,1,1), random walk with one moving-average term on differences</p>
+<p>All three differenced once, none with seasonal terms, none with drift. The substantive interpretation: the system has stabilized to the point where the model cannot find any directional signal. The “best guess” for next month is roughly the current level.</p>
+<p><strong>Honest limitations to flag in any prose interpretation:</strong></p>
+<ol type="1">
+<li><p>ARIMA assumes stationarity. Afghan conflict has demonstrably not been stationary. The forecast is what the recent dynamics imply, not what will happen.</p></li>
+<li><p>95% prediction intervals dip below zero in all three panels. Event counts cannot be negative. This is the standard weakness of Gaussian ARIMA on count data. The proper fix is count-data state-space models (Poisson AR, negative binomial INGARCH, or a Bayesian formulation via Stan/INLA). The current model is adequate for showing “no signal of trend,” but it overstates downside uncertainty.</p></li>
+<li><p>The model cannot anticipate shocks: regime changes, attack campaigns, foreign re-engagement. The flat forecast is a “no surprises” baseline.</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="document-structure" class="level2">
+<h2 class="anchored" data-anchor-id="document-structure">5. Document Structure</h2>
+<section id="quarto-yaml" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-yaml">5.1 Quarto YAML</h3>
+<p>The final, parent-site-friendly YAML:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"ACLED Conflict Hotspot Atlas, Afghanistan 2017 to 2025"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sajjad Sharifi"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">code-summary</span><span class="kw">:</span><span class="at"> </span><span class="st">"Show code"</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is minimal by design. The site’s <code>_quarto.yml</code> provides theme, CSS, code-copy, link styling, navbar, and footer. The page YAML only adds page-specific options (toc, code-fold).</p>
+</section>
+<section id="section-flow" class="level3">
+<h3 class="anchored" data-anchor-id="section-flow">5.2 Section flow</h3>
+<pre><code>## Question
+## Headline finding         ← written last, after all analysis settles
+## Data
+## Setup                    ← libraries
+## Load and validate        ← sanity check chunk, visible to reader
+## District boundaries      ← GADM download and outline plot
+## Events by district, pre and post August 2021   ← spatial join + choropleth
+## Most affected districts                         ← top 20 tables
+## Event type composition shifted, not just volume ← composition bar chart
+## Kernel density surface                          ← KDE
+## Statistically significant hotspots, Getis-Ord Gi*  ← Gi* with FDR
+## Forecasts to mid-2027                           ← ARIMA
+## Limitations                                     ← honest caveats</code></pre>
+<p>The order matters. Each section reuses objects built by the previous one (<code>afg</code>, <code>afg_adm2_counts</code>, <code>afg_pts</code>, <code>district_counts</code>). Quarto runs chunks top-to-bottom regardless of section headings, but readability suffers if the prose order does not match the analytical dependency order.</p>
+</section>
+<section id="chunk-options" class="level3">
+<h3 class="anchored" data-anchor-id="chunk-options">5.3 Chunk options</h3>
+<ul>
+<li><code>fig.width</code> and <code>fig.height</code> for plot dimensions</li>
+<li><code>code-fold: true</code> (set at document level) collapses code chunks behind “Show code” buttons in HTML output</li>
+<li><code>execute: warning: false, message: false</code> (document level) suppresses package-attach noise from rendered output</li>
+</ul>
+</section>
+<section id="prose-conventions" class="level3">
+<h3 class="anchored" data-anchor-id="prose-conventions">5.4 Prose conventions</h3>
+<ul>
+<li>Each analysis section: brief intro paragraph + code chunk + analytical interpretation paragraph</li>
+<li>Lead with what the chart or test shows, follow with what mechanism explains it, end with what it does not show</li>
+<li>Use structured signposts (“Three patterns stand out,” “Two things become clearer”) to make the prose scannable</li>
+<li>Acknowledge limitations within each section, not only at the end</li>
+<li>Phrase like “None of this is causal evidence” or “The forecast is a baseline expectation under no surprises, not a prediction” is what separates analytical writing from journalism</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="publishing-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="publishing-workflow">6. Publishing Workflow</h2>
+<section id="local-render" class="level3">
+<h3 class="anchored" data-anchor-id="local-render">6.1 Local render</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/UrbanProjects/heissj.github.io</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rebuilds the entire site to <code>_site/</code>. Takes 30 to 120 seconds depending on which chunks need re-execution. Quarto caches chunk outputs; only changed chunks re-run.</p>
+</section>
+<section id="publish-to-github-pages" class="level3">
+<h3 class="anchored" data-anchor-id="publish-to-github-pages">6.2 Publish to GitHub Pages</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish gh-pages</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Pushes <code>_site/</code> to the <code>gh-pages</code> branch on GitHub. Prompts for confirmation. GitHub Pages serves from this branch. Live updates appear in 2 to 5 minutes after publish.</p>
+</section>
+<section id="site-integration" class="level3">
+<h3 class="anchored" data-anchor-id="site-integration">6.3 Site integration</h3>
+<p>The portfolio’s <code>projects.qmd</code> at the root is the listings page. To add a new project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conflict &amp; Fragility Studies</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>A series of R-based spatial statistics projects on fragile-state contexts ...</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Afghanistan, 2017 to 2025](projects/acled-afghanistan/index.html)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>ACLED political violence events analyzed before and after the August 2021 regime break ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Link target: <code>projects/&lt;name&gt;/index.html</code> (relative path from the site root).</p>
+</section>
+<section id="the-navbar-inheritance-pitfall-with-fix" class="level3">
+<h3 class="anchored" data-anchor-id="the-navbar-inheritance-pitfall-with-fix">6.4 The navbar inheritance pitfall, with fix</h3>
+<p>If the navbar disappears on your project page, the cause is almost certainly a <code>format: html: ...</code> block in the page YAML. The fix is to remove that block and promote any page-specific keys (<code>toc</code>, <code>code-fold</code>) to top-level YAML. See section 5.1 above for the safe minimal YAML.</p>
+<hr>
+</section>
+</section>
+<section id="lessons-learned" class="level2">
+<h2 class="anchored" data-anchor-id="lessons-learned">7. Lessons Learned</h2>
+<section id="what-worked" class="level3">
+<h3 class="anchored" data-anchor-id="what-worked">7.1 What worked</h3>
+<ul>
+<li><p><strong>Incremental development across small sessions</strong> built momentum without exhausting the cognitive budget. Day 1 was just folder + data pull. Day 5 was just forecasts. Trying to do all of this in one sitting would have produced worse work.</p></li>
+<li><p><strong>renv from day one.</strong> Locking 130 packages at project start meant no “it works on my machine” surprises. Adding new packages later (<code>geodata</code>, <code>spatstat</code>, <code>spdep</code>, <code>forecast</code>) was a one-line install plus <code>renv::snapshot()</code>.</p></li>
+<li><p><strong>Quarto document as the build target.</strong> Writing prose alongside code, with the same document re-renderable at any time, kept the analytical narrative coherent. The final HTML is what the reader sees; the chunks are reproducibility infrastructure.</p></li>
+<li><p><strong>Cumulative narrative structure.</strong> Each section builds on the previous: choropleth (broad spatial), rankings (specific places), composition (qualitative shift), KDE (continuous surface), Gi* (statistical clusters), forecast (where it is heading). The reader can follow the thread.</p></li>
+<li><p><strong>“Headline finding” up front.</strong> A 200-word paragraph at the top that lands the three main findings in plain English makes the document Forum-skimmable. Anyone clicking through has the punchline in 30 seconds.</p></li>
+</ul>
+</section>
+<section id="what-slowed-us-down" class="level3">
+<h3 class="anchored" data-anchor-id="what-slowed-us-down">7.2 What slowed us down</h3>
+<ul>
+<li><p><strong>ACLED authentication.</strong> Three rounds: first assumed API keys (deprecated September 2025), then OAuth via the package, then password typos that we did not catch until we verified credentials worked on the website. Lesson for Project 2: verify credentials on the data provider’s website BEFORE trying to use them in R.</p></li>
+<li><p><strong>.Renviron file never read by R.</strong> Burned an hour on nano, VS Code edits, file mode changes, none of which fixed it. Workaround was <code>Sys.setenv()</code> plus <code>askForPassword()</code>. Worth properly diagnosing in Project 2 with the steps in section 2.4.</p></li>
+<li><p><strong>One chunk got interpreted as bash.</strong> A single chunk header was missing its <code>{r}</code> tag, so the setup chunk ran as shell and threw “library(dplyr): command not found.” Easy to fix once spotted; the diagnostic is <code>/bin/sh:</code> in the error message.</p></li>
+<li><p><strong>Section ordering at the end.</strong> When we replaced placeholder <code>## Method</code> with the KDE content but kept the heading, we ended up with <code>## Method</code> followed by <code>## Kernel density surface</code> at the bottom of the document, after Limitations. Required a manual cut-paste reorder.</p></li>
+<li><p><strong>Quarto YAML override broke navbar inheritance.</strong> The original <code>format: html: theme: cosmo ...</code> block in the page YAML cut off the parent site’s navbar. The fix was small (delete the block, promote keys); the diagnosis took longer than the fix.</p></li>
+</ul>
+</section>
+<section id="decisions-that-turned-out-well-in-retrospect" class="level3">
+<h3 class="anchored" data-anchor-id="decisions-that-turned-out-well-in-retrospect">7.3 Decisions that turned out well in retrospect</h3>
+<ul>
+<li><p><strong>Splitting at August 15, 2021.</strong> Confirmed by the event-type composition analysis, the Gi* result, and the ARIMA models (all of which independently picked up the regime break). Treating pre and post 2021 as one series would have produced misleading results in every method.</p></li>
+<li><p><strong>15 km KDE bandwidth.</strong> Reasonable for the country scale. <code>bw.scott()</code> would have produced very similar results. The bandwidth choice is methodological transparency, not a black-box parameter.</p></li>
+<li><p>**FDR correction on Gi*.** Conservative, but appropriate for a portfolio piece that needs to defend findings under scrutiny. Without correction we would have flagged 30 to 40 districts as “significant” pre-2021, many of which are likely false positives.</p></li>
+<li><p><strong>Post-2021-only training data for ARIMA.</strong> The model results would be useless if pre-2021 dynamics dominated the parameter estimates. The flat forecasts honestly reflect “no signal in the post-takeover regime.”</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="future-refinements-for-project-1" class="level2">
+<h2 class="anchored" data-anchor-id="future-refinements-for-project-1">8. Future Refinements for Project 1</h2>
+<p>These are polish items, in rough order of effort to value.</p>
+<section id="quick-polish-under-30-minutes-each" class="level3">
+<h3 class="anchored" data-anchor-id="quick-polish-under-30-minutes-each">8.1 Quick polish (under 30 minutes each)</h3>
+<ul>
+<li>Wrap the Gi* count tables in <code>knitr::kable()</code> so they render as proper HTML tables instead of raw R console output.</li>
+<li>Add a methodology appendix listing all R packages used with versions from <code>renv.lock</code>.</li>
+<li>Add download buttons for the figures (<code>download</code> link with <code>download="filename.png"</code> attribute) so readers can grab high-res versions.</li>
+<li>Hyperlink district names in the ranking tables to their ACLED dashboard pages.</li>
+</ul>
+</section>
+<section id="methodological-extensions-a-few-hours-each" class="level3">
+<h3 class="anchored" data-anchor-id="methodological-extensions-a-few-hours-each">8.2 Methodological extensions (a few hours each)</h3>
+<ul>
+<li><p><strong>Normalize event counts by period length</strong> to produce events-per-year rates. Makes the two periods directly comparable in magnitude, not just spatial pattern. Adds a third map facet (“rate of change”) that highlights persistent vs emerging hotspots.</p></li>
+<li><p>**Local Moran’s I (LISA) in addition to Gi*.** Distinguishes High-High clusters (which Gi* catches) from High-Low outliers (which Gi* misses but which describe Kabul). Together they give a fuller statistical map.</p></li>
+<li><p><strong>Count-data forecast models.</strong> Replace <code>auto.arima</code> with one of: <code>tscount::tsglm</code> (negative binomial INGARCH), <code>bsts::AddLocalLevel</code> plus a Poisson observation model, or a Stan/INLA Bayesian formulation. The current Gaussian ARIMA produces prediction intervals that include negative event counts, which is silly. Count-data models constrain the lower bound to zero and produce more interpretable intervals.</p></li>
+<li><p><strong>Province-level rollup as an alternative analytical unit.</strong> Some analyses (especially Gi*) behave differently at coarser spatial units. Doing it at admin-1 (34 provinces) as a robustness check would strengthen the document.</p></li>
+</ul>
+</section>
+<section id="visual-upgrades" class="level3">
+<h3 class="anchored" data-anchor-id="visual-upgrades">8.3 Visual upgrades</h3>
+<ul>
+<li>Interactive Leaflet versions of the choropleths, so readers can hover over a district and see its name and counts.</li>
+<li><code>DT::datatable</code> for the ranking tables, enabling sort and filter in the rendered HTML.</li>
+<li><code>gganimate</code> time-series of monthly events by district, played as a video. Useful for showing the August 2021 transition viscerally.</li>
+<li>A summary infographic at the top (alongside the headline finding) with three numbers: percent battle reduction, number of Gi*-significant clusters in each period, forecast level for 2027.</li>
+</ul>
+</section>
+<section id="the-.renviron-diagnostic" class="level3">
+<h3 class="anchored" data-anchor-id="the-.renviron-diagnostic">8.4 The .Renviron diagnostic</h3>
+<p>Worth solving once and for all, because Projects 2 through 5 will all need it. Steps:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check encoding</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/.Renviron</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for BOM and other invisible chars</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">od</span> <span class="at">-c</span> projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/.Renviron <span class="kw">|</span> <span class="fu">head</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for trailing newline (should end with 0a)</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="ex">xxd</span> projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/.Renviron <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-1</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Check Unix line endings (no \r\n)</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="at">-A</span> projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/.Renviron</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If everything looks clean and R still does not read it, the issue may be the renv <code>.Rprofile</code> ordering. Try <code>readRenviron(".Renviron")</code> explicitly inside R as a forced load, and see whether the values populate.</p>
+<hr>
+</section>
+</section>
+<section id="patterns-for-projects-2-through-5" class="level2">
+<h2 class="anchored" data-anchor-id="patterns-for-projects-2-through-5">9. Patterns for Projects 2 through 5</h2>
+<section id="what-carries-over-verbatim" class="level3">
+<h3 class="anchored" data-anchor-id="what-carries-over-verbatim">9.1 What carries over verbatim</h3>
+<ul>
+<li>Folder structure (section 2.1)</li>
+<li>.gitignore (section 2.2)</li>
+<li>renv setup (section 2.3)</li>
+<li>.Renviron format (section 2.4)</li>
+<li>RStudio project creation (section 2.5)</li>
+<li>Parent-site YAML pattern (section 2.6 and 5.1)</li>
+<li>Spatial join code pattern (section 4.1)</li>
+<li>ggplot choropleth pattern (section 4.2)</li>
+<li>District ranking pattern (section 4.3)</li>
+<li>Quarto chunk options and prose conventions (section 5.3, 5.4)</li>
+<li>Publishing workflow (section 6)</li>
+</ul>
+</section>
+<section id="what-changes-per-project" class="level3">
+<h3 class="anchored" data-anchor-id="what-changes-per-project">9.2 What changes per project</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 19%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Project</th>
+<th>Data sources</th>
+<th>Spatial unit</th>
+<th>New methods</th>
+<th>New R packages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2: Mexico Fragility Index</td>
+<td>INEGI census, ACLED, CONEVAL, SESNSP, WB governance</td>
+<td>Admin-2 (~2,469 munis)</td>
+<td>PCA, min-max normalization, sensitivity analysis, LISA</td>
+<td><code>FactoMineR</code>, <code>factoextra</code>, <code>psych</code></td>
+</tr>
+<tr class="even">
+<td>3: Climate-Conflict Central America</td>
+<td>CHIRPS, ERA5, USDA drought, ACLED, EM-DAT</td>
+<td>Admin-2, 3 countries</td>
+<td>SPI/SPEI, spatial regression, lag analysis</td>
+<td><code>terra</code>, <code>SPEI</code>, <code>lme4</code>, optional <code>INLA</code></td>
+</tr>
+<tr class="odd">
+<td>4: Displacement flows</td>
+<td>IOM DTM, UNHCR, US CBP, IDMC</td>
+<td>Origin-destination</td>
+<td>Network analysis, flow maps, animated time-series</td>
+<td><code>igraph</code>, <code>ggraph</code>, <code>gganimate</code>, <code>flowmapblue</code></td>
+</tr>
+<tr class="even">
+<td>5: Walking-time accessibility</td>
+<td>OSM roads + facilities, WorldPop</td>
+<td>Street network</td>
+<td>Isochrones, walking-distance accessibility, ArcGIS comparison</td>
+<td><code>osmdata</code>, <code>sfnetworks</code>, <code>dodgr</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-starting-template-for-a-new-project" class="level3">
+<h3 class="anchored" data-anchor-id="a-starting-template-for-a-new-project">9.3 A starting template for a new project</h3>
+<p>When you start Project 2:</p>
+<ol type="1">
+<li><p><strong>Copy the folder structure.</strong> <code>cp -r projects/acled-afghanistan/{.gitignore,data,docs,output,R} projects/mexico-fragility-index/</code>.</p></li>
+<li><p><strong>Create new RStudio project.</strong> File &gt; New Project &gt; Existing Directory.</p></li>
+<li><p><strong>Initialize renv from scratch.</strong> Each project gets its own library to avoid version drift. <code>renv::init(bare = TRUE)</code> then install packages.</p></li>
+<li><p><strong>Create .Renviron</strong> if new credentials needed. INEGI does not require auth, but ACLED does. Reuse the ACLED credentials.</p></li>
+<li><p><strong>Create <code>index.qmd</code></strong> using the parent-site-friendly YAML in section 5.1. Pre-populate with <code>## Question</code>, <code>## Headline finding</code>, <code>## Data</code>, <code>## Setup</code>, <code>## Load and validate</code>, <code>## Limitations</code> section stubs.</p></li>
+<li><p><strong>Add a listing entry to <code>projects.qmd</code></strong> at the portfolio root, in the “Conflict &amp; Fragility Studies” section.</p></li>
+<li><p><strong>Develop incrementally.</strong> Each session, one analytical section plus its prose. Commit at the end of each session.</p></li>
+<li><p><strong>Render and publish</strong> at logical milestones (after data pull, after first map, at completion).</p></li>
+</ol>
+</section>
+<section id="specifically-for-project-2-mexico-subnational-fragility-index" class="level3">
+<h3 class="anchored" data-anchor-id="specifically-for-project-2-mexico-subnational-fragility-index">9.4 Specifically for Project 2, Mexico Subnational Fragility Index</h3>
+<p>This is the heaviest of the five (5 to 7 day build per the original brief) because index construction is methodologically debated. A few additional considerations:</p>
+<ul>
+<li><p><strong>Index construction is not neutral.</strong> PCA, min-max scaling, geometric vs arithmetic aggregation, weighting choices, they all produce different rankings. Document every choice and run sensitivity analysis on the top three or four most consequential ones.</p></li>
+<li><p><strong>Data joining is the bottleneck.</strong> INEGI, CONEVAL, SESNSP, WB indicators, ACLED, all have different keys, different reporting years, different spatial units. Spend the first day building the joining schema, before any analysis.</p></li>
+<li><p><strong>Time-series tracking adds a dimension.</strong> A single cross-sectional index is fine for a snapshot. A panel of annual indices reveals which munis are deteriorating, which are recovering, which are stable. The Forum reading is about trajectories, not levels.</p></li>
+<li><p><strong>Spillover analysis (LISA) is the natural finale.</strong> Once you have an index per muni per year, LISA shows which high-fragility munis are adjacent to other high-fragility munis (cluster) versus isolated high-fragility munis (outlier). This mirrors the Gi* / Local Moran’s I pairing recommended for Project 1.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="appendices" class="level2">
+<h2 class="anchored" data-anchor-id="appendices">10. Appendices</h2>
+<section id="appendix-a.-final-file-structure" class="level3">
+<h3 class="anchored" data-anchor-id="appendix-a.-final-file-structure">Appendix A. Final file structure</h3>
+<pre><code>~/UrbanProjects/heissj.github.io/projects/acled-afghanistan/
+├── .gitignore                                  374 B
+├── .Renviron                                   84 B   (gitignored)
+├── .Rprofile                                   26 B   (auto-created)
+├── acled-afghanistan.Rproj                     205 B
+├── data/
+│   ├── raw/                                    (downloaded files, gitignored)
+│   │   ├── afg_acled_2015_2025.rds
+│   │   ├── afg_acled_2015_2025.csv
+│   │   └── gadm/                               (cached GADM files)
+│   └── processed/                              (empty, for future use)
+├── docs/
+│   └── project-documentation.md                (this file)
+├── index.qmd                                   28.3 KB  (the analytical document)
+├── output/
+│   └── figures/
+│       ├── events_per_district_prepost_2021.png
+│       ├── event_type_composition.png
+│       ├── kde_density.png
+│       ├── getis_ord_gi.png
+│       └── forecasts.png
+├── R/                                          (empty; we used .qmd chunks)
+├── renv/                                       (project library, gitignored)
+│   └── activate.R
+└── renv.lock                                   100.6 KB  (committed)</code></pre>
+</section>
+<section id="appendix-b.-key-r-packages-with-versions" class="level3">
+<h3 class="anchored" data-anchor-id="appendix-b.-key-r-packages-with-versions">Appendix B. Key R packages with versions</h3>
+<p>From <code>renv.lock</code> snapshot:</p>
+<pre><code>acledR        1.0.1   # official ACLED OAuth client
+dplyr         1.2.1   # data wrangling
+forecast      8.23    # auto.arima and forecasting
+geodata       0.6     # GADM and other global datasets
+ggplot2       4.0.3   # plotting
+here          1.0.2   # path management
+janitor       2.2.1   # column name cleaning
+knitr         1.51    # kable for tables
+lubridate     1.9.5   # date handling
+readr         2.2.0   # fast CSV I/O
+renv          1.2.3   # project library management
+sf            1.1-1   # spatial vector data
+spatstat      3.x     # point pattern analysis, KDE
+spdep         1.x     # spatial autocorrelation, Gi*
+tidyr         1.3.2   # pivot_longer, pivot_wider
+tmap          4.3     # thematic mapping</code></pre>
+<p>Total: 130 packages locked across the project library.</p>
+</section>
+<section id="appendix-c.-useful-commands" class="level3">
+<h3 class="anchored" data-anchor-id="appendix-c.-useful-commands">Appendix C. Useful commands</h3>
+<p><strong>R session, daily workflow:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open RStudio project, renv auto-activates</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Open index.qmd</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run individual chunks: Cmd+Shift+Enter inside chunk</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render whole document: Cmd+Shift+K</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Bash, daily workflow:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/UrbanProjects/heissj.github.io</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/index.qmd <span class="dt">\</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/output/figures/ <span class="dt">\</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/renv.lock</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Project N day X, brief description"</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># When ready to publish:</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish gh-pages</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Diagnostics:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check ACLED credentials are set in R</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'cat("Email length:", nchar(Sys.getenv("ACLED_API_EMAIL")), "\n")'</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check .Renviron for hidden characters</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">od</span> <span class="at">-c</span> projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/.Renviron <span class="kw">|</span> <span class="fu">head</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify a new project rendered into site</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> _site/projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify projects.qmd lists the new project (avoid grep on &amp; due to HTML encoding)</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-o</span> <span class="st">"&lt;name&gt;"</span> _site/projects.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="appendix-d.-references" class="level3">
+<h3 class="anchored" data-anchor-id="appendix-d.-references">Appendix D. References</h3>
+<ul>
+<li>ACLED methodology: https://acleddata.com/knowledge-base/</li>
+<li>ACLED API documentation: https://acleddata.com/api-documentation/getting-started</li>
+<li>acledR package: https://github.com/ACLED/acledR</li>
+<li>GADM: https://gadm.org/</li>
+<li>Getis and Ord (1992), “The Analysis of Spatial Association by Use of Distance Statistics,” Geographical Analysis 24(3): 189-206</li>
+<li>Benjamini and Hochberg (1995), “Controlling the False Discovery Rate,” Journal of the Royal Statistical Society B 57(1): 289-300</li>
+<li>Hyndman and Khandakar (2008), “Automatic Time Series Forecasting: The forecast Package for R,” Journal of Statistical Software 27(3)</li>
+<li>Pebesma (2018), “Simple Features for R: Standardized Support for Spatial Vector Data,” The R Journal 10(1): 439-446</li>
+<li>Quarto documentation: https://quarto.org/docs/</li>
+</ul>
+<hr>
+<p>End of document. Drop into <code>projects/acled-afghanistan/docs/</code>.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sajjad-sharifi\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built with <a href="https://quarto.org">Quarto</a> by Sajjad Sharifi.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/sajjad-sharifi/sajjad-sharifi.github.io">GitHub</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
