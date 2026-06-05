@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Sajjad Sharifi">
+<meta name="dcterms.date" content="2026-06-04">
 
-<title>conflict-network – Sajjad Sharifi</title>
+<title>Conflict as a Network: Afghanistan, 2015-2025 – Sajjad Sharifi</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -111,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -155,15 +157,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#data-and-methods" id="toc-data-and-methods" class="nav-link active" data-scroll-target="#data-and-methods">Data and methods</a></li>
+  <li><a href="#findings" id="toc-findings" class="nav-link" data-scroll-target="#findings">Findings</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Conflict as a Network: Afghanistan, 2015-2025</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Locating transmission-risk districts and conflict structure with network analysis</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">conflict</div>
+    <div class="quarto-category">networks</div>
+    <div class="quarto-category">FCV</div>
+    <div class="quarto-category">Afghanistan</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
 
-<hr>
-<p>title: “Conflict as a Network: Afghanistan, 2015-2025” subtitle: “Locating transmission-risk districts and conflict structure with network analysis” author: “Sajjad Sharifi” date: 2026-06-04 date-format: “MMMM D, YYYY” categories: [conflict, networks, FCV, Afghanistan] toc: true toc-depth: 2 code-fold: true code-tools: true fig-cap-location: bottom execute: warning: false message: false cache: true freeze: auto — —</p>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sajjad Sharifi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>This piece treats Afghanistan’s conflict from 2015 to 2025 as two networks built from 68,084 ACLED events. A district adjacency network locates the geographic corridors along which violence transmits between areas. An armed-actor co-event network shows who fights whom and how the conflict is organized. The argument is that fragility is partly a property of position in a network, not only a property of a place, which makes a district’s structural centrality an actionable risk signal rather than a descriptive footnote. The clearest result is a transmission belt on the southeastern approaches to Kabul, spanning Logar, Wardak, Paktya, and Ghazni, where high structural betweenness coincides with high event intensity.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -181,7 +228,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-and-methods" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-methods">Data and methods</h2>
 <p>The event data are ACLED records for Afghanistan, 2015 to 2025, all event types, joined to second-level administrative boundaries (districts) from GADM version 4.1. Events are matched to districts by point-in-polygon, which avoids the name-matching problems that arise when joining ACLED admin labels to a boundary file by string.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
+<details class="code-fold">
+<summary>Load ACLED events and district boundaries</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>acled <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(acled_csv, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(tolower) <span class="sc">|&gt;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">event_date =</span> <span class="fu">parse_date_time</span>(event_date, <span class="at">orders =</span> <span class="fu">c</span>(<span class="st">"dmy"</span>, <span class="st">"ymd"</span>, <span class="st">"mdy"</span>)),</span>
@@ -197,53 +246,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">node_id =</span> <span class="fu">row_number</span>(),</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">dist_name =</span> <span class="fu">as.character</span>(.data[[dist_field]]),</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">prov_name =</span> <span class="fu">as.character</span>(.data[[prov_field]]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>The <strong>spatial diffusion network</strong> links districts that share a border (queen contiguity). Betweenness centrality on this graph measures how often a district sits on the shortest path between other districts, which is a proxy for its role as a transmission corridor. Because betweenness on a contiguity graph partly reflects geographic size and centrality, the reported bridge score multiplies rescaled betweenness by rescaled event count, so a district scores high only when it is both structurally central and conflict-active.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
+<details class="code-fold">
+<summary>Build district adjacency network and bridge score</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>events_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(acled, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(districts)) <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_join</span>(districts[, <span class="st">"node_id"</span>], <span class="at">join =</span> st_within)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>although coordinates are longitude/latitude, st_within assumes that they are
-planar</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>intensity <span class="ot">&lt;-</span> events_sf <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(node_id)) <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(node_id, <span class="at">name =</span> <span class="st">"events"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span> <span class="fu">left_join</span>(intensity, <span class="at">by =</span> <span class="st">"node_id"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">events =</span> <span class="fu">replace_na</span>(events, <span class="dv">0</span>L))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>nb  <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(districts, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they
-are planar</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>adj <span class="ot">&lt;-</span> <span class="fu">nb2mat</span>(nb, <span class="at">style =</span> <span class="st">"B"</span>, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(adj) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(adj) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(districts<span class="sc">$</span>node_id)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>g_adj <span class="ot">&lt;-</span> <span class="fu">graph_from_adjacency_matrix</span>(adj, <span class="at">mode =</span> <span class="st">"undirected"</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>districts<span class="sc">$</span>betweenness <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g_adj, <span class="at">normalized =</span> <span class="cn">TRUE</span>)[</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">match</span>(<span class="fu">as.character</span>(districts<span class="sc">$</span>node_id), <span class="fu">V</span>(g_adj)<span class="sc">$</span>name)]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bridge_risk =</span> <span class="fu">rescale01</span>(betweenness) <span class="sc">*</span> <span class="fu">rescale01</span>(events),</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">bridge_flag =</span> bridge_risk <span class="sc">&gt;=</span> <span class="fu">quantile</span>(bridge_risk, <span class="fl">0.90</span>) <span class="sc">&amp;</span> bridge_risk <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_join</span>(districts[, <span class="st">"node_id"</span>], <span class="at">join =</span> st_within)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>intensity <span class="ot">&lt;-</span> events_sf <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(node_id)) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(node_id, <span class="at">name =</span> <span class="st">"events"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span> <span class="fu">left_join</span>(intensity, <span class="at">by =</span> <span class="st">"node_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">events =</span> <span class="fu">replace_na</span>(events, <span class="dv">0</span>L))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>nb  <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(districts, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>adj <span class="ot">&lt;-</span> <span class="fu">nb2mat</span>(nb, <span class="at">style =</span> <span class="st">"B"</span>, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(adj) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(adj) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(districts<span class="sc">$</span>node_id)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>g_adj <span class="ot">&lt;-</span> <span class="fu">graph_from_adjacency_matrix</span>(adj, <span class="at">mode =</span> <span class="st">"undirected"</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>districts<span class="sc">$</span>betweenness <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g_adj, <span class="at">normalized =</span> <span class="cn">TRUE</span>)[</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">match</span>(<span class="fu">as.character</span>(districts<span class="sc">$</span>node_id), <span class="fu">V</span>(g_adj)<span class="sc">$</span>name)]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bridge_risk =</span> <span class="fu">rescale01</span>(betweenness) <span class="sc">*</span> <span class="fu">rescale01</span>(events),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">bridge_flag =</span> bridge_risk <span class="sc">&gt;=</span> <span class="fu">quantile</span>(bridge_risk, <span class="fl">0.90</span>) <span class="sc">&amp;</span> bridge_risk <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>The <strong>armed-actor network</strong> is built from ACLED <code>actor1</code> and <code>actor2</code>, with an edge weight equal to the number of shared events. Communities are detected with the Louvain method and actors are ranked by eigenvector centrality.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> acled <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">actor1 =</span> <span class="fu">str_trim</span>(actor1), <span class="at">actor2 =</span> <span class="fu">str_trim</span>(actor2)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(actor1), <span class="sc">!</span><span class="fu">is.na</span>(actor2), actor1 <span class="sc">!=</span> <span class="st">""</span>, actor2 <span class="sc">!=</span> <span class="st">""</span>, actor1 <span class="sc">!=</span> actor2) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(actor1, actor2, <span class="at">name =</span> <span class="st">"weight"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>g_act <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">simplify</span>(<span class="at">edge.attr.comb =</span> <span class="fu">list</span>(<span class="at">weight =</span> <span class="st">"sum"</span>))</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>comm <span class="ot">&lt;-</span> <span class="fu">cluster_louvain</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>actor_metrics <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">actor   =</span> <span class="fu">V</span>(g_act)<span class="sc">$</span>name,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster =</span> <span class="fu">as.integer</span>(<span class="fu">membership</span>(comm)),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">events  =</span> <span class="fu">strength</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight),</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">eigen   =</span> <span class="fu">eigen_centrality</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight)<span class="sc">$</span>vector) <span class="sc">|&gt;</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(eigen))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Build the armed-actor co-event network</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> acled <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">actor1 =</span> <span class="fu">str_trim</span>(actor1), <span class="at">actor2 =</span> <span class="fu">str_trim</span>(actor2)) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(actor1), <span class="sc">!</span><span class="fu">is.na</span>(actor2), actor1 <span class="sc">!=</span> <span class="st">""</span>, actor2 <span class="sc">!=</span> <span class="st">""</span>, actor1 <span class="sc">!=</span> actor2) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(actor1, actor2, <span class="at">name =</span> <span class="st">"weight"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>g_act <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">simplify</span>(<span class="at">edge.attr.comb =</span> <span class="fu">list</span>(<span class="at">weight =</span> <span class="st">"sum"</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>comm <span class="ot">&lt;-</span> <span class="fu">cluster_louvain</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>actor_metrics <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">actor   =</span> <span class="fu">V</span>(g_act)<span class="sc">$</span>name,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster =</span> <span class="fu">as.integer</span>(<span class="fu">membership</span>(comm)),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">events  =</span> <span class="fu">strength</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">eigen   =</span> <span class="fu">eigen_centrality</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight)<span class="sc">$</span>vector) <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(eigen))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </section>
 <section id="findings" class="level2">
@@ -251,30 +300,25 @@ are planar</code></pre>
 <section id="a-transmission-belt-on-the-approaches-to-kabul" class="level3">
 <h3 class="anchored" data-anchor-id="a-transmission-belt-on-the-approaches-to-kabul">A transmission belt on the approaches to Kabul</h3>
 <p>The highest bridge scores form a contiguous belt across Logar, Wardak, Paktya, and Ghazni, the historical insurgent approach corridors to the capital. Chaghcharan in Ghor ranks at the top largely because Ghor is a large, centrally located province with many neighbors, the geographic-centrality effect the composite score is designed to temper but does not fully remove.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top5 <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bridge_risk)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">st_point_on_surface</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: st_point_on_surface assumes attributes are constant over geometries</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in st_point_on_surface.sfc(st_geometry(x)): st_point_on_surface may not
-give correct results for longitude/latitude data</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>top5_xy <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">dist_name =</span> top5<span class="sc">$</span>dist_name, <span class="fu">as.data.frame</span>(<span class="fu">st_coordinates</span>(top5)))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(districts) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> bridge_risk), <span class="at">color =</span> <span class="st">"grey80"</span>, <span class="at">linewidth =</span> <span class="fl">0.08</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">filter</span>(districts, bridge_flag), <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> accent, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> top5_xy, <span class="fu">aes</span>(X, Y, <span class="at">label =</span> dist_name), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">min.segment.length =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">name =</span> <span class="st">"Bridge</span><span class="sc">\n</span><span class="st">score"</span>) <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Conflict transmission risk by district"</span>) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fragility</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>top5 <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bridge_risk)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> <span class="fu">st_point_on_surface</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>top5_xy <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">dist_name =</span> top5<span class="sc">$</span>dist_name, <span class="fu">as.data.frame</span>(<span class="fu">st_coordinates</span>(top5)))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(districts) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> bridge_risk), <span class="at">color =</span> <span class="st">"grey80"</span>, <span class="at">linewidth =</span> <span class="fl">0.08</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">filter</span>(districts, bridge_flag), <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> accent, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> top5_xy, <span class="fu">aes</span>(X, Y, <span class="at">label =</span> dist_name), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">min.segment.length =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">name =</span> <span class="st">"Bridge</span><span class="sc">\n</span><span class="st">score"</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fragility</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
-<div id="fig-bridge" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-bridge" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bridge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="conflict-network_files/figure-html/fig-bridge-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="3000">
+<img src="conflict-network_files/figure-html/fig-bridge-1.png" class="img-fluid figure-img" width="960">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bridge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Bridge-risk districts, Afghanistan 2015 to 2025. Top-decile districts outlined in blue. Source: ACLED, acleddata.com, accessed 2026-06-04. Boundaries: GADM v4.1.
@@ -283,12 +327,15 @@ Figure&nbsp;1: Bridge-risk districts, Afghanistan 2015 to 2025. Top-decile distr
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>districts <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bridge_risk)) <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">District =</span> dist_name, <span class="at">Province =</span> prov_name, <span class="at">Events =</span> events,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Betweenness =</span> <span class="fu">round</span>(betweenness, <span class="dv">3</span>), <span class="st">`</span><span class="at">Bridge score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(bridge_risk, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-bridge" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>districts <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bridge_risk)) <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">District =</span> dist_name, <span class="at">Province =</span> prov_name, <span class="at">Events =</span> events,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Betweenness =</span> <span class="fu">round</span>(betweenness, <span class="dv">3</span>), <span class="st">`</span><span class="at">Bridge score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(bridge_risk, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-bridge" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bridge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Top 10 districts by composite bridge-risk score.
@@ -387,30 +434,32 @@ Table&nbsp;1: Top 10 districts by composite bridge-risk score.
 <section id="one-dominant-dyad" class="level3">
 <h3 class="anchored" data-anchor-id="one-dominant-dyad">One dominant dyad</h3>
 <p>The actor network is organized around a single dense dyad, the Taliban and the Military Forces of Afghanistan, which together account for the overwhelming majority of engagements and sit at the center of the layout. Every other actor orbits this core. This concentration is the substantive story, and it is why eigenvector centrality is near 1.0 for those two actors and small for everyone else.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top_actors <span class="ot">&lt;-</span> actor_metrics <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(events, <span class="at">n =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(actor)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>g_top <span class="ot">&lt;-</span> <span class="fu">induced_subgraph</span>(g_act, <span class="at">vids =</span> <span class="fu">which</span>(<span class="fu">V</span>(g_act)<span class="sc">$</span>name <span class="sc">%in%</span> top_actors))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">as.integer</span>(<span class="fu">membership</span>(comm)[<span class="fu">V</span>(g_top)<span class="sc">$</span>name]))</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>str     <span class="ot">&lt;-</span> <span class="fu">strength</span>(g_top, <span class="at">weights =</span> <span class="fu">E</span>(g_top)<span class="sc">$</span>weight)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>lab_actors <span class="ot">&lt;-</span> actor_metrics <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(events, <span class="at">n =</span> <span class="dv">12</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(actor)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>lab <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">V</span>(g_top)<span class="sc">$</span>name <span class="sc">%in%</span> lab_actors, <span class="fu">str_wrap</span>(<span class="fu">V</span>(g_top)<span class="sc">$</span>name, <span class="dv">18</span>), <span class="st">""</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="fu">as_tbl_graph</span>(g_top), <span class="at">layout =</span> <span class="st">"stress"</span>) <span class="sc">+</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width =</span> weight), <span class="at">alpha =</span> <span class="fl">0.15</span>, <span class="at">color =</span> <span class="st">"grey55"</span>) <span class="sc">+</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cluster, <span class="at">size =</span> str)) <span class="sc">+</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> lab), <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"grey15"</span>, <span class="at">box.padding =</span> <span class="fl">0.5</span>, <span class="at">max.overlaps =</span> <span class="cn">Inf</span>, <span class="at">seed =</span> <span class="dv">42</span>) <span class="sc">+</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">2.2</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">12</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Interaction</span><span class="sc">\n</span><span class="st">cluster"</span>) <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Who fights whom, 2015 to 2025"</span>) <span class="sc">+</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fragility</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>top_actors <span class="ot">&lt;-</span> actor_metrics <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(events, <span class="at">n =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(actor)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>g_top <span class="ot">&lt;-</span> <span class="fu">induced_subgraph</span>(g_act, <span class="at">vids =</span> <span class="fu">which</span>(<span class="fu">V</span>(g_act)<span class="sc">$</span>name <span class="sc">%in%</span> top_actors))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">as.integer</span>(<span class="fu">membership</span>(comm)[<span class="fu">V</span>(g_top)<span class="sc">$</span>name]))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>str     <span class="ot">&lt;-</span> <span class="fu">strength</span>(g_top, <span class="at">weights =</span> <span class="fu">E</span>(g_top)<span class="sc">$</span>weight)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>lab_actors <span class="ot">&lt;-</span> actor_metrics <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(events, <span class="at">n =</span> <span class="dv">12</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(actor)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>lab <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">V</span>(g_top)<span class="sc">$</span>name <span class="sc">%in%</span> lab_actors, <span class="fu">str_wrap</span>(<span class="fu">V</span>(g_top)<span class="sc">$</span>name, <span class="dv">18</span>), <span class="st">""</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="fu">as_tbl_graph</span>(g_top), <span class="at">layout =</span> <span class="st">"stress"</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width =</span> weight), <span class="at">alpha =</span> <span class="fl">0.15</span>, <span class="at">color =</span> <span class="st">"grey55"</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cluster, <span class="at">size =</span> str)) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> lab), <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"grey15"</span>, <span class="at">box.padding =</span> <span class="fl">0.5</span>, <span class="at">max.overlaps =</span> <span class="cn">Inf</span>, <span class="at">seed =</span> <span class="dv">42</span>) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">2.2</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">12</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Interaction</span><span class="sc">\n</span><span class="st">cluster"</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fragility</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
-<div id="fig-actors" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-actors" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-actors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="conflict-network_files/figure-html/fig-actors-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="3300">
+<img src="conflict-network_files/figure-html/fig-actors-1.png" class="img-fluid figure-img" width="1056">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-actors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Armed-actor co-event network, top 40 actors by activity. Node size is total events, color is Louvain interaction cluster. Source: ACLED, acleddata.com, accessed 2026-06-04.
@@ -419,12 +468,15 @@ Figure&nbsp;2: Armed-actor co-event network, top 40 actors by activity. Node siz
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>actor_metrics <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Actor =</span> actor, <span class="at">Cluster =</span> cluster, <span class="at">Events =</span> events,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Eigenvector =</span> <span class="fu">round</span>(eigen, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-actors" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>actor_metrics <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Actor =</span> actor, <span class="at">Cluster =</span> cluster, <span class="at">Events =</span> events,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">Eigenvector =</span> <span class="fu">round</span>(eigen, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-actors" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-actors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Top 10 actors by eigenvector centrality.
@@ -527,8 +579,11 @@ Table&nbsp;2: Top 10 actors by eigenvector centrality.
 <section id="reproducibility" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p>The full pipeline is contained in this document. The raw ACLED export and GADM boundaries are not redistributed here; <code>data/README.md</code> gives the exact filters and download steps to reproduce the inputs. Package versions are recorded below, and the project uses <code>renv</code> for a locked environment.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Session information</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.6.0 (2026-04-24)
 Platform: aarch64-apple-darwin25.4.0
@@ -558,7 +613,7 @@ loaded via a namespace (and not attached):
  [5] vctrs_0.7.3        tools_4.6.0        generics_0.1.4     parallel_4.6.0    
  [9] tibble_3.3.1       proxy_0.4-29       pkgconfig_2.0.3    KernSmooth_2.23-26
 [13] RColorBrewer_1.1-3 S7_0.2.2           lifecycle_1.0.5    compiler_4.6.0    
-[17] farver_2.1.2       deldir_2.0-4       textshaping_1.0.5  ggforce_0.5.0     
+[17] farver_2.1.2       deldir_2.0-4       ggforce_0.5.0      codetools_0.2-20  
 [21] htmltools_0.5.9    class_7.3-23       yaml_2.3.12        crayon_1.5.3      
 [25] pillar_1.11.1      MASS_7.3-65        classInt_0.4-11    cachem_1.1.0      
 [29] wk_0.9.5           viridis_0.6.5      boot_1.3-32        tidyselect_1.2.1  
@@ -566,11 +621,10 @@ loaded via a namespace (and not attached):
 [37] polyclip_1.10-7    fastmap_1.2.0      grid_4.6.0         cli_3.6.6         
 [41] magrittr_2.0.5     e1071_1.7-17       withr_3.0.2        bit64_4.8.2       
 [45] sp_2.2-1           timechange_0.4.0   rmarkdown_2.31     bit_4.6.0         
-[49] gridExtra_2.3      ragg_1.5.2         hms_1.1.4          memoise_2.0.1     
-[53] evaluate_1.0.5     knitr_1.51         viridisLite_0.4.3  s2_1.1.11         
-[57] rlang_1.2.0        Rcpp_1.1.1-1.1     glue_1.8.1         DBI_1.3.0         
-[61] tweenr_2.0.3       vroom_1.7.1        jsonlite_2.0.0     R6_2.6.1          
-[65] systemfonts_1.3.2  units_1.0-1       </code></pre>
+[49] gridExtra_2.3      hms_1.1.4          memoise_2.0.1      evaluate_1.0.5    
+[53] knitr_1.51         viridisLite_0.4.3  s2_1.1.11          rlang_1.2.0       
+[57] Rcpp_1.1.1-1.1     glue_1.8.1         DBI_1.3.0          tweenr_2.0.3      
+[61] vroom_1.7.1        jsonlite_2.0.0     R6_2.6.1           units_1.0-1       </code></pre>
 </div>
 </div>
 </section>
@@ -579,6 +633,8 @@ loaded via a namespace (and not attached):
 <p>ACLED. Armed Conflict Location &amp; Event Data Project. Data for Afghanistan, 2015 to 2025, all event types, accessed 2026-06-04. acleddata.com. Raleigh, C., Linke, A., Hegre, H., and Karlsen, J. (2010). Introducing ACLED: An Armed Conflict Location and Event Dataset. Journal of Peace Research, 47(5), 651 to 660.</p>
 <p>GADM. Database of Global Administrative Areas, version 4.1. gadm.org.</p>
 
+
+<!-- -->
 
 </section>
 
@@ -653,6 +709,57 @@ loaded via a namespace (and not attached):
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -989,7 +1096,231 @@ loaded via a namespace (and not attached):
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Conflict as a Network: Afghanistan, 2015-2025"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Locating transmission-risk districts and conflict structure with network analysis"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Sajjad Sharifi"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-06-04</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="an">date-format:</span><span class="co"> "MMMM D, YYYY"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [conflict, networks, FCV, Afghanistan]</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="an">toc-depth:</span><span class="co"> 2</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="an">code-summary:</span><span class="co"> "Show code"</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="an">fig-cap-location:</span><span class="co"> bottom</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">  cache: true</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">  freeze: auto</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>This piece treats Afghanistan's conflict from 2015 to 2025 as two networks built from 68,084 ACLED events. A district adjacency network locates the geographic corridors along which violence transmits between areas. An armed-actor co-event network shows who fights whom and how the conflict is organized. The argument is that fragility is partly a property of position in a network, not only a property of a place, which makes a district's structural centrality an actionable risk signal rather than a descriptive footnote. The clearest result is a transmission belt on the southeastern approaches to Kabul, spanning Logar, Wardak, Paktya, and Ghazni, where high structural betweenness coincides with high event intensity.</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data access</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>ACLED and GADM both restrict redistribution, so the raw inputs are not committed to this repository. See <span class="in">`data/README.md`</span> for how to obtain them. The figures and derived network-metric tables in <span class="in">`outputs/`</span> are published; the underlying event data are not.</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf); <span class="fu">library</span>(spdep); <span class="fu">library</span>(igraph)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygraph); <span class="fu">library</span>(ggraph); <span class="fu">library</span>(graphlayouts)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr); <span class="fu">library</span>(tidyr); <span class="fu">library</span>(readr); <span class="fu">library</span>(stringr); <span class="fu">library</span>(lubridate)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2); <span class="fu">library</span>(scales); <span class="fu">library</span>(ggrepel)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">dev =</span> <span class="st">"ragg_png"</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">fig.align =</span> <span class="st">"center"</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs are gitignored. Paths assume the .qmd sits at the project root.</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>acled_csv      <span class="ot">&lt;-</span> <span class="st">"data/acled_afghanistan.csv"</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>districts_path <span class="ot">&lt;-</span> <span class="st">"data/gadm41_AFG_shp/gadm41_AFG_2.shp"</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>year_min <span class="ot">&lt;-</span> <span class="dv">2015</span>; year_max <span class="ot">&lt;-</span> <span class="dv">2025</span>; country_name <span class="ot">&lt;-</span> <span class="st">"Afghanistan"</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>access_date <span class="ot">&lt;-</span> <span class="st">"2026-06-04"</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>accent <span class="ot">&lt;-</span> <span class="st">"#1a5490"</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>theme_fragility <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">12</span>, <span class="at">base_family =</span> <span class="st">"Inter"</span>) <span class="sc">+</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>rescale01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) (x <span class="sc">-</span> <span class="fu">min</span>(x)) <span class="sc">/</span> (<span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x))</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data and methods</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>The event data are ACLED records for Afghanistan, 2015 to 2025, all event types, joined to second-level administrative boundaries (districts) from GADM version 4.1. Events are matched to districts by point-in-polygon, which avoids the name-matching problems that arise when joining ACLED admin labels to a boundary file by string.</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-data</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Load ACLED events and district boundaries"</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>acled <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(acled_csv, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(tolower) <span class="sc">|&gt;</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">event_date =</span> <span class="fu">parse_date_time</span>(event_date, <span class="at">orders =</span> <span class="fu">c</span>(<span class="st">"dmy"</span>, <span class="st">"ymd"</span>, <span class="st">"mdy"</span>)),</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>         <span class="at">year =</span> <span class="fu">year</span>(event_date),</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>         <span class="at">fatalities =</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(fatalities))) <span class="sc">|&gt;</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> country_name, year <span class="sc">&gt;=</span> year_min, year <span class="sc">&lt;=</span> year_max,</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">is.na</span>(latitude), <span class="sc">!</span><span class="fu">is.na</span>(longitude))</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> <span class="fu">st_read</span>(districts_path, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">st_make_valid</span>()</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>dist_field <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">c</span>(<span class="st">"NAME_2"</span>, <span class="st">"shapeName"</span>, <span class="st">"ADM2_EN"</span>), <span class="fu">names</span>(districts))[<span class="dv">1</span>]</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>prov_field <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">c</span>(<span class="st">"NAME_1"</span>, <span class="st">"ADM1_EN"</span>), <span class="fu">names</span>(districts))[<span class="dv">1</span>]</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">node_id =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>         <span class="at">dist_name =</span> <span class="fu">as.character</span>(.data[[dist_field]]),</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>         <span class="at">prov_name =</span> <span class="fu">as.character</span>(.data[[prov_field]]))</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>The **spatial diffusion network** links districts that share a border (queen contiguity). Betweenness centrality on this graph measures how often a district sits on the shortest path between other districts, which is a proxy for its role as a transmission corridor. Because betweenness on a contiguity graph partly reflects geographic size and centrality, the reported bridge score multiplies rescaled betweenness by rescaled event count, so a district scores high only when it is both structurally central and conflict-active.</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: spatial-network</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Build district adjacency network and bridge score"</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>events_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(acled, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(districts)) <span class="sc">|&gt;</span></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_join</span>(districts[, <span class="st">"node_id"</span>], <span class="at">join =</span> st_within)</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>intensity <span class="ot">&lt;-</span> events_sf <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(node_id)) <span class="sc">|&gt;</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(node_id, <span class="at">name =</span> <span class="st">"events"</span>)</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span> <span class="fu">left_join</span>(intensity, <span class="at">by =</span> <span class="st">"node_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">events =</span> <span class="fu">replace_na</span>(events, <span class="dv">0</span>L))</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>nb  <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(districts, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>adj <span class="ot">&lt;-</span> <span class="fu">nb2mat</span>(nb, <span class="at">style =</span> <span class="st">"B"</span>, <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(adj) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(adj) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(districts<span class="sc">$</span>node_id)</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>g_adj <span class="ot">&lt;-</span> <span class="fu">graph_from_adjacency_matrix</span>(adj, <span class="at">mode =</span> <span class="st">"undirected"</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>districts<span class="sc">$</span>betweenness <span class="ot">&lt;-</span> <span class="fu">betweenness</span>(g_adj, <span class="at">normalized =</span> <span class="cn">TRUE</span>)[</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">match</span>(<span class="fu">as.character</span>(districts<span class="sc">$</span>node_id), <span class="fu">V</span>(g_adj)<span class="sc">$</span>name)]</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>districts <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bridge_risk =</span> <span class="fu">rescale01</span>(betweenness) <span class="sc">*</span> <span class="fu">rescale01</span>(events),</span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a>         <span class="at">bridge_flag =</span> bridge_risk <span class="sc">&gt;=</span> <span class="fu">quantile</span>(bridge_risk, <span class="fl">0.90</span>) <span class="sc">&amp;</span> bridge_risk <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a>The **armed-actor network** is built from ACLED <span class="in">`actor1`</span> and <span class="in">`actor2`</span>, with an edge weight equal to the number of shared events. Communities are detected with the Louvain method and actors are ranked by eigenvector centrality.</span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: actor-network</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Build the armed-actor co-event network"</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> acled <span class="sc">|&gt;</span></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">actor1 =</span> <span class="fu">str_trim</span>(actor1), <span class="at">actor2 =</span> <span class="fu">str_trim</span>(actor2)) <span class="sc">|&gt;</span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(actor1), <span class="sc">!</span><span class="fu">is.na</span>(actor2), actor1 <span class="sc">!=</span> <span class="st">""</span>, actor2 <span class="sc">!=</span> <span class="st">""</span>, actor1 <span class="sc">!=</span> actor2) <span class="sc">|&gt;</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(actor1, actor2, <span class="at">name =</span> <span class="st">"weight"</span>)</span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>g_act <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">simplify</span>(<span class="at">edge.attr.comb =</span> <span class="fu">list</span>(<span class="at">weight =</span> <span class="st">"sum"</span>))</span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>comm <span class="ot">&lt;-</span> <span class="fu">cluster_louvain</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight)</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>actor_metrics <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>  <span class="at">actor   =</span> <span class="fu">V</span>(g_act)<span class="sc">$</span>name,</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster =</span> <span class="fu">as.integer</span>(<span class="fu">membership</span>(comm)),</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>  <span class="at">events  =</span> <span class="fu">strength</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight),</span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>  <span class="at">eigen   =</span> <span class="fu">eigen_centrality</span>(g_act, <span class="at">weights =</span> <span class="fu">E</span>(g_act)<span class="sc">$</span>weight)<span class="sc">$</span>vector) <span class="sc">|&gt;</span></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(eigen))</span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## Findings</span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### A transmission belt on the approaches to Kabul</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>The highest bridge scores form a contiguous belt across Logar, Wardak, Paktya, and Ghazni, the historical insurgent approach corridors to the capital. Chaghcharan in Ghor ranks at the top largely because Ghor is a large, centrally located province with many neighbors, the geographic-centrality effect the composite score is designed to temper but does not fully remove.</span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-bridge</span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Bridge-risk districts, Afghanistan 2015 to 2025. Top-decile districts outlined in blue. Source: ACLED, acleddata.com, accessed 2026-06-04. Boundaries: GADM v4.1."</span></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 10</span></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 8</span></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>top5 <span class="ot">&lt;-</span> districts <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bridge_risk)) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> <span class="fu">st_point_on_surface</span>()</span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>top5_xy <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">dist_name =</span> top5<span class="sc">$</span>dist_name, <span class="fu">as.data.frame</span>(<span class="fu">st_coordinates</span>(top5)))</span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(districts) <span class="sc">+</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> bridge_risk), <span class="at">color =</span> <span class="st">"grey80"</span>, <span class="at">linewidth =</span> <span class="fl">0.08</span>) <span class="sc">+</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">filter</span>(districts, bridge_flag), <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> accent, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">data =</span> top5_xy, <span class="fu">aes</span>(X, Y, <span class="at">label =</span> dist_name), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">min.segment.length =</span> <span class="dv">0</span>, <span class="at">box.padding =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">name =</span> <span class="st">"Bridge</span><span class="sc">\n</span><span class="st">score"</span>) <span class="sc">+</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fragility</span>()</span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-bridge</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Top 10 districts by composite bridge-risk score."</span></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>districts <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(bridge_risk)) <span class="sc">|&gt;</span></span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">District =</span> dist_name, <span class="at">Province =</span> prov_name, <span class="at">Events =</span> events,</span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>            <span class="at">Betweenness =</span> <span class="fu">round</span>(betweenness, <span class="dv">3</span>), <span class="st">`</span><span class="at">Bridge score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(bridge_risk, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="fu">### One dominant dyad</span></span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a>The actor network is organized around a single dense dyad, the Taliban and the Military Forces of Afghanistan, which together account for the overwhelming majority of engagements and sit at the center of the layout. Every other actor orbits this core. This concentration is the substantive story, and it is why eigenvector centrality is near 1.0 for those two actors and small for everyone else.</span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-actors</span></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Armed-actor co-event network, top 40 actors by activity. Node size is total events, color is Louvain interaction cluster. Source: ACLED, acleddata.com, accessed 2026-06-04."</span></span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 11</span></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 9</span></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>top_actors <span class="ot">&lt;-</span> actor_metrics <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(events, <span class="at">n =</span> <span class="dv">40</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(actor)</span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a>g_top <span class="ot">&lt;-</span> <span class="fu">induced_subgraph</span>(g_act, <span class="at">vids =</span> <span class="fu">which</span>(<span class="fu">V</span>(g_act)<span class="sc">$</span>name <span class="sc">%in%</span> top_actors))</span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">as.integer</span>(<span class="fu">membership</span>(comm)[<span class="fu">V</span>(g_top)<span class="sc">$</span>name]))</span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>str     <span class="ot">&lt;-</span> <span class="fu">strength</span>(g_top, <span class="at">weights =</span> <span class="fu">E</span>(g_top)<span class="sc">$</span>weight)</span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>lab_actors <span class="ot">&lt;-</span> actor_metrics <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(events, <span class="at">n =</span> <span class="dv">12</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(actor)</span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(g_top)<span class="sc">$</span>lab <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">V</span>(g_top)<span class="sc">$</span>name <span class="sc">%in%</span> lab_actors, <span class="fu">str_wrap</span>(<span class="fu">V</span>(g_top)<span class="sc">$</span>name, <span class="dv">18</span>), <span class="st">""</span>)</span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggraph</span>(<span class="fu">as_tbl_graph</span>(g_top), <span class="at">layout =</span> <span class="st">"stress"</span>) <span class="sc">+</span></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width =</span> weight), <span class="at">alpha =</span> <span class="fl">0.15</span>, <span class="at">color =</span> <span class="st">"grey55"</span>) <span class="sc">+</span></span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cluster, <span class="at">size =</span> str)) <span class="sc">+</span></span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> lab), <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="fl">2.8</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"grey15"</span>, <span class="at">box.padding =</span> <span class="fl">0.5</span>, <span class="at">max.overlaps =</span> <span class="cn">Inf</span>, <span class="at">seed =</span> <span class="dv">42</span>) <span class="sc">+</span></span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">2.2</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">12</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Interaction</span><span class="sc">\n</span><span class="st">cluster"</span>) <span class="sc">+</span></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_fragility</span>()</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-actors</span></span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Top 10 actors by eigenvector centrality."</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>actor_metrics <span class="sc">|&gt;</span></span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Actor =</span> actor, <span class="at">Cluster =</span> cluster, <span class="at">Events =</span> events,</span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>            <span class="at">Eigenvector =</span> <span class="fu">round</span>(eigen, <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations</span></span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a>Four caveats bound the reading of these results.</span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a>Adjacency betweenness carries a geographic bias. Large, centrally located districts score high on betweenness regardless of conflict, which is why the composite multiplies by event intensity. A stronger version would build the network from the road system rather than shared borders, so bridges reflect actual movement corridors. That is the planned next iteration.</span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a>The Louvain communities are interaction clusters, not alliances. In a who-fights-whom network the two forces that fight each other most become densely linked, so the Taliban and the Afghan Military fall in the same cluster. This should not be read as a coalition. Recovering alliance or bloc structure would require the associate-actor fields or a signed network.</span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a>Civilians appear as a node because ACLED records them as the second actor in one-sided violence. The network here is therefore an interaction network that includes victimization, not a pure combatant network. Both framings are valid but they change what centrality means.</span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>The analysis is static. It aggregates eleven years into one snapshot and does not model the time-ordered spread of violence. A temporal diffusion layer would turn "this district is a structural bridge" into "violence propagated along these edges in a given year."</span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility</span></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a>The full pipeline is contained in this document. The raw ACLED export and GADM boundaries are not redistributed here; <span class="in">`data/README.md`</span> gives the exact filters and download steps to reproduce the inputs. Package versions are recorded below, and the project uses <span class="in">`renv`</span> for a locked environment.</span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: session</span></span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Session information"</span></span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a><span class="fu">## Citations</span></span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a>ACLED. Armed Conflict Location &amp; Event Data Project. Data for Afghanistan, 2015 to 2025, all event types, accessed 2026-06-04. acleddata.com. Raleigh, C., Linke, A., Hegre, H., and Karlsen, J. (2010). Introducing ACLED: An Armed Conflict Location and Event Dataset. Journal of Peace Research, 47(5), 651 to 660.</span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a>GADM. Database of Global Administrative Areas, version 4.1. gadm.org.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
