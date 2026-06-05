@@ -16,4 +16,4 @@ A comparative analysis of service-population alignment in Cox's Bazar, Kabul, Mo
 
 ## Get in touch
 
-I'm always glad to talk about urban informatics, fragility, or any of the projects below. Find me on [GitHub](https://github.com/heissj) or via the [about page](about.qmd).
+I'm always glad to talk about urban informatics, fragility, or any of the projects below. Find me on [GitHub](https://github.com/sajjad-sharifi) or via the [about page](about.qmd).

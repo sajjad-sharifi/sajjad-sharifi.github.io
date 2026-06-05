@@ -2,7 +2,7 @@
 
 A complete account of how this project was built, what we decided and why, what slowed us down, and the patterns that should carry forward to Projects 2 through 5.
 
-Live deliverable: https://heissj.github.io/projects/acled-afghanistan/  
+Live deliverable: https://sajjad-sharifi.github.io/projects/acled-afghanistan/  
 Source: `projects/acled-afghanistan/` under the main portfolio repo.  
 Built over five working sessions in late May 2026.
 
@@ -165,7 +165,7 @@ Create the `.Rproj` once: File > New Project > Existing Directory, point at the 
 
 ### 2.6 Integration with the parent Quarto site
 
-The parent portfolio site at `~/UrbanProjects/heissj.github.io/` is a Quarto website project, with `_quarto.yml` at the root defining navbar, theme, and footer. Sub-projects in `projects/<name>/` inherit those settings automatically, IF the page YAML does not override them.
+The parent portfolio site at `~/UrbanProjects/sajjad-sharifi.github.io/` is a Quarto website project, with `_quarto.yml` at the root defining navbar, theme, and footer. Sub-projects in `projects/<name>/` inherit those settings automatically, IF the page YAML does not override them.
 
 **Critical:** do not put a `format: html: ...` block in your page YAML. It breaks navbar inheritance. The minimal safe YAML for a sub-project page is:
 
@@ -675,7 +675,7 @@ The order matters. Each section reuses objects built by the previous one (`afg`,
 ### 6.1 Local render
 
 ```bash
-cd ~/UrbanProjects/heissj.github.io
+cd ~/UrbanProjects/sajjad-sharifi.github.io
 quarto render
 ```
 
@@ -863,7 +863,7 @@ This is the heaviest of the five (5 to 7 day build per the original brief) becau
 ### Appendix A. Final file structure
 
 ```
-~/UrbanProjects/heissj.github.io/projects/acled-afghanistan/
+~/UrbanProjects/sajjad-sharifi.github.io/projects/acled-afghanistan/
 ├── .gitignore                                  374 B
 ├── .Renviron                                   84 B   (gitignored)
 ├── .Rprofile                                   26 B   (auto-created)
@@ -927,7 +927,7 @@ Total: 130 packages locked across the project library.
 
 **Bash, daily workflow:**
 ```bash
-cd ~/UrbanProjects/heissj.github.io
+cd ~/UrbanProjects/sajjad-sharifi.github.io
 git status
 git add projects/<name>/index.qmd \
         projects/<name>/output/figures/ \

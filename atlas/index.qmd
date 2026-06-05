@@ -68,4 +68,4 @@ Natural extensions: add a population layer (WorldPop or HRSL); add hazard layers
 
 ## Source code and reproducibility
 
-All analysis is open and reproducible at [github.com/heissj/heissj.github.io](https://github.com/heissj/heissj.github.io). Each city is one Jupyter notebook (`atlas/<city>.ipynb`) that runs end-to-end in about two minutes on a laptop. The methodology is identical across the four; only the bounding box changes.
+All analysis is open and reproducible at [github.com/sajjad-sharifi/sajjad-sharifi.github.io](https://github.com/sajjad-sharifi/sajjad-sharifi.github.io). Each city is one Jupyter notebook (`atlas/<city>.ipynb`) that runs end-to-end in about two minutes on a laptop. The methodology is identical across the four; only the bounding box changes.

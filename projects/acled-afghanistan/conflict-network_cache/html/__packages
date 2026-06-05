@@ -1,0 +1,15 @@
+sf
+spData
+spdep
+igraph
+tidygraph
+ggplot2
+ggraph
+graphlayouts
+dplyr
+tidyr
+readr
+stringr
+lubridate
+scales
+ggrepel

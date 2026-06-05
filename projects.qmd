@@ -28,8 +28,20 @@ A city sitting between Lake Kivu and Mount Nyiragongo, hosting waves of displace
 
 A step-by-step tutorial documenting how I assembled a small Mac-based data hub for spatial analysis: PostgreSQL plus PostGIS on a Mac Mini, accessed from a MacBook Pro via Tailscale, with a Python and R analysis stack and automated backups. Reproducible and inexpensive.
 
+## Conflict & Fragility Studies
+
+R-based spatial and network analysis of fragile and conflict-affected contexts. The Afghanistan work is presented in two complementary readings.
+
+### [ACLED Conflict Hotspot Atlas: Afghanistan, 2015 to 2025](projects/acled-afghanistan/index.html)
+
+Political violence before and after the August 2021 regime break, with district choropleths, Getis-Ord hotspot tests, and ARIMA forecasts.
+
+### [Conflict as a Network: Afghanistan, 2015 to 2025](projects/acled-afghanistan/conflict-network.html)
+
+The same 68,084 events read as two networks: a district adjacency network locating the corridors along which violence transmits, and an armed-actor co-event network of who fights whom. Frames fragility as a property of position in a network.
+
 ---
 
 ## How this site is built
 
-This portfolio is itself reproducible: written in Quarto, hosted via GitHub Pages, with code openly available on [GitHub](https://github.com/heissj/heissj.github.io).
+This portfolio is itself reproducible: written in Quarto, hosted via GitHub Pages, with code openly available on [GitHub](https://github.com/sajjad-sharifi/sajjad-sharifi.github.io).

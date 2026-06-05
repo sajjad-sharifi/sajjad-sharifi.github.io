@@ -128,4 +128,4 @@ DBeaver Community gives a visual interface to the same database for SQL explorat
 
 ## Code and reproducibility
 
-The portfolio site you are reading is built on the same setup described above. Source: [github.com/heissj/heissj.github.io](https://github.com/heissj/heissj.github.io). The Atlas of Urban Fragility is the first project built on this stack.
+The portfolio site you are reading is built on the same setup described above. Source: [github.com/sajjad-sharifi/sajjad-sharifi.github.io](https://github.com/sajjad-sharifi/sajjad-sharifi.github.io). The Atlas of Urban Fragility is the first project built on this stack.

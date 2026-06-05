@@ -1,0 +1,154 @@
+actor,community,strength,eigen,betweenness
+Taliban,2,46241,1,0.4432729173928198
+Military Forces of Afghanistan (2014-2021),2,38795,0.983084726523619,0.30655280585569883
+Police Forces of Afghanistan (2014-2021),2,6988,0.18183097587346259,0.060125479261066574
+Militia (Pro-Government),2,3533,0.1028509404898191,0
+Taliban and/or Islamic State Khorasan Province (ISKP),2,3464,0.09980958312405895,0
+Civilians (Afghanistan),1,8843,0.09007249301679407,0.44614848379226213
+Unidentified Armed Group (Afghanistan),1,5602,0.04758585177127064,0.20534158243290346
+Islamic State Khorasan Province (ISKP),1,2868,0.04223902944391573,0.11807249912861624
+Military Forces of Afghanistan (2014-2021) Special Forces,1,1463,0.03308639905210438,0.0036598117811084
+Police Forces of Afghanistan (2014-2021) National Directorate of Security,1,1102,0.02611055001188751,0
+NATO: North Atlantic Treaty Organization,1,1430,0.023713465817440927,0.012417218543046357
+Police Forces of Afghanistan (2014-2021) Afghan Local Police,2,599,0.016010268128999035,0
+Military Forces of Afghanistan (2021-),1,4394,0.0064706680909196014,0.332607180202161
+Government of Afghanistan (2014-2021),2,96,0.0027493447457171034,0
+HQN: Haqqani Network,1,100,0.0020226047967547224,0
+Afghan and/or NATO Forces,1,168,0.002017047025034573,0
+Taliban - Red Unit,2,82,0.0014313077942511897,0
+Police Forces of Afghanistan (2021-) General Directorate of Intelligence,1,632,0.001172945001260199,0.012199372603694667
+Police Forces of Afghanistan (2014-2021) Special Forces,1,54,0.0011719105507342806,0
+Private Security Forces (Afghanistan),1,80,0.001079296977399876,0
+Police Forces of Afghanistan (2014-2021) Public Protection Force,1,23,5.557047127348431e-4,0
+Al Qaeda,1,29,5.48933892184972e-4,0.012199372603694667
+TTP: Tehreek-i-Taliban Pakistan,1,93,5.022897947324474e-4,0.012199372603694667
+Police Forces of Afghanistan (2014-2021) Afghan National Civil Order Force,1,20,4.3354358667927606e-4,0
+Unidentified Armed Group (Pakistan),1,25,0.00040343822847623603,0
+Government of Afghanistan (2021-),1,150,3.992480908974108e-4,0.02431160683164866
+Military Forces of Pakistan (2018-2022),1,45,3.586430702960554e-4,0
+Rioters (Afghanistan),1,84,2.936969571399e-4,0.012199372603694667
+Police Forces of Afghanistan (2021-),1,252,2.905083269907047e-4,0.012199372603694667
+Police Forces of Afghanistan (2014-2021) General Command of Police Special Units,2,11,2.771273924278901e-4,0
+Protesters (Afghanistan),1,112,2.388226577267445e-4,0
+National Resistance Front,1,1177,2.197871914415817e-4,0
+Military Forces of Pakistan (2013-2018),1,22,2.0004859112216118e-4,0.012199372603694667
+Unidentified Communal Militia (Afghanistan),2,7,1.8595219778591934e-4,0
+LeT: Lashkar-e-Taiba,1,10,1.2304949466584254e-4,0
+Militia (Alipour),1,19,1.2247741370328695e-4,0
+Mutiny of Taliban,2,4,1.2136350143350353e-4,0
+Police Forces of Afghanistan (2021-) Vice and Virtue Department,1,46,1.2076029051978904e-4,0
+LeI: Lashkar-e-Islam,1,17,1.0691269443104372e-4,0
+Military Forces of Pakistan (2022-),1,100,1.0395284830186038e-4,0
+Police Forces of Afghanistan (2014-2021) Prison Guards,1,17,1.0224771405345913e-4,0
+Khost Protection Force (Afghanistan),1,6,9.964263151715458e-5,0
+Military Forces of Iran (1989-),1,24,9.226672572957389e-5,0
+Militia (Dostum),8,4,9.140917897478594e-5,0.012199372603694667
+Unidentified Tribal Militia (Afghanistan),1,7,7.342194655815187e-5,0
+Hezbi Islami,1,10,6.985833094234932e-5,0
+Kuchi Tribal Militia (Afghanistan),1,33,6.906011739370698e-5,0
+Islamist Militia (Afghanistan),1,4,6.792972053945938e-5,0
+JMI: Junbish-i-Milli Islami,3,10,6.617927531344472e-5,0
+Police Forces of Afghanistan (2014-2021) Sangorians,1,3,6.368393680235862e-5,0
+Government of the United States (2017-2021),2,2,6.0939452593280853e-5,0
+Afghanistan Freedom Front,1,294,4.8988302985409195e-5,0
+Police Forces of Pakistan (2013-2018) Frontier Corps,1,5,4.372811523793099e-5,0
+Military Forces of the United States (2017-2021),1,4,3.870317892387375e-5,0
+JI: Jamiat-e-Islami,3,9,3.650797720750298e-5,0.02422446845590798
+Military Forces of Afghanistan (2021-) Special Forces,1,37,3.6065627795400065e-5,0
+Civilians (International),1,6,3.521382890520323e-5,0
+Pashtun Tribal Militia (Afghanistan),1,3,3.321421654394998e-5,0
+AQIS: Al Qaeda in the Indian Subcontinent,1,2,3.0676865356584434e-5,0
+Unidentified Armed Group (Tajikistan),1,2,3.0676865356584434e-5,0
+Militia (Ata Noor),1,2,3.066688578232715e-5,0
+Military Forces of Tajikistan (1994-),1,2,3.066688578232715e-5,0
+Ziruk Communal Militia (Afghanistan),2,1,3.0469726296640433e-05,0
+Civilians (India),2,1,3.0469726296640433e-05,0
+Awshan Communal Militia (Afghanistan),2,1,3.0469726296640427e-5,0
+Kamanj Communal Militia (Afghanistan),2,1,3.0469726296640427e-5,0
+Saba Communal Militia (Afghanistan),2,1,3.0469726296640427e-5,0
+Ishaqzai Tribal Militia (Afghanistan),2,1,3.0469726296640427e-5,0
+Militia (Mullah Rasool),2,1,3.0469726296640427e-5,0
+National Movement Party of Afghanistan,2,1,3.0469726296640427e-5,0
+Jari Surkh Communal Militia (Afghanistan),2,1,3.0469726296640423e-5,0
+Kapisa Communal Militia (Afghanistan),2,1,3.0469726296640423e-5,0
+Kenean Communal Militia (Afghanistan),2,1,3.0469726296640423e-5,0
+Mutiny of Islamic State Khorasan Province (ISKP),2,1,3.0469726296640423e-5,0
+Tagab Communal Militia (Afghanistan),2,1,3.0469726296640423e-5,0
+Zarqan Killi Communal Militia (Afghanistan),2,1,3.0469726296640423e-5,0
+Keran wa Menjan Communal Militia (Afghanistan),2,1,3.0469726296640417e-5,0
+Jamaat Ansarullah,1,2,3.0151482029268995e-5,0
+Unidentified Armed Group (International),2,1,2.9954322543582275e-5,0
+Police Forces of Pakistan (2022-) Frontier Corps,1,24,1.4921126550045454e-5,0
+Police Forces of Iran (1989-) Islamic Republic of Iran Border Guard Command,1,8,1.3019343172434316e-5,0
+Militia (Ghoryani),2,2,1.1080680134230865e-5,0
+Civilians (Pakistan),1,11,1.0450880497908837e-5,0
+Military Forces of Tajikistan (1994-) Border Service,1,3,8.233452627233312e-6,0
+National Liberation Front of Afghanistan,1,29,7.054345788727489e-6,0
+Anti-Taliban Forces,1,32,6.645917410928285e-6,0
+Rioters (Palestine),2,1,5.540340067115431e-6,0
+Mutiny of Police Forces of Afghanistan (2014-2021),2,1,5.54034006711543e-6,0
+Militia (Qaysari),2,1,5.540340067115429e-6,0
+Hisar-e-Shahi Communal Militia (Afghanistan),2,1,5.540340067115428e-6,0
+The Afghanistan Liberation Movement,1,25,3.906690899065844e-6,0
+Civilians (United States),1,8,3.5975534521094945e-6,0
+Watandost Front,1,6,3.5688614649740636e-6,0
+Military Forces of Turkmenistan (2006-),1,3,3.1388031804511984e-6,0
+Military Forces of the United States (2021-2025),1,3,3.1388031804511844e-6,0
+Military Forces of Uzbekistan (2016-),1,2,2.941643694764487e-6,0
+Civilians (China),1,3,2.9340990309416695e-6,0
+BLA: Baloch Liberation Army,1,2,2.8998557581262352e-6,0
+Police Forces of Afghanistan (2014-2021) President Protective Service,1,2,2.8998557581262195e-6,0
+High Council of Islamic Emirate (Afghanistan),1,3,2.8950135050674378e-06,0
+Police Forces of Afghanistan (2021-) Prison Guards,1,2,2.7511810646444976e-6,0
+Militia (Ahmad Shah Massoud),1,1,2.7444842090777686e-6,0
+Nekhtai Communal Militia (Afghanistan),1,1,2.7444842090777686e-6,0
+Militia (Mahdi),1,7,2.6328847931834496e-6,0
+LJ: Lashkar-e-Jabbar,1,2,2.5740233323836904e-6,0
+IMU: Islamic Movement of Uzbekistan,1,2,2.458061402322159e-6,0
+TTP-Mehsud: Tehreek-i-Taliban Pakistan-Mehsud,1,2,2.1724706920652727e-6,0
+Civilians (Iran),1,5,2.0771456492726767e-6,0
+Civilians (Uzbekistan),1,2,1.6470873647498465e-6,0
+Civilians (Russia),1,1,1.4499278790631204e-6,0
+JeM: Jaish-e-Mohammad,1,1,1.4499278790631161e-6,0
+Civilians (Iraq),1,1,1.4499278790631157e-6,0
+Police Forces of Afghanistan (2021-) Special Forces,1,1,1.4499278790631119e-6,0
+HIG: Hezb-e Islami-Gulbuddin,1,1,1.4499278790631119e-6,0
+Sulaiman Khel Communal Militia (Afghanistan),1,1,1.287011666191848e-6,0
+Anar Khel Communal Militia (Afghanistan),1,1,1.287011666191847e-6,0
+Achin Communal Militia (Afghanistan),1,1,1.287011666191845e-6,0
+Chambel Communal Militia (Afghanistan),1,1,1.2870116661918433e-6,0
+Tangi Communal Militia (Afghanistan),1,1,1.2870116661918429e-6,0
+Civilians (Spain),1,1,1.2870116661918395e-6,0
+Unknown Soldiers of Afghanistan,1,5,9.857974284335573e-7,0
+Civilians (Australia),1,3,4.3005828452285565e-7,0
+National Mobilization Front,1,2,3.9431897137345225e-7,0
+Military Forces of Pakistan (2022-) Border Action Team,1,2,3.9431897137344536e-7,0
+Civilians (United Kingdom),1,2,3.9431897137344484e-7,0
+Wolf Unit,1,2,3.94318971373443e-7,0
+Hindu Kush Front,1,3,2.686381119855507e-7,0
+Hazara Tribal Militia (Afghanistan),1,2,1.9817151377397523e-7,0
+Guerrillas of the Freedom Fighters Front,1,1,1.9715948568673187e-7,0
+Civilians (Canada),1,1,1.9715948568672356e-7,0
+Militia (Zahir),1,1,1.9715948568672326e-7,0
+Turkistan Freedom Tigers,1,1,1.9715948568672205e-7,0
+Hizb ut-Tahrir,1,1,1.9715948568671808e-7,0
+Police Forces of the United States (2021-2025) Central Intelligence Agency,1,1,1.672586544981391e-8,0
+Jabhat al-Ribat,1,1,1.53046325670821e-8,0
+JuA: Jamaat-ul-Ahrar,1,2,1.2190851635030739e-8,0
+Government of Iran (1989-),1,1,1.2164980054096848e-8,0
+Government of the United States (2025-),1,1,1.2164980054091116e-8,0
+Samarkhel Communal Militia (Afghanistan),1,1,8.851709210295161e-9,0
+Militia (Rabbani),8,1,2.7852126643638236e-9,0
+Hizb-e Wahdat-e Islami,3,2,1.1123880741719814e-9,0.012199372603694667
+Harakat-e Islami,3,1,3.389415020346112e-14,0
+Haji Kali Communal Militia (Afghanistan),9,1,5.936472934280096e-21,0
+Jangali Communal Militia (Afghanistan),4,1,0,0
+Khair Mena Communal Militia (Afghanistan),5,1,0,0
+Kharoti Tribal Militia (Afghanistan),6,2,0,0
+Mama Khel Tribal Militia (Afghanistan),7,1,0,0
+Mangal Tribal Militia (Afghanistan),6,3,0,8.71383757406762e-5
+Obahkhil Communal Militia (Afghanistan),9,1,0,0
+Rahmadabad Communal Militia (Afghanistan),4,1,0,0
+Dang Dang Chapari Communal Militia (Afghanistan),5,1,0,0
+Badin Khel Tribal Militia (Afghanistan),7,1,0,0
+Moqbil Tribal Militia (Afghanistan),6,1,0,0

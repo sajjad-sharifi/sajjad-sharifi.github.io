@@ -21,5 +21,5 @@ Python (geopandas, osmnx, folium, rasterio), PostGIS, QGIS, and an increasing am
 
 ## Contact
 
-- GitHub: [heissj](https://github.com/heissj)
+- GitHub: [sajjad-sharifi](https://github.com/sajjad-sharifi)
 - Email: *(TBD)*

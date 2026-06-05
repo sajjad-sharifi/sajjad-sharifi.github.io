@@ -28,3 +28,11 @@ output/maps/*.html
 
 # OS junk
 .DS_Store
+
+# Network-piece raw inputs (ACLED + GADM, redistribution restricted)
+data/acled_afghanistan.csv
+data/gadm41_AFG*
+
+# Network-piece raw inputs (ACLED + GADM, redistribution restricted)
+data/acled_afghanistan.csv
+data/gadm41_AFG*
