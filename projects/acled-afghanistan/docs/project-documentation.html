@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="project-1-documentation-acled-conflict-hotspot-atlas-afghanistan-2017-to-2025" class="level1">
 <h1>Project 1 Documentation: ACLED Conflict Hotspot Atlas, Afghanistan 2017 to 2025</h1>
 <p>A complete account of how this project was built, what we decided and why, what slowed us down, and the patterns that should carry forward to Projects 2 through 5.</p>
-<p>Live deliverable: https://heissj.github.io/projects/acled-afghanistan/<br>
+<p>Live deliverable: https://sajjad-sharifi.github.io/projects/acled-afghanistan/<br>
 Source: <code>projects/acled-afghanistan/</code> under the main portfolio repo.<br>
 Built over five working sessions in late May 2026.</p>
 <hr>
@@ -305,7 +305,7 @@ ACLED_API_PASSWORD=your_real_password</code></pre>
 </section>
 <section id="integration-with-the-parent-quarto-site" class="level3">
 <h3 class="anchored" data-anchor-id="integration-with-the-parent-quarto-site">2.6 Integration with the parent Quarto site</h3>
-<p>The parent portfolio site at <code>~/UrbanProjects/heissj.github.io/</code> is a Quarto website project, with <code>_quarto.yml</code> at the root defining navbar, theme, and footer. Sub-projects in <code>projects/&lt;name&gt;/</code> inherit those settings automatically, IF the page YAML does not override them.</p>
+<p>The parent portfolio site at <code>~/UrbanProjects/sajjad-sharifi.github.io/</code> is a Quarto website project, with <code>_quarto.yml</code> at the root defining navbar, theme, and footer. Sub-projects in <code>projects/&lt;name&gt;/</code> inherit those settings automatically, IF the page YAML does not override them.</p>
 <p><strong>Critical:</strong> do not put a <code>format: html: ...</code> block in your page YAML. It breaks navbar inheritance. The minimal safe YAML for a sub-project page is:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your project title"</span></span>
@@ -724,7 +724,7 @@ ACLED_API_PASSWORD=your_real_password</code></pre>
 <h2 class="anchored" data-anchor-id="publishing-workflow">6. Publishing Workflow</h2>
 <section id="local-render" class="level3">
 <h3 class="anchored" data-anchor-id="local-render">6.1 Local render</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/UrbanProjects/heissj.github.io</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/UrbanProjects/sajjad-sharifi.github.io</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Rebuilds the entire site to <code>_site/</code>. Takes 30 to 120 seconds depending on which chunks need re-execution. Quarto caches chunk outputs; only changed chunks re-run.</p>
 </section>
@@ -931,7 +931,7 @@ ACLED_API_PASSWORD=your_real_password</code></pre>
 <h2 class="anchored" data-anchor-id="appendices">10. Appendices</h2>
 <section id="appendix-a.-final-file-structure" class="level3">
 <h3 class="anchored" data-anchor-id="appendix-a.-final-file-structure">Appendix A. Final file structure</h3>
-<pre><code>~/UrbanProjects/heissj.github.io/projects/acled-afghanistan/
+<pre><code>~/UrbanProjects/sajjad-sharifi.github.io/projects/acled-afghanistan/
 ├── .gitignore                                  374 B
 ├── .Renviron                                   84 B   (gitignored)
 ├── .Rprofile                                   26 B   (auto-created)
@@ -986,7 +986,7 @@ tmap          4.3     # thematic mapping</code></pre>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run individual chunks: Cmd+Shift+Enter inside chunk</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render whole document: Cmd+Shift+K</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Bash, daily workflow:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/UrbanProjects/heissj.github.io</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/UrbanProjects/sajjad-sharifi.github.io</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/index.qmd <span class="dt">\</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        projects/<span class="op">&lt;</span>name<span class="op">&gt;</span>/output/figures/ <span class="dt">\</span></span>
