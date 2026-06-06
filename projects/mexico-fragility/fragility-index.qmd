@@ -1,0 +1,265 @@
+---
+title: "Subnational Fragility in Mexico: One Index, Two Geographies"
+subtitle: "A state-level fragility index from violence, marginalization, and poverty, 2019 to 2024"
+author: "Sajjad Sharifi"
+date: 2026-06-05
+date-format: "MMMM D, YYYY"
+categories: [fragility, FCV, Mexico, spatial]
+toc: true
+toc-depth: 2
+code-fold: true
+code-summary: "Show code"
+code-tools: true
+fig-cap-location: bottom
+execute:
+  warning: false
+  message: false
+  cache: true
+  freeze: auto
+---
+
+This piece builds a state-level fragility index for Mexico from three dimensions, lethal violence, structural marginalization, and income poverty, and asks a spatial question of it: does fragility cluster, so that fragile states sit next to other fragile states? For Afghanistan the answer was yes, and the corridors of transmission were the story. For Mexico the answer is no, and the reason is the finding. Violence concentrates in the north and along the Pacific, deprivation concentrates in the south, and because the two run in opposite directions a single composite index cancels its own geography. Mexico does not have one fragility map. It has two, and they disagree.
+
+::: {.callout-note}
+## Data access
+Violence is from SESNSP (official reported crime) and ACLED (political and cartel violence). Marginalization is CONAPO's normalized index, 2020. Poverty is INEGI's 2024 multidimensional measurement, which INEGI now produces following the dissolution of CONEVAL. Boundaries are GADM v4.1. ACLED restricts redistribution and INEGI, CONAPO, and SESNSP are open government data; the raw inputs are not committed to this repository. See `data/README.md` for how to obtain them.
+:::
+
+```{r}
+#| label: setup
+#| include: false
+library(sf); library(spdep)
+library(dplyr); library(tidyr); library(readr); library(stringr); library(readxl)
+library(stringi)
+library(ggplot2); library(scales); library(ggrepel)
+
+knitr::opts_chunk$set(dev = "ragg_png", dpi = 300, fig.align = "center")
+sf::sf_use_s2(FALSE)
+
+acled_csv    <- "data/acled_mexico.csv"
+sesnsp_csv   <- "data/sesnsp_estatal.csv"
+conapo_xls   <- "data/conapo_marginacion_2020.xls"
+pobreza_file <- "data/inegi_pobreza_2024.xlsx"
+states_path  <- "data/gadm41_MEX_shp/gadm41_MEX_1.shp"
+viol_year_min <- 2019L; viol_year_max <- 2024L; pov_year <- "2024"
+accent <- "#1a5490"
+
+state_key <- function(x) {
+  x <- stri_trans_general(as.character(x), "Latin-ASCII"); x <- tolower(str_squish(x))
+  recode(x,
+    "distrito federal" = "ciudad de mexico", "cdmx" = "ciudad de mexico",
+    "mexico city" = "ciudad de mexico",
+    "coahuila de zaragoza" = "coahuila", "michoacan de ocampo" = "michoacan",
+    "veracruz de ignacio de la llave" = "veracruz", "veracruz llave" = "veracruz",
+    "queretaro de arteaga" = "queretaro", "estado de mexico" = "mexico")
+}
+pick_rx <- function(rx, cols) { h <- cols[str_detect(cols, rx)]; if (length(h)) h[1] else NA_character_ }
+z <- function(x) (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+read_table_find <- function(path, must_match) {
+  is_csv <- grepl("\\.csv$", path, ignore.case = TRUE)
+  for (sk in 0:12) {
+    d <- tryCatch(
+      if (is_csv) suppressMessages(read_csv(path, skip = sk, show_col_types = FALSE,
+                                            locale = locale(encoding = "Latin1")))
+      else suppressMessages(read_excel(path, skip = sk)), error = function(e) NULL)
+    if (is.null(d) || ncol(d) < 3) next
+    nms <- stri_trans_general(tolower(names(d)), "Latin-ASCII"); names(d) <- nms
+    auto <- str_detect(nms, "^\\.\\.\\.\\d+$") | nms == "" | is.na(nms)
+    if (any(str_detect(nms, must_match) & nchar(nms) <= 40 & !auto) && sum(!auto) >= 3) return(d)
+  }
+  stop("No header matching '", must_match, "' in ", path)
+}
+theme_fragility <- function()
+  theme_void(base_size = 11) +
+  theme(plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(color = "grey40"),
+        strip.text = element_text(face = "bold"),
+        legend.title = element_text(size = 10),
+        plot.margin = margin(10, 10, 10, 10))
+```
+
+## Question
+
+Where is fragility highest across Mexico's 32 states, and is it a spatial phenomenon? A fragility index that combines several dimensions is only useful if those dimensions describe the same places. If they describe different places, the composite is misleading and a typology is the honest tool. The spatial test, whether the index clusters, is what reveals which case Mexico is in.
+
+## Data and methods
+
+Fragility is built from three standardized dimensions. Violence is the average of two z-scored rates per 100,000, intentional homicides from SESNSP and conflict fatalities from ACLED, both averaged over 2019 to 2024. Deprivation is CONAPO's normalized marginalization index for 2020, which folds together education, housing, services, and income. Poverty is the share of the population in multidimensional poverty, derived from INEGI's 2024 counts over state population. Each dimension is converted to a z-score and the composite is their mean, with a PCA-weighted version reported for comparison. Spatial structure is tested with Moran's I on a queen-contiguity graph of the states, run on each dimension and on the composite.
+
+```{r}
+#| label: build
+#| code-summary: "Build the index and test spatial structure"
+states <- st_read(states_path, quiet = TRUE) |> st_make_valid()
+names(states) <- tolower(names(states))
+nmcol <- pick_rx("name_1|adm1|estado|nom_ent|entidad", names(states))
+states <- states |> mutate(state = as.character(.data[[nmcol]]), key = state_key(state))
+
+cc <- read_table_find(conapo_xls, "nom_ent|entidad|estado")
+cn_name <- pick_rx("nom_ent|^entidad|estado|nombre", names(cc))
+cn_marg <- pick_rx("normalizado", names(cc)); if (is.na(cn_marg)) cn_marg <- pick_rx("imn|indice de marginacion", names(cc))
+cn_pop  <- pick_rx("pob_tot|poblacion total|poblacion", names(cc))
+conapo <- cc |>
+  transmute(key = state_key(.data[[cn_name]]),
+            marg = suppressWarnings(as.numeric(.data[[cn_marg]])),
+            population = suppressWarnings(as.numeric(.data[[cn_pop]]))) |>
+  filter(!is.na(key), key != "na", !is.na(population), !is.na(marg)) |> distinct(key, .keep_all = TRUE)
+
+sesnsp <- read_csv(sesnsp_csv, show_col_types = FALSE, locale = locale(encoding = "Latin1")) |>
+  rename_with(~ stri_trans_general(tolower(.x), "Latin-ASCII"))
+months <- c("enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre")
+hom <- sesnsp |>
+  filter(.data[[pick_rx("^ano$|^anio$|^year$", names(sesnsp))]] >= viol_year_min,
+         .data[[pick_rx("^ano$|^anio$|^year$", names(sesnsp))]] <= viol_year_max,
+         str_detect(tolower(.data[[pick_rx("subtipo", names(sesnsp))]]), "homicidio doloso")) |>
+  mutate(across(any_of(months), ~ suppressWarnings(as.numeric(.x))),
+         annual = rowSums(across(any_of(months)), na.rm = TRUE)) |>
+  group_by(key = state_key(.data[[pick_rx("^entidad$|nom_ent|entidad", names(sesnsp))]])) |>
+  summarise(homicides = sum(annual, na.rm = TRUE), .groups = "drop")
+
+acled <- read_csv(acled_csv, show_col_types = FALSE) |> rename_with(tolower)
+acl <- acled |> filter(year >= viol_year_min, year <= viol_year_max) |>
+  group_by(key = state_key(admin1)) |>
+  summarise(acled_fatalities = sum(suppressWarnings(as.numeric(fatalities)), na.rm = TRUE), .groups = "drop")
+
+pp <- read_table_find(pobreza_file, "entidad|nom_ent|estado")
+pv_name <- pick_rx("entidad|nom_ent|estado|nombre", names(pp))
+yr_cols <- which(str_detect(names(pp), pov_year))
+sub <- stri_trans_general(tolower(as.character(unlist(pp[1, ]))), "Latin-ASCII")
+total_idx <- yr_cols[str_detect(sub[yr_cols], "total")][1]; if (is.na(total_idx)) total_idx <- yr_cols[1]
+pov <- pp |> slice(-1) |>
+  transmute(key = state_key(.data[[pv_name]]),
+            pov_count = suppressWarnings(as.numeric(.data[[names(pp)[total_idx]]]))) |>
+  filter(!is.na(key), !is.na(pov_count)) |> distinct(key, .keep_all = TRUE)
+
+df <- states |> st_drop_geometry() |> select(state, key) |>
+  left_join(conapo, by = "key") |> left_join(hom, by = "key") |>
+  left_join(acl, by = "key") |> left_join(pov, by = "key")
+
+n_years <- viol_year_max - viol_year_min + 1
+df <- df |> mutate(
+  hom_rate   = homicides / n_years / population * 1e5,
+  acled_rate = coalesce(acled_fatalities, 0) / n_years / population * 1e5,
+  poverty    = pov_count * 1000 / population * 100,
+  viol_dim   = rowMeans(cbind(z(hom_rate), z(acled_rate))),
+  depr_dim   = z(marg),
+  pov_dim    = z(poverty),
+  fragility  = rowMeans(cbind(viol_dim, depr_dim, pov_dim)))
+
+pca <- prcomp(df |> select(viol_dim, depr_dim, pov_dim), scale. = TRUE)
+df$fragility_pca <- as.numeric(pca$x[, 1]) * sign(cor(pca$x[, 1], df$fragility))
+
+sx <- states |> left_join(df, by = c("state", "key"))
+lw <- nb2listw(poly2nb(sx, queen = TRUE), style = "W", zero.policy = TRUE)
+mi <- function(v) moran.test(v, lw, zero.policy = TRUE)
+m_viol <- mi(sx$viol_dim); m_depr <- mi(sx$depr_dim); m_pov <- mi(sx$pov_dim); m_comp <- mi(sx$fragility)
+r_vp <- cor(df$viol_dim, df$pov_dim)
+```
+
+## Findings
+
+### Three dimensions, three different maps
+
+The first finding is visible before any statistic. Violence is a northern and Pacific phenomenon. Deprivation and poverty are southern. The maps of the three standardized dimensions barely overlap.
+
+```{r}
+#| label: fig-dims
+#| fig-cap: "The three fragility dimensions as z-scores. Violence is concentrated in the north and Pacific; marginalization and poverty in the south. Sources: SESNSP and ACLED (violence), CONAPO (marginalization), INEGI (poverty). Boundaries: GADM v4.1."
+#| fig-width: 12
+#| fig-height: 5
+long <- sx |>
+  select(viol_dim, depr_dim, pov_dim) |>
+  pivot_longer(c(viol_dim, depr_dim, pov_dim), names_to = "dim", values_to = "zscore") |>
+  mutate(dim = recode(dim, viol_dim = "Violence", depr_dim = "Marginalization", pov_dim = "Poverty"),
+         dim = factor(dim, levels = c("Violence", "Marginalization", "Poverty")))
+ggplot(long) +
+  geom_sf(aes(fill = zscore), color = "grey85", linewidth = 0.05) +
+  facet_wrap(~dim) +
+  scale_fill_distiller(palette = "RdBu", direction = -1, name = "z-score") +
+  theme_fragility()
+```
+
+Quantitatively, each dimension clusters on its own. Moran's I is `r round(m_viol$estimate[1], 3)` for violence (p `r signif(m_viol$p.value, 2)`), `r round(m_depr$estimate[1], 3)` for marginalization (p `r signif(m_depr$p.value, 2)`), and `r round(m_pov$estimate[1], 3)` for poverty (p `r signif(m_pov$p.value, 2)`). Each is a coherent regional pattern. The problem is that they are different regions.
+
+### Violence and poverty pull apart
+
+```{r}
+#| label: fig-decoupling
+#| fig-cap: "State-level violence versus poverty, both as z-scores. The negative slope is the decoupling: the most violent states are not the poorest. Source: as above."
+#| fig-width: 9
+#| fig-height: 7
+ggplot(df, aes(viol_dim, pov_dim)) +
+  geom_hline(yintercept = 0, color = "grey85") + geom_vline(xintercept = 0, color = "grey85") +
+  geom_smooth(method = "lm", se = FALSE, color = accent, linewidth = 0.6) +
+  geom_point(color = "grey30", size = 2) +
+  geom_text_repel(aes(label = state), size = 2.8, color = "grey20", max.overlaps = Inf, seed = 1) +
+  labs(x = "Violence (z)", y = "Poverty (z)") +
+  theme_minimal(base_size = 11) +
+  theme(panel.grid.minor = element_blank())
+```
+
+The correlation between violence and poverty across states is `r round(r_vp, 2)`, negative. The violent states, Colima, Baja California, Sonora, Chihuahua, are relatively wealthy; the poorest states, Chiapas, Guerrero, Oaxaca, are comparatively less violent. Fragility in Mexico is not one condition with one cause. It is at least two.
+
+### The composite, and why it under-clusters
+
+Averaging the three dimensions produces a defensible ranking, but it inherits the contradiction. Because violence pulls the index up in the north and poverty pulls it up in the south, the composite has almost no spatial signal of its own: Moran's I is `r round(m_comp$estimate[1], 3)` with p `r signif(m_comp$p.value, 2)`, not significant, even though every component clusters. The composite map looks scattered not because fragility is random but because it is the sum of two opposite geographies.
+
+```{r}
+#| label: fig-index
+#| fig-cap: "Composite fragility index, equal-weighted mean of the three standardized dimensions. The pattern is deliberately mixed: it averages a violent north and a poor south. Source: as above. Boundaries: GADM v4.1."
+#| fig-width: 10
+#| fig-height: 7
+top5 <- df |> arrange(desc(fragility)) |> slice_head(n = 5)
+lab <- sx |> filter(state %in% top5$state) |> sf::st_point_on_surface()
+labxy <- cbind(state = lab$state, as.data.frame(sf::st_coordinates(lab)))
+ggplot(sx) +
+  geom_sf(aes(fill = fragility), color = "grey80", linewidth = 0.1) +
+  geom_text_repel(data = labxy, aes(X, Y, label = state), inherit.aes = FALSE,
+                  size = 3, fontface = "bold", box.padding = 0.8, min.segment.length = 0) +
+  scale_fill_viridis_c(name = "Fragility\nindex") +
+  theme_fragility()
+```
+
+```{r}
+#| label: tbl-rank
+#| tbl-cap: "States ranked by the composite fragility index, with the underlying indicators. Homicide and ACLED rates are per 100,000 per year, 2019 to 2024."
+df |> arrange(desc(fragility)) |>
+  transmute(State = state,
+            `Homicide rate` = round(hom_rate, 1),
+            `ACLED rate` = round(acled_rate, 1),
+            `Marginalization (norm.)` = round(marg, 3),
+            `Poverty %` = round(poverty, 1),
+            Fragility = round(fragility, 2)) |>
+  head(15) |> knitr::kable()
+```
+
+## Limitations
+
+The unit is the state, and there are only 32, so the spatial tests are suggestive rather than strong, and the contiguity graph is coarse. The natural next iteration is the municipal level, where the same decoupling can be tested across roughly 2,475 units and the spatial structure has room to show itself.
+
+The poverty rate is computed from INEGI's 2024 poverty counts divided by 2020 CONAPO population, so the absolute percentages run slightly high, Chiapas computes near 70 against the official 66. The ranking the index uses is unaffected, since the overstatement is roughly proportional, but the displayed percentages should be read as approximate.
+
+The dimensions carry different vintages: violence is 2019 to 2024, marginalization is the 2020 census, and poverty is 2024. The index treats them as one snapshot. SESNSP and ACLED both capture lethal violence, so combining them gives homicide somewhat more weight than a single source would; this is deliberate, to use both as requested, but it is a choice worth noting.
+
+The composite is equal-weighted. The PCA-weighted version is computed alongside and tells the same story, because the decoupling is a property of the data, not of the weighting.
+
+## Reproducibility
+
+The full pipeline is contained in this document. The raw SESNSP, ACLED, CONAPO, and INEGI inputs and the GADM boundaries are not redistributed here; `data/README.md` gives the sources and the exact steps. Package versions are recorded below.
+
+```{r}
+#| label: session
+#| code-summary: "Session information"
+sessionInfo()
+```
+
+## Citations
+
+SESNSP. Incidencia Delictiva del Fuero Comun, nueva metodologia, cifras estatales, 2015 to 2025. Secretariado Ejecutivo del Sistema Nacional de Seguridad Publica.
+
+ACLED. Armed Conflict Location and Event Data Project, Mexico, 2019 to 2024, accessed 2026-06-05. acleddata.com. Raleigh, C., Linke, A., Hegre, H., and Karlsen, J. (2010). Introducing ACLED. Journal of Peace Research, 47(5), 651 to 660.
+
+CONAPO. Indice de marginacion por entidad federativa, 2020. Consejo Nacional de Poblacion.
+
+INEGI. Medicion de la pobreza multidimensional, 2024, por entidad federativa, using the CONEVAL methodology. Instituto Nacional de Estadistica y Geografia.
+
+GADM. Database of Global Administrative Areas, version 4.1. gadm.org.

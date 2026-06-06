@@ -40,6 +40,10 @@ Political violence before and after the August 2021 regime break, with district 
 
 The same 68,084 events read as two networks: a district adjacency network locating the corridors along which violence transmits, and an armed-actor co-event network of who fights whom. Frames fragility as a property of position in a network.
 
+### [Subnational Fragility in Mexico: One Index, Two Geographies](projects/mexico-fragility/fragility-index.html)
+
+A state-level fragility index from violence, marginalization, and poverty. Mexico's violence and deprivation cluster in opposite regions, so a single index masks two geographies.
+
 ---
 
 ## How this site is built
